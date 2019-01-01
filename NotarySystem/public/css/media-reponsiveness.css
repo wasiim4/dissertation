@@ -1,0 +1,11 @@
+@media (max-width: 500px) {
+    div.grid-x div.small-2.cell.sidebar-height {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) {
+    div.title-bar {
+        display: none;
+    }
+}

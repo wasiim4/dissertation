@@ -1,0 +1,88 @@
+footer {
+    margin-top: 5%;
+    float: left;
+    width: 100%;
+    background-color: #242836;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 1%;
+
+}
+.footerlogo{
+    height: 3.0% !important;
+    width: 1.5% !important;
+
+}
+
+.spacor{
+    padding-left: 10%;
+}
+
+.tableSpacor{
+    padding-right: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;   
+    /* padding-left: 1.5%; */
+}
+
+/**  BACK BUTTON + ICON FONT + HOVER ***/
+
+.back-btn {
+    padding: 10px;
+    cursor: pointer;
+    background: #6ba34d;
+    text-decoration: none;
+    color: #fefefe;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 0px 6px rgba(0, 0, 0, 0.23);
+}
+
+.back-btn:visited {
+    color: #fefefe;
+}
+
+.hvr-icon-back {
+    display: unset !important;
+}
+
+.visibility {
+    background: #fefefe00;
+}
+
+.btninvisible {
+    display: none;
+}
+
+.back-btn:hover {
+    padding: 10px;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    background: #77b456;
+    color: #fefefe;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 0px 6px rgba(0, 0, 0, 0.23);
+}
+
+.icon-back {
+    color: rgb(228, 228, 228);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4% 1% 4% 0%;
+}
+
+.spacor1{
+    padding-bottom: 3%;
+}
+
+.datatableTitleUsers {
+         margin: 0% 0% 0% 3%;
+         font-family:'Lobster';
+         font-size: 35px;
+     }
