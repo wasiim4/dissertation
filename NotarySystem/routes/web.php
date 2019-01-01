@@ -27,6 +27,11 @@ Route::get('/view/user/transaction','userController@getTransactions')->name('vie
 Route::get('/test','userController@viewUsers')->name('test');
 Route::post('propertyRegistration/fetch', 'HomeController@fetch')->name('dynamicdependent.fetch');
 Route::get('/confirm/meeting/{pid}{mid}', 'HomeController@confirmMeeting');
+Route::get('/compose/email', 'HomeController@showMailCompose')->name('show.mailCompose');
+Route::get('/upload/documents', 'HomeController@showUploadDoc')->name('show.uploadDoc');
+Route::post('/upload/documents', 'HomeController@uploadDoc')->name('show.UploadDocs');
+Route::get('/uploaded/documents', 'HomeController@viewUploadedDoc')->name('show.UploadedDocs');
+
 
 //staff only
 Route::prefix('staff')->group(function(){

@@ -40,7 +40,7 @@
                 <td>{{$upload->docName}}</td>
                 <td>{{$upload->created_at}}</td>
                 <td>
-                <a href="/storage/uploads/{{$upload->docName}}" download="{{$upload->docName}}">
+                <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
                     <button type="button" class="btn btn-primary">
                     <i class="glyphicon glyphicon-download">
                         Download

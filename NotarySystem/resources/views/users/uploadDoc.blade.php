@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-6">
                         <label>Document</label>
-                        <input type="file" accept=".pdf" id="document"  name="document" class="btn  btn-block"  >
+                        <input type="file"  id="document"  name="document" class="btn  btn-block"  >
                         </div>
                 </div>
                 <br>

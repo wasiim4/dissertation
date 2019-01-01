@@ -153,11 +153,6 @@ class HomeController extends Controller
         if(isset($image)) { //to check if user has selected an image
             if($request->hasFile('document')){
 
-                // $this->validate($request,
-                // [
-                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
-                // ]);
-                
                 // Get filename with the extension
                 $filenameWithExt = $request->file('document')->getClientOriginalName();
                 // Get just filename
@@ -167,8 +162,8 @@ class HomeController extends Controller
                 // Filename to store
                 $fileNameToStore= $filename.'_'.time().'.'.$extension;
                 // Upload Image
-                $path = $request->file('document')->storeAs('public/uploads', $fileNameToStore);
-            }
+                $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
+            
 
             $data = array(
                 'partyId' => $party_id, 
@@ -176,10 +171,11 @@ class HomeController extends Controller
                 'docType' => $docType, 
                 'docName' => $fileNameToStore 
             );
-    
+        
              DB::table('uploaded_documents')->insert($data);
              Session::flash('message', 'Successfully uploaded!'); 
             return Redirect::to('/upload/documents');
+        }
         }
     
 }
