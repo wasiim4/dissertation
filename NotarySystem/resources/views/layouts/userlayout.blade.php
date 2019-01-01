@@ -54,6 +54,9 @@
                 <li>
                     <a href="{{ route('view.transaction') }}" ><i class="fas fa-user-plus"></i> View Transactions</a>
                 </li>
+                <li>
+                        <a href="{{ route('show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
+                    </li>
                 {{-- <li>
                     <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
                 </li> --}}

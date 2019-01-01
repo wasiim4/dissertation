@@ -1,5 +1,5 @@
 @include('flashy::message')
-@extends('layouts.stafflayout')
+@extends('layouts.userlayout')
 <head>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -26,8 +26,8 @@
   </head>      
 
 @section('content')
-<h1 class="datatableTitleUsers"> Upload Contract</h1>
-<form method="POST" action="{{ route('upload.contract.submit') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
+<h1 class="datatableTitleUsers"> Upload Documents</h1>
+<form method="POST" action="{{ route('show.UploadDocs') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
     @csrf
     <fieldset class="addUserFieldset">
         <legend class="addUserLegend">Contract</legend>
@@ -41,19 +41,30 @@
                     </ul>
                 </div>
             @endif
+            @if (Session::has('message'))
+	<div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
+<br>
             <div class="row">
                 <div class="col-6">
-                    <label>Client Name</label>
-                    <select name="inputClientName" id="inputClientName" class="form-control " >
-                        <option value="">Select name</option>
-                        @foreach($users as $user)
-                       <option value="{{ $user->id}}">{{$user->id}}<?php echo"-"?>{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
-                        @endforeach
+                    <label>Document Type</label>
+                    <select name="inputDocType" id="inputDocType" class="form-control " >
+                        <option value="">Select type</option>
+                        
+                        <option >Birth Certificate</option>
+                        <option>Spouse Birth Certificate</option>
+                        <option >Marriage Certificate</option>
+                        <option>Divorce Certificate</option>
+                        <option >NIC</option>
+                        <option>Spouse NIC</option>
+                        <option>Site Plan</option>
+                        <option>Title Deed</option>
+                        <option>Surveyor Report</option>
                        </select>                
                     </div>
                     <div class="col-6">
-                        <label>Generated Contract</label>
-                        <input type="file" accept=".pdf" id="contract"  name="contract" class="btn  btn-block"  >
+                        <label>Document</label>
+                        <input type="file" accept=".pdf" id="document"  name="document" class="btn  btn-block"  >
                         </div>
                 </div>
                 <br>
@@ -67,16 +78,4 @@
             </div>
     </fieldset>
 </form>
-
-    <ol>
-        @foreach($transactions as $transaction)
-    <li><a href="chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank' download="{{$transaction->name}}">{{$transaction->name}}</a></li>
-    {{-- <li><a download="{{$transaction->name}}"style="color:black;" target='_blank' download="{{$transaction->name}}">{{$transaction->name}}</a></li> --}}
-
-    {{-- <li><a href="http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank'>{{$transaction->name}}</a></li> --}}
-    {{-- <li><a href="/staff/view/contract".{{}} style="color:black;" target='_blank' class="download">{{$transaction->name}}</a></li> --}}
-
-    @endforeach
-
-    </ol>
 @endsection

@@ -10,8 +10,8 @@ if(($transaction->mime)=="image/jpeg"){
 if(($transaction->mime)=="application/pdf") {
 
 header("Content-Type:".$transaction->mime);
-
-echo $transaction->generatedContract;
+return response()->download(storage_path($buyer->firstname.$buyer->lastname.'.docx'));
+// echo $transaction->generatedContract;
 
 }
 if(($transaction->mime)=="image/png"){

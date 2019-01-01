@@ -21,6 +21,10 @@
       padding: 5px;
       font-size: 5px !important;
     }
+
+    html {
+     scroll-behavior: smooth;
+    }
   </style> 
   <script>
     $(document).ready(function(){
@@ -31,8 +35,8 @@
 
 @section('content')
 <div class="container">
-  <div class="card">
-    <div class="card-header card bg-success text-white" style=" text-align:center;">Add Meeting</div>
+  <div class="card" id="addMeeting">
+    <div class="card-header card bg-primary text-white" style=" text-align:center;">Add Meeting</div>
       <div class="card-body">
           @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}
@@ -139,6 +143,9 @@
                   </th> 
                   <th>
                     Status
+                  </th>
+                  <th>
+                    Party
                   </th>                   
                   <th>
                     Actions
@@ -164,6 +171,9 @@
                       {{$meeting->meetingStatus}}
                     </td>
                     <td>
+                        {{$meeting->partyRole}}
+                      </td>
+                    <td>
                       {{-- Show Event Button --}}
                         <a style="color:#007bff;" href="/staff/show/client/{{$meeting->id}}">
                           <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
@@ -181,9 +191,14 @@
                       {{-- /Delete User Button --}}
                     </td>
                   </tr>
-                @endforeach
+                @endforeach               
               </tbody>
             </table>
+            <a style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
+              <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
+                  <i class="fas fa-calendar-plus"></i>
+              </span>
+            </a> 
           </div>
          </div>
         </div >

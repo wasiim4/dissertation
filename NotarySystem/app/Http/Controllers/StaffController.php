@@ -373,8 +373,7 @@ class StaffController extends Controller
  
         return view('meetings', compact('calendar_details','users') );
 }
-public function addMeeting(Request $request)
-    {
+public function addMeeting(Request $request){
         $status="Pending";
         $party=Input::get('party');
         $id=Input::get('partyId');
@@ -387,6 +386,7 @@ public function addMeeting(Request $request)
 
         $data = array(
             'partyId' =>  $id, 
+            'partyRole' =>  $party,
             'meetingReason' => $reason, 
             'startTime'=>$start,
             'endTime' =>  $end ,
@@ -437,7 +437,7 @@ public function addMeeting(Request $request)
         $meetings=DB::table('meetings')->get();
         return view('meetingsConfig')->with('users',$users)->with('meetings',$meetings);
     }
-    
+
     public function showUploadForm(){
         $transactions=DB::table('transaction')->get();
         $users=DB::table('users')->get();
@@ -609,12 +609,27 @@ public function addMeeting(Request $request)
         $body=Input::get('inputBody');
         
         
+        $upload=$request->file('inputAttachment');
+        
+       
+        $user=DB::table('users')->where('id',$recipient)->get();
 
-        $attachment = $request->file('inputAttachment')->getClientOriginalName();
-        $extension= $request->file('inputAttachment')->getClientOriginalExtension();
-        $attachmentPath = $request->file('inputAttachment')->getRealPath();
+        foreach ($user as $users) {
+            
+            $data = [
+                'firstname'      => $users->firstname,
+                'lastname'       => $users->lastname,
+                'body'          =>$body
+                
+            ];
+
+            if(isset($upload)){
+
+                $attachment = $request->file('inputAttachment')->getClientOriginalName();
+                $extension= $request->file('inputAttachment')->getClientOriginalExtension();
+                $attachmentPath = $request->file('inputAttachment')->getRealPath();
      
-        $mime= $request->file('inputAttachment')->getMimeType();
+                $mime= $request->file('inputAttachment')->getMimeType();
                 // Get just filename
                 $filename = pathinfo($attachment, PATHINFO_FILENAME);
                 // Get just the file extension
@@ -623,17 +638,6 @@ public function addMeeting(Request $request)
                 $fileNameToStore= $filename.'_'.time().'.'.$extension;
                 // Upload Image
                 $path = $request->file('inputAttachment')->storeAs('public/images', $fileNameToStore);
-       
-        $user=DB::table('users')->where('id',$recipient)->get();
-
-        foreach ($user as $users) {
-            
-                $data = [
-                    'firstname'      => $users->firstname,
-                    'lastname'       => $users->lastname,
-                    'body'          =>$body
-                   
-                ];
 
                 Mail::send('emails.email_party', $data, function($m) use ($users,$mime,$path,$extension,$request,$filename, $attachmentPath){
                 $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject(Input::get('inputSubject'))
@@ -641,15 +645,19 @@ public function addMeeting(Request $request)
                                                 'mime'=>$mime));
               
                 });
+            }
 
-                Session::flash('message', 'Mail successfully sent!'); 
-                 return Redirect::to('staff/compose/email');
-                
-               
-            
-                }
+            else{
+                Mail::send('emails.email_party', $data, function($m) use ($users){
+                $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject(Input::get('inputSubject'));
+                });
+            }
 
-        
+            Session::flash('message', 'Mail successfully sent!'); 
+            return Redirect::to('staff/compose/email');
+        }    
     }
+
+    // public function
 }
 ?>

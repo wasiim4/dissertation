@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
                 'lastname' => 'Khayrattee',  
                 'title'=> '1',
                 'contactnum' => '57896461',
-                'email' => 'nooree@gmail.com',
+                'email' => 'nooree1397@gmail.com',
                 'password' => bcrypt('123456'),
                 'dob' => '1997-11-13',
                 'birthCertificateNumber' =>'7',
