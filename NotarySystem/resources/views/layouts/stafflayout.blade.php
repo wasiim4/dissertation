@@ -90,7 +90,29 @@
                                 
                     </ul>
                 </li>
-                
+                <li class="active">
+                    <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-file"></i>
+                          Uploaded Documents
+                    </a>
+                    <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
+                        <li>
+                            <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
+                        </li>
+                        <li>
+                            <a href="" ><i class="fas fa-user-plus"></i> RGD</a>
+                        </li>
+                        <li>
+                            <a href="" ><i class="fas fa-user-plus"></i> Bank</a>
+                        </li>
+                        <li>
+                            <a href="" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
+                        </li>
+                            
+                        
+                                
+                    </ul>
+                </li>
                 <li class="active">
                     <a href="#meetingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-calendar-alt"></i>

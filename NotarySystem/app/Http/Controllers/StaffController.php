@@ -658,6 +658,9 @@ public function addMeeting(Request $request){
         }    
     }
 
-    // public function
+     public function viewUploadedDocuments(){
+         $documents=DB::table('uploaded_documents')->where('partyRole','acquéreur')->get();
+         return view('Staff.uploadedDocuments')->with('documents',$documents);
+     }
 }
 ?>

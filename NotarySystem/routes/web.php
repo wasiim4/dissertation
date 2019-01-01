@@ -66,6 +66,7 @@ Route::prefix('staff')->group(function(){
     Route::get('/meeting/add/del/up', 'StaffController@meetingForm')->name('show.meetingsForms');
     Route::get('/compose/email', 'StaffController@showMailCompose')->name('show.mailCompose');
     Route::post('/compose/email', 'StaffController@sendMailToParty')->name('send.party.mail');
+    Route::get('view/download/uploaded/documents','StaffController@viewUploadedDocuments')->name('download.uploadedDocs');
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 
