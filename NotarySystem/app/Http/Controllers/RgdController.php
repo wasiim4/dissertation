@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class RgdController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('auth:rgd');
@@ -32,7 +34,8 @@ class RgdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+     public function index()
     {
         $users = DB::table('users')->get();
         //return view('staff')->with('users',$users);

@@ -49,11 +49,9 @@ class HomeController extends Controller
 
     public function userlogout()
     {
-        Auth::guard('web')->logout();
-        
+        Auth::guard('web')->logout();        
         return redirect('/login');
     }
-
    
     public function confirmMeeting($pid,$mid,Request $request)
     {
@@ -69,16 +67,13 @@ class HomeController extends Controller
         ->where('partyId', $party)
         ->where('id', $meeting_id)
         ->update([
-                'meetingStatus' => $status
-            ]);
-
+            'meetingStatus' => $status
+        ]);        
         
-        
-        return redirect('/login');
-            
-        // }
-        
+        return redirect('/login');            
+        // }        
     }
+
     public function showMailCompose(){
         $rgds=DB::table('rgds')->get();
         $users=DB::table('users')->where('id',Auth::user()->id)->get();
@@ -90,20 +85,15 @@ class HomeController extends Controller
         $recipient=Input::get('inputRecipient');
         $subjectInfo=Input::get('inputSubject');
         $body=Input::get('inputBody');
-        
-        
-        $upload=$request->file('inputAttachment');
-        
+        $upload=$request->file('inputAttachment');        
        
         $user=DB::table('users')->where('id',$recipient)->get();
-
-        foreach ($user as $users) {
+        foreach ($user as $users) {            
             
             $data = [
-                'firstname'      => $users->firstname,
-                'lastname'       => $users->lastname,
-                'body'          =>$body
-                
+                'firstname' => $users->firstname,
+                'lastname' => $users->lastname,
+                'body' => $body                
             ];
 
             if(isset($upload)){
@@ -124,9 +114,7 @@ class HomeController extends Controller
 
                 Mail::send('emails.email_party', $data, function($m) use ($users,$mime,$path,$extension,$request,$filename, $attachmentPath){
                 $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject(Input::get('inputSubject'))
-                ->attach( $attachmentPath,array('as'=>$filename.$extension,
-                                                'mime'=>$mime));
-              
+                ->attach( $attachmentPath,array('as'=>$filename.$extension, 'mime'=>$mime));
                 });
             }
 
@@ -141,7 +129,8 @@ class HomeController extends Controller
         }    
     }
 
-    public function showUploadDoc(){
+    public function showUploadDoc()
+    {
         return view('users.uploadDoc');
     }
 
@@ -164,23 +153,24 @@ class HomeController extends Controller
                 // Upload Image
                 $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
             
-
-            $data = array(
-                'partyId' => $party_id, 
-                'partyRole' =>  $party_role, 
-                'docType' => $docType, 
-                'docName' => $fileNameToStore 
-            );
+                $data = array(
+                    'partyId' => $party_id, 
+                    'partyRole' =>  $party_role, 
+                    'docType' => $docType, 
+                    'docName' => $fileNameToStore 
+                );
         
-             DB::table('uploaded_documents')->insert($data);
-             Session::flash('message', 'Successfully uploaded!'); 
-            return Redirect::to('/upload/documents');
-        }
+                DB::table('uploaded_documents')->insert($data);
+                Session::flash('message', 'Successfully uploaded!'); 
+                return Redirect::to('/upload/documents');
+            }
         }
     
-}
-public function viewUploadedDoc(){
-    $uploads=DB::table('uploaded_documents')->get();
-    return view('users.uploadedDoc')->with('uploads',$uploads);
-}
+    }
+    
+    public function viewUploadedDoc()
+    {
+        $uploads=DB::table('uploaded_documents')->get();
+        return view('users.uploadedDoc')->with('uploads',$uploads);
+    }
 }

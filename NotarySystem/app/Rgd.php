@@ -22,7 +22,7 @@ class Rgd extends Authenticatable
     // ];
 
     protected $fillable = [
-         'email', 'password','firstname','lastname',
+        'email', 'password','firstname','lastname',
     ];
 
     /**

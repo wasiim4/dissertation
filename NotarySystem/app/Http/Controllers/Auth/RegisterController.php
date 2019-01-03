@@ -15,12 +15,10 @@ use Illuminate\Http\Request;
 use DB;
 //use Illuminate\Support\Facades\Input;
 //use Auth;
-
 //use Illuminate\Support\Facades\Validator;
 use App\Mail\sendMail;
 use Mail;
 //use Illuminate\Support\Facades\Hash;
-
 
 class RegisterController extends Controller
 {
@@ -49,6 +47,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -60,6 +59,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -83,6 +83,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+    
     protected function create()
     {
         // return User::create([
@@ -113,12 +114,12 @@ class RegisterController extends Controller
             
         );
 
-         DB::table('users')->insert($data);
-         $user_id = DB::table('users')->insertGetId($data);
-         $user=(DB::table('users')->where('id',$user_id)->get())[0];
-         Mail::send('emails.email_invitation', $data, function($m) use ($user){
+        DB::table('users')->insert($data);
+        $user_id = DB::table('users')->insertGetId($data);
+        $user=(DB::table('users')->where('id',$user_id)->get())[0];
+        Mail::send('emails.email_invitation', $data, function($m) use ($user){
             $m->to($user->email, 'Notary System')->from('hi@example.com', 'Notary System')->subject('Login Credentials');
-            });
+        });
 
         return view('/dashboard');
 

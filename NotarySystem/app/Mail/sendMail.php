@@ -21,8 +21,7 @@ class sendMail extends Mailable
         $this->genPass=$genPass;
         $this->email=$email;
         $this->fname=$fname;
-        $this->lname=$lname;
-       
+        $this->lname=$lname;   
     }
 
     /**

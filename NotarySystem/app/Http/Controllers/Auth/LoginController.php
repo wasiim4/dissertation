@@ -35,8 +35,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-    //    $this->middleware('guest')->except('logout');
-       $this->middleware('guest',['except'=>['logout','rgdlogout']]);
+        // $this->middleware('guest')->except('logout');
+        $this->middleware('guest',['except'=>['logout','rgdlogout']]);
     }
 
     

@@ -1,12 +1,12 @@
 <?php
  
- namespace App;
+namespace App;
   
- use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
   
- class Meeting extends Model
- {
-     protected $fillable = [
-         'meetingReason', 'startTime', 'endTime'
-     ];
- }
+class Meeting extends Model
+{
+    protected $fillable = [
+        'meetingReason', 'startTime', 'endTime'
+    ];
+}
