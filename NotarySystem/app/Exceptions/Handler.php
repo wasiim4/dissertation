@@ -57,6 +57,14 @@ class Handler extends ExceptionHandler
                 return redirect(route('rgd.login'));
                 break;
 
+                case 'bank':
+                    return redirect(route('bank.login'));
+                    break;
+
+                case 'landSurveyor':
+                return redirect(route('landSurveyor.login'));
+                break;
+
                 // case 'web':
                 // return redirect(route('rgd.login'));
                 // break;

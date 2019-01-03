@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 
-class bankController extends Controller
+class landSurveyorController extends Controller
 {
-   /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
      public function __construct()
      {
-         $this->middleware('auth:bank');
+         $this->middleware('auth:landSurveyor');
      }
  
      /**
@@ -36,7 +36,7 @@ class bankController extends Controller
      public function index()
      {
          $users = DB::table('users')->get();
-         return view('bank.bankDashboard')->with('users',$users);
+         return view('landSurveyor.LSdashboard')->with('users',$users);
      
      }
 }

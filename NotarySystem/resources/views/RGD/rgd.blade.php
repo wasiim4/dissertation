@@ -99,40 +99,7 @@
                             <i class="fas fa-eye"></i>
                         </span>
                     </a> 
-                {{-- /Show Button --}}
-               |
-                {{-- Edit User Button --}}
-                    {{-- <a class="editbtn" data-open="editusermod" data-mycontactnum="{{$user->contactnum}}" data-myfirstname="{{$user->firstname}}" data-mylastname="{{$user->lastname}}" data-myemail="{{$user->email}}" data-userid="{{$user->id}}" data-target="#editusermod"> --}}
-                        <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"  title="Edit">
-                            <i class="fas fa-pencil-alt font-color"></i> 
-                        </span>
-                    </a>
-                {{-- /Edit User Button --}}
-               |
-                
-                {{-- Delete User Button --}}
-                    @if ($user->id== Auth::id()) 
-                        <a style="color:black;" class="btndelevent not-active-link disabled" href="/usersfound/delete/{{$user->id}}">
-                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top" tabindex="1" title="Delete">
-                                <i class="fas fa-trash-alt font-color"></i>
-                            </span>
-                        </a>
-                    @else
-                        <a class="btndelevent" href="/usersfound/delete/{{$user->id}}">
-                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
-                                <i class="fas fa-trash-alt font-color"></i>
-                            </span>
-                        </a>
-                    @endif
-                {{-- /Delete User Button --}}
-              |
-                {{-- Show transactions Button --}}
-                    {{-- <a href="/usersfound/show/{{$user->id}}"> --}}
-                        <span data-toggle="tooltip" data-placement="top" tabindex="1" style="border-bottom:none" title="Transactions">
-                            <i class="fas fa-handshake"></i>
-                        </span>
-                    </a> 
-                {{-- /Show Button --}}
+               
             </td>
         </tr>
         @endforeach
