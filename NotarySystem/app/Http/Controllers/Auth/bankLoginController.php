@@ -13,8 +13,7 @@ class bankLoginController extends Controller
      *
      * @var string
      */
-
-    protected $redirectTo = '/staff';
+     protected $redirectTo = '/bank';
     public function __construct(){
         $this->middleware('guest:bank', ['except' => ['logout','userlogout','rgdlogout','banklogout','landSurveyorlogout']]);
     }

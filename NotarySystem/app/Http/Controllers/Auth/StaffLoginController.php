@@ -15,7 +15,7 @@ class StaffLoginController extends Controller
      */
     protected $redirectTo = '/staff';
     public function __construct(){
-        $this->middleware('guest:staff', ['except' => ['logout','userlogout','rgdlogout']]);
+        $this->middleware('guest:staff', ['except' => ['logout','userlogout','rgdlogout','banklogout','landSurveyorlogout']]);
     }
     
     public function showLoginForm()

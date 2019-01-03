@@ -15,7 +15,7 @@ class RgdLoginController extends Controller
      */
     protected $redirectTo = '/rgd';
     public function __construct(){
-        $this->middleware('guest:rgd', ['except' => ['logout','userlogout','rgdlogout']]);
+        $this->middleware('guest:rgd', ['except' => ['logout','userlogout','rgdlogout','banklogout','landSurveyorlogout']]);
     }
 
     public function showLoginForm()

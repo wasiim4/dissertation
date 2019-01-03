@@ -13,8 +13,7 @@ class landSurveyorLoginController extends Controller
      *
      * @var string
      */
-    
-    protected $redirectTo = '/staff';
+     protected $redirectTo = '/landSurveyor';
     public function __construct(){
         $this->middleware('guest:landSurveyor', ['except' => ['logout','userlogout','rgdlogout','banklogout','landSurveyorlogout']]);
     }
@@ -43,7 +42,7 @@ class landSurveyorLoginController extends Controller
         // return redirect()->intended(route('staff.login'))->withInput($request->only('email', 'remember'));
     }
 
-    public function logout()
+    public function landSurveyorlogout()
     {
         Auth::guard('landSurveyor')->logout();
         return redirect('landSurveyor/login');
