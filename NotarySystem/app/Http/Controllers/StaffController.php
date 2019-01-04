@@ -660,7 +660,13 @@ public function addMeeting(Request $request){
 
      public function viewUploadedDocuments(){
          $documents=DB::table('uploaded_documents')->where('partyRole','acquéreur')->get();
-         return view('Staff.uploadedDocuments')->with('documents',$documents);
+         $documentsByBank=DB::table('uploaded_documents')->where('partyRole','BANK')->get();
+         $documentsByRGD=DB::table('uploaded_documents')->where('partyRole','RGD')->get();
+         $documentsByLS=DB::table('uploaded_documents')->where('partyRole','Land Surveyor')->get();
+         return view('Staff.uploadedDocuments')->with('documents',$documents)
+                                                ->with('documentsByBank',$documentsByBank)
+                                                ->with('documentsByRGD',$documentsByRGD)
+                                                ->with('documentsByLS',$documentsByLS);
      }
 }
 ?>

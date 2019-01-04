@@ -30,6 +30,15 @@
         $('#tbluser').DataTable(
             {'responsive':'true'}
         );
+        $('#tblbank').DataTable(
+            {'responsive':'true'}
+        );
+        $('#tblRgd').DataTable(
+            {'responsive':'true'}
+        );
+        $('#tblLs').DataTable(
+            {'responsive':'true'}
+        );
     } );
     </script>
     <script>
@@ -100,13 +109,13 @@
                             <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> RGD</a>
+                            <a href="#tblRgd" ><i class="fas fa-user-plus"></i> RGD</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> Bank</a>
+                            <a href="#tblbank" ><i class="fas fa-user-plus"></i> Bank</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
+                            <a href="#tblLs" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
                         </li>
                             
                         

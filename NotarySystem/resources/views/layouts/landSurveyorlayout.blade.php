@@ -144,7 +144,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">  
                 <li class="nav-item">
-                    <a class="nav-link" style="color:aliceblue;" href="{{route('staffdashboard')}}">Welcome,{{ ucfirst(strtolower(Auth::user()->name)) }} </a>
+                    <a class="nav-link" style="color:aliceblue;" href="{{route('landSurveyordashboard')}}">Welcome,{{ ucfirst(strtolower(Auth::user()->name)) }} </a>
                 </li>
             </ul>
         </div>
