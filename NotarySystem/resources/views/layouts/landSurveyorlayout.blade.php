@@ -60,36 +60,10 @@
                 <li>
                     <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
                 </li>
- 
                 <li>
-                    <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
+                    <a href="{{ route('ls.show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
                 </li>
-
-                <li class="active">
-                    <a href="#registrationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-plus-square"></i>
-                           Registrations
-                    </a>
-                    <ul class="collapse list-unstyled" id="registrationSubmenu">
-                        <li>
-                            <a href="{{ route('registernew') }}" ><i class="fas fa-user-plus"></i> Add Client</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('confirm.children') }}" ><i class="fas fa-user-plus"></i> Num of Children</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('show.children.form') }}" ><i class="fas fa-user-plus"></i>Add Children</a>
-                        </li>
-                            
-                        <li>
-                            <a href="{{ route('propertyRegistration') }}" ><i class="fas fa-building"></i> Property Registration</a>
-                        </li>
-                                
-                    </ul>
-                </li>
+                
                 <li class="active">
                     <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-file"></i>
@@ -97,16 +71,16 @@
                     </a>
                     <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
                         <li>
-                            <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
+                            <a href="{{ route('ls.show.UploadedDocs') }}" ><i class="fas fa-user-plus"></i>My documents</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> RGD</a>
+                            <a href="" ><i class="fas fa-user-plus"></i> Notary/Notary Assistant</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> Bank</a>
+                            <a href="" ><i class="fas fa-user-plus"></i> Client</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
+                            <a href="" ><i class="fas fa-user-plus"></i>RGD</a>
                         </li>
                             
                         
@@ -128,20 +102,7 @@
                     </ul>
                 </li>
                 
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-file-alt"></i>
-                        Generate Contract
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="{{ route('generateContract') }}" ><i class="fas fa-key"></i> SOIP01</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('show.partage') }}" ><i class="fas fa-user-plus"></i>ALOT02</a>
-                            </li>
-                    </ul>
-                </li>
+                
                 <li>
                     <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-envelope"></i>
@@ -149,7 +110,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="mailSubmenu">
                         <li>
-                            <a href="{{ route('show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
+                            <a href="{{ route('ls.show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
                         </li>
                         <li>
                             <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>

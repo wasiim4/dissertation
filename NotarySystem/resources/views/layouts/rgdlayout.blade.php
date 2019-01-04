@@ -60,7 +60,9 @@
                 <li>
                     <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
                 </li>
-
+                <li>
+                    <a href="{{ route('Rgd.show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
+                </li>
              
                 <li class="active">
                     <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -69,7 +71,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
                         <li>
-                            <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
+                            <a href="{{ route('Rgd.show.UploadedDocs') }}" ><i class="fas fa-user-plus"></i> My documents</a>
                         </li>
                         <li>
                             <a href="" ><i class="fas fa-user-plus"></i> RGD</a>

@@ -37,7 +37,7 @@
                   <br><br>
 
                   Kind Regards,<br>
-                  Notary Team
+                  
             </div>
             {{-- <img class="userInvImgEmail" src="{{ $message->embed(('images/'.$image_path)) }}">       --}}
         </div>

@@ -1,5 +1,5 @@
 @include('flashy::message')
-@extends('layouts.rgdlayout')
+@extends('layouts.banklayout')
 <head>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -27,7 +27,7 @@
 
 @section('content')
 <h1 class="datatableTitleUsers"> Upload Documents</h1>
-<form method="POST" action="{{ route('Rgd.show.UploadDocs') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
+<form method="POST" action="{{ route('bank.show.UploadDocs') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
     @csrf
     <fieldset class="addUserFieldset">
         <legend class="addUserLegend">Contract</legend>

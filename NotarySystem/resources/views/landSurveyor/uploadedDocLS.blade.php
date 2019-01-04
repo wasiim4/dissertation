@@ -1,5 +1,5 @@
 @include('flashy::message')
-@extends('layouts.rgdlayout')
+@extends('layouts.landSurveyorlayout')
 <head>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">

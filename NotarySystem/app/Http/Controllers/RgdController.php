@@ -184,7 +184,7 @@ class RgdController extends Controller
                     $path = $request->file('inputAttachment')->storeAs('public/images', $fileNameToStore);
     
                     Mail::send('emails.FromRgdToEXParties', $data, function($m) use ($landSurveyors,$mime,$path,$extension,$request,$filename, $attachmentPath){
-                    $m->to($landSurveyors->email, 'Notary Team')->from(Auth::user()->email, 'Notary Team')->subject(Input::get('inputSubject'))
+                    $m->to($landSurveyors->email, 'Land Surveyor')->from(Auth::user()->email, 'Notary Team')->subject(Input::get('inputSubject'))
                     ->attach( $attachmentPath,array('as'=>$filename.$extension,
                                                     'mime'=>$mime));
                   
@@ -203,5 +203,51 @@ class RgdController extends Controller
         
             }  
     }
+
+    public function showUploadDoc()
+    {
+        return view('RGD.uploadDocRgd');
+    }
+
+    public function uploadDoc(Request $request){
+        $party_id = Auth::user()->id;
+        $party_role = Auth::user()->roles;
+        $docType=Input::get('inputDocType');
+        $image=$request->file('document');
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('document')){
+
+                // Get filename with the extension
+                $filenameWithExt = $request->file('document')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('document')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
+            
+                $data = array(
+                    'partyId' => $party_id, 
+                    'partyRole' =>  $party_role, 
+                    'docType' => $docType, 
+                    'docName' => $fileNameToStore 
+                );
+        
+                DB::table('uploaded_documents')->insert($data);
+                Session::flash('message', 'Successfully uploaded!'); 
+                return Redirect::to('rgd/upload/documents');
+            }
+        }
+    
+    }
+    
+    public function viewMyUploadedDoc()
+    {
+        $uploads=DB::table('uploaded_documents')->where('partyRole',Auth::user()->roles)->get();
+        return view('RGD.uploadedDocRgd')->with('uploads',$uploads);
+    }
+
 
 }

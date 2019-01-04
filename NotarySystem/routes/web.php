@@ -78,7 +78,9 @@ Route::prefix('rgd')->group(function(){
     Route::post('/compose/email', 'RgdController@sendMailToParty')->name('Rgd.send.party.mail');
     Route::get('/upload/documents', 'RgdController@showUploadDoc')->name('Rgd.show.uploadDoc');
     Route::post('/upload/documents', 'RgdController@uploadDoc')->name('Rgd.show.UploadDocs');
-    Route::get('/uploaded/documents', 'RgdController@viewUploadedDoc')->name('Rgd.show.UploadedDocs');
+    Route::get('/uploaded/documents', 'RgdController@viewMyUploadedDoc')->name('Rgd.show.UploadedDocs');
+    // Route::get('view/download/uploaded/documents','RgdController@viewUploadedDocuments')->name('Rgd.download.uploadedDocs');
+
 });
 
 //bank only
@@ -89,10 +91,10 @@ Route::prefix('bank')->group(function(){
     Route::get('/logout', 'Auth\bankLoginController@banklogout')->name('bank.logout');
     Route::get('/confirm/meeting/{pid}{mid}', 'bankController@confirmMeeting');
     Route::get('/compose/email', 'bankController@showMailCompose')->name('bank.show.mailCompose');
-    Route::post('/compose/email', 'RgdController@sendMailToParty')->name('bank.send.party.mail');
+    Route::post('/compose/email', 'bankController@sendMailToParty')->name('bank.send.party.mail');
     Route::get('/upload/documents', 'bankController@showUploadDoc')->name('bank.show.uploadDoc');
     Route::post('/upload/documents', 'bankController@uploadDoc')->name('bank.show.UploadDocs');
-    Route::get('/uploaded/documents', 'bankController@viewUploadedDoc')->name('bank.show.UploadedDocs');
+    Route::get('/uploaded/documents', 'bankController@viewMyUploadedDoc')->name('bank.show.UploadedDocs');
 });
 
 //land surveyor only
@@ -103,8 +105,8 @@ Route::prefix('landSurveyor')->group(function(){
     Route::get('/logout', 'Auth\landSurveyorLoginController@landSurveyorlogout')->name('landSurveyor.logout');
     Route::get('/confirm/meeting/{pid}{mid}', 'landSurveyorController@confirmMeeting');
     Route::get('/compose/email', 'landSurveyorController@showMailCompose')->name('ls.show.mailCompose');
-    Route::post('/compose/email', 'RgdController@sendMailToParty')->name('ls.send.party.mail');
+    Route::post('/compose/email', 'landSurveyorController@sendMailToParty')->name('ls.send.party.mail');
     Route::get('/upload/documents', 'landSurveyorController@showUploadDoc')->name('ls.show.uploadDoc');
     Route::post('/upload/documents', 'landSurveyorController@uploadDoc')->name('ls.show.UploadDocs');
-    Route::get('/uploaded/documents', 'landSurveyorController@viewUploadedDoc')->name('ls.show.UploadedDocs');
+    Route::get('/uploaded/documents', 'landSurveyorController@viewMyUploadedDoc')->name('ls.show.UploadedDocs');
 });
