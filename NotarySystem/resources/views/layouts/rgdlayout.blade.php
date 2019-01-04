@@ -108,7 +108,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="mailSubmenu">
                         <li>
-                            <a href="{{ route('show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
+                            <a href="{{ route('Rgd.show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
                         </li>
                         <li>
                             <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>

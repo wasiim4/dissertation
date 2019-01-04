@@ -55,10 +55,10 @@
                 <div class="form-row">
                     
                     <div class="form-group col-md-4">
-                            @foreach($rgds as $rgd)
+                            {{-- @foreach($rgds as $rgd) --}}
                         <label for="inputSender">From</label>
-                            <input type="email" required class="form-control" disabled name="inputSender" value="{{$rgd->email}}"  autofocus>                         
-                            @endforeach
+                            <input type="email" required class="form-control" disabled name="inputSender" value="{{Auth::user()->email}}"  autofocus>                         
+                            {{-- @endforeach --}}
                         </div>
                     <div class="form-group col-md-4">
                             <label for="inputRecipient">To</label>
@@ -89,7 +89,7 @@
                     <div class="col-8">
         
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="party" id="inlineRadio2" value="RGD">
+                            <input class="form-check-input" type="radio" name="party" id="inlineRadio2" value="Notary/Notary Assistant">
                             <label class="form-check-label" for="inlineRadio2">Notary/Notary Assistant</label>
                           </div>
         
@@ -99,7 +99,7 @@
                           </div>
         
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Bank" >
+                            <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Land Surveyor" >
                             <label class="form-check-label" for="inlineRadio3">Land Surveyor </label>
                           </div>
         
