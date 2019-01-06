@@ -158,7 +158,7 @@
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-file-alt"></i>
-                        Generate Contract
+                        Generate Draft
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>

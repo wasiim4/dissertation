@@ -200,7 +200,7 @@
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Generate Contract">
+                        <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Generate Draft">
                     </div>
                     <div class="col-4"></div>
                 </div>
