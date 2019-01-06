@@ -27,6 +27,75 @@
 
 </head>
 @section('content')
+{{-- BY NOTARY/NOTARY ASSISTANT --}}
+<div class="row">
+    <div class="col-12">
+    <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
+    <table id="tblnotary" class="table table-hover " style="width:100%;">
+        <thead>
+            <tr>
+                <th>
+                   Doc ID
+                </th> 
+                <th>
+                   Party Id
+                </th>
+                <th>
+                   Role
+                </th>
+                <th>
+                    Doc Type
+                </th> 
+                <th>
+                   Doc Name
+                </th> 
+                <th>
+                    Uploaded At
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($documentsByNotary as $documentsByNotaries)
+            <tr >
+                <td>    
+                    {{$documentsByNotaries->id}} 
+                </td>
+                <td>
+                    {{$documentsByNotaries->partyId}}
+                </td>
+                <td>
+                    {{$documentsByNotaries->partyRole}}
+                </td>
+                <td>
+                    {{$documentsByNotaries->docType}}
+                </td>
+                <td>
+                    {{$documentsByNotaries->docName}}
+                </td>
+                <td>
+                    {{$documentsByNotaries->created_at}}
+                </td>
+                <td>
+                    <a href="/storage/images/{{$documentsByNotaries->docName}}" download="{{$documentsByNotaries->docName}}">
+                        <button type="button" class="btn btn-primary">
+                        <i class="glyphicon glyphicon-download">
+                            Download
+                        </i>
+                        </button>
+                    </a>
+                </td>
+                
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div >
+    <br>
 {{-- BY CLIENT --}}
 <div class="row">
     <div class="col-12">

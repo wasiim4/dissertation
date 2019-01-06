@@ -53,8 +53,7 @@ class HomeController extends Controller
         return redirect('/login');
     }
    
-    public function confirmMeeting($pid,$mid,Request $request)
-    {
+    public function confirmMeeting($pid,$mid,Request $request){
         //check which link was clicked (coming or not coming) in mail
         if ($request->has('status')) {
             $status = $request->input('status');
@@ -136,7 +135,7 @@ class HomeController extends Controller
 
     public function uploadDoc(Request $request){
         $party_id = Auth::user()->id;
-        $party_role = Auth::user()->roles;
+        $party_role = "Client";
         $docType=Input::get('inputDocType');
         $image=$request->file('document');
         if(isset($image)) { //to check if user has selected an image
@@ -170,7 +169,10 @@ class HomeController extends Controller
     
     public function viewUploadedDoc()
     {
-        $uploads=DB::table('uploaded_documents')->get();
-        return view('users.uploadedDoc')->with('uploads',$uploads);
+        $uploadsByNotary=DB::table('uploaded_documents')->where('partyRole','Notary')->get();
+        $uploads=DB::table('uploaded_documents')->where('partyId',Auth::user()->id)
+                                                ->where('partyRole','Client')
+                                                ->get();
+        return view('users.uploadedDoc')->with('uploads',$uploads)->with('uploadsByNotary', $uploadsByNotary);
     }
 }

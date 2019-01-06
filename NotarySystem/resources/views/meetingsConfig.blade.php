@@ -52,8 +52,18 @@
                   <select name="partyId" id="partyId" class="form-control " >
                     <option value="">Select name</option>
                       @foreach($users as $user)
-                        <option value="{{ $user->id}}">{{$user->id}}<?php echo"-"?>{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
+                        <option value="{{ $user->id}}">{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
                       @endforeach
+                      @foreach($rgds as $rgd)
+                        <option value="{{ $rgd->id}}">{{$rgd->name}}</option>
+                      @endforeach
+                      @foreach($banks as $bank)
+                        <option value="{{ $bank->id}}">{{$bank->name}}<?php echo"-"?>{{$bank->branch}}</option>
+                      @endforeach
+                      @foreach($landSurveyors as $landSurveyor)
+                        <option value="{{ $landSurveyor->id}}">{{$landSurveyor->name}}<?php echo"-"?>{{$landSurveyor->roles}}</option>
+                      @endforeach
+                     
                   </select>   
               </div>
 
@@ -92,7 +102,7 @@
                   </div>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Bank" >
+                    <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Land Surveyor" >
                     <label class="form-check-label" for="inlineRadio3">Land Surveyor </label>
                   </div>
 

@@ -65,15 +65,15 @@ class Handler extends ExceptionHandler
                 return redirect(route('landSurveyor.login'));
                 break;
 
-                // case 'web':
-                // return redirect(route('rgd.login'));
-                // break;
-
                 default:
+                    
                     return redirect(route('login'));
+                    
                     break;
             }
         }
         return parent::render($request, $exception);
     }
+
+    
 }

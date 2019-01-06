@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    Flashy::message("Welcome Aboard","http://your-awesome-link.com");
+    
     return view('auth.login');
 });
 
@@ -63,7 +63,10 @@ Route::prefix('staff')->group(function(){
     Route::get('/meeting/add/del/up', 'StaffController@meetingForm')->name('show.meetingsForms');
     Route::get('/compose/email', 'StaffController@showMailCompose')->name('show.mailCompose');
     Route::post('/compose/email', 'StaffController@sendMailToParty')->name('send.party.mail');
+    Route::get('/upload/documents', 'StaffController@showUploadDoc')->name('staff.show.uploadDoc');
+    Route::post('/upload/documents', 'StaffController@uploadDoc')->name('staff.show.UploadDocs');
     Route::get('view/download/uploaded/documents','StaffController@viewUploadedDocuments')->name('download.uploadedDocs');
+    Route::get('/confirm/meeting/{pid}{mid}', 'StaffController@confirmMeeting'); 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 
@@ -79,6 +82,7 @@ Route::prefix('rgd')->group(function(){
     Route::get('/upload/documents', 'RgdController@showUploadDoc')->name('Rgd.show.uploadDoc');
     Route::post('/upload/documents', 'RgdController@uploadDoc')->name('Rgd.show.UploadDocs');
     Route::get('/uploaded/documents', 'RgdController@viewMyUploadedDoc')->name('Rgd.show.UploadedDocs');
+    Route::get('/confirm/meeting/{pid}{mid}', 'RgdController@confirmMeeting');
     // Route::get('view/download/uploaded/documents','RgdController@viewUploadedDocuments')->name('Rgd.download.uploadedDocs');
 
 });
@@ -95,6 +99,7 @@ Route::prefix('bank')->group(function(){
     Route::get('/upload/documents', 'bankController@showUploadDoc')->name('bank.show.uploadDoc');
     Route::post('/upload/documents', 'bankController@uploadDoc')->name('bank.show.UploadDocs');
     Route::get('/uploaded/documents', 'bankController@viewMyUploadedDoc')->name('bank.show.UploadedDocs');
+    Route::get('/confirm/meeting/{pid}{mid}', 'bankController@confirmMeeting');
 });
 
 //land surveyor only
@@ -109,4 +114,5 @@ Route::prefix('landSurveyor')->group(function(){
     Route::get('/upload/documents', 'landSurveyorController@showUploadDoc')->name('ls.show.uploadDoc');
     Route::post('/upload/documents', 'landSurveyorController@uploadDoc')->name('ls.show.UploadDocs');
     Route::get('/uploaded/documents', 'landSurveyorController@viewMyUploadedDoc')->name('ls.show.UploadedDocs');
+    Route::get('/confirm/meeting/{pid}{mid}', 'landSurveyorController@confirmMeeting');
 });

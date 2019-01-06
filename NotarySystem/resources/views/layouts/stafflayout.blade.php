@@ -39,6 +39,9 @@
         $('#tblLs').DataTable(
             {'responsive':'true'}
         );
+        $('#tblnotary').DataTable(
+            {'responsive':'true'}
+        );
     } );
     </script>
     <script>
@@ -70,10 +73,22 @@
                     <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
                 </li>
  
-                <li>
-                    <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
-                </li>
+                
 
+                <li class="active">
+                        <a href="#uploadSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <i class="fas fa-upload"></i>
+                            Upload Documents
+                        </a>
+                        <ul class="collapse list-unstyled" id="uploadSubmenu">
+                                <li>
+                                        <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('staff.show.uploadDoc') }}" ><i class="fas fa-upload"></i></i> Upload Documents</a>
+                                    </li>
+                        </ul>
+                    </li>
                 <li class="active">
                     <a href="#registrationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-plus-square"></i>
@@ -105,6 +120,9 @@
                           Uploaded Documents
                     </a>
                     <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
+                            <li>
+                                    <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> My documents</a>
+                                </li>
                         <li>
                             <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
                         </li>

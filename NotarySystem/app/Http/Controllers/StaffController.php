@@ -392,6 +392,7 @@ public function addMeeting(Request $request){
             'endTime' =>  $end ,
             'meetingStatus' =>$status
             
+            
         );
 
         // DB::table('meetings')->insert($data);
@@ -414,7 +415,8 @@ public function addMeeting(Request $request){
                         'endTime'       =>$end,
                         'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
                         'pid'           =>$users->id,
-                        'mid'           =>$meeting_id
+                        'mid'           =>$meeting_id,
+                        'party'         =>$party
                         
                     ];
     
@@ -423,7 +425,93 @@ public function addMeeting(Request $request){
                     });
     
                     Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
-                 return Redirect::to('staff/meeting/add/del/up');
+                    return Redirect::to('staff/meeting/add/del/up');
+                
+            }
+        }
+
+        if($party=="RGD"){
+            $rgd=DB::table('rgds')
+            ->where('id', $id)
+            ->get();
+            
+            foreach ($rgd as $rgds) {
+               
+                    $data = [
+                        'name'          =>$rgds->name,
+                        'meetingReason' =>$reason,
+                        'startTime'     =>$start,
+                        'endTime'       =>$end,
+                        'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
+                        'pid'           =>$rgds->id,
+                        'mid'           =>$meeting_id,
+                        'party'         =>$party
+                        
+                    ];
+    
+                    Mail::send('emails.email_invitation', $data, function($m) use ($rgds){
+                    $m->to($rgds->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject('Meeting');
+                    });
+    
+                    Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
+                     return Redirect::to('staff/meeting/add/del/up');
+                
+            }
+        }
+
+        if($party=="Bank"){
+            $bank=DB::table('banks')
+            ->where('id', $id)
+            ->get();
+            
+            foreach ($bank as $banks) {
+               
+                    $data = [
+                        'name'          =>$banks->name,
+                        'meetingReason' =>$reason,
+                        'startTime'     =>$start,
+                        'endTime'       =>$end,
+                        'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
+                        'pid'           =>$banks->id,
+                        'mid'           =>$meeting_id,
+                        'party'         =>$party
+                        
+                    ];
+    
+                    Mail::send('emails.email_invitation', $data, function($m) use ($banks){
+                    $m->to($banks->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject('Meeting');
+                    });
+    
+                    Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
+                     return Redirect::to('staff/meeting/add/del/up');
+                
+            }
+        }
+
+        if($party=="Land Surveyor"){
+            $landSurveyor=DB::table('land_surveyors')
+            ->where('id', $id)
+            ->get();
+            
+            foreach ($landSurveyor as $landSurveyors) {
+               
+                    $data = [
+                        'name'          =>$landSurveyors->name,
+                        'meetingReason' =>$reason,
+                        'startTime'     =>$start,
+                        'endTime'       =>$end,
+                        'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
+                        'pid'           =>$landSurveyors->id,
+                        'mid'           =>$meeting_id
+                        
+                    ];
+    
+                    Mail::send('emails.email_invitation', $data, function($m) use ($landSurveyors){
+                    $m->to($landSurveyors->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject('Meeting');
+                    });
+    
+                    Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
+                    return Redirect::to('staff/meeting/add/del/up');
                 
             }
         }
@@ -434,8 +522,16 @@ public function addMeeting(Request $request){
 
     public function meetingForm(){
         $users=DB::table('users')->get();
+        $rgds=DB::table('rgds')->get();
+        $banks=DB::table('banks')->get();
+        $landSurveyors=DB::table('land_surveyors')->get();
         $meetings=DB::table('meetings')->get();
-        return view('meetingsConfig')->with('users',$users)->with('meetings',$meetings);
+        return view('meetingsConfig')->with('users',$users)
+                                     ->with('meetings',$meetings)
+                                     ->with('rgds',$rgds)
+                                     ->with('banks',$banks)
+                                     ->with('landSurveyors',$landSurveyors);
+
     }
 
     public function showUploadForm(){
@@ -658,15 +754,56 @@ public function addMeeting(Request $request){
         }    
     }
 
+    public function showUploadDoc()
+    {
+        return view('Staff.uploadDocStaff');
+    }
+
      public function viewUploadedDocuments(){
-         $documents=DB::table('uploaded_documents')->where('partyRole','acquéreur')->get();
+        $documentsByNotary=DB::table('uploaded_documents')->where('partyRole','Notary')->get();
+         $documents=DB::table('uploaded_documents')->where('partyRole','Client')->get();
          $documentsByBank=DB::table('uploaded_documents')->where('partyRole','BANK')->get();
          $documentsByRGD=DB::table('uploaded_documents')->where('partyRole','RGD')->get();
          $documentsByLS=DB::table('uploaded_documents')->where('partyRole','Land Surveyor')->get();
          return view('Staff.uploadedDocuments')->with('documents',$documents)
                                                 ->with('documentsByBank',$documentsByBank)
                                                 ->with('documentsByRGD',$documentsByRGD)
-                                                ->with('documentsByLS',$documentsByLS);
+                                                ->with('documentsByLS',$documentsByLS)
+                                                ->with('documentsByNotary', $documentsByNotary);
      }
+
+     public function uploadDoc(Request $request){
+        $party_id = Auth::user()->id;
+        $party_role = "Notary";
+        $docType=Input::get('inputDocType');
+        $image=$request->file('document');
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('document')){
+
+                // Get filename with the extension
+                $filenameWithExt = $request->file('document')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('document')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
+            
+                $data = array(
+                    'partyId' => $party_id, 
+                    'partyRole' =>  $party_role, 
+                    'docType' => $docType, 
+                    'docName' => $fileNameToStore 
+                );
+        
+                DB::table('uploaded_documents')->insert($data);
+                Session::flash('message', 'Successfully uploaded!'); 
+                return Redirect::to('/staff/upload/documents');
+            }
+        }
+    
+    }
 }
 ?>

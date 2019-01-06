@@ -1,16 +1,11 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-
     <title>Notary System</title>
 
-    <!-- Bootstrap CSS CDN -->
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> --}}
     <!-- Our Custom CSS -->
     {{-- <link rel="stylesheet" href="style4.css"> --}}
@@ -27,16 +22,15 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+        $('#tbltransaction').DataTable(
+            {'responsive':'true'}
+        );
         $('#tbluser').DataTable(
             {'responsive':'true'}
         );
     } );
-    </script>
-
-    
+    </script>  
 </head>
-
-
 
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -57,87 +51,52 @@
                 <li>
                         <a href="{{ route('show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
                     </li>
-                {{-- <li>
-                    <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
-                </li> --}}
-               
-                {{-- <li>
-                    <a href="{{ route('propertyRegistration') }}" ><i class="fas fa-key"></i> Property Registration</a>
-                </li> --}}
-                
-                
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
-                        Generate Contract
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                            {{-- <li>
-                                <a href="{{ route('generateContract') }}" ><i class="fas fa-key"></i> SOIP01</a>
-                            </li> --}}
-                        <li>
-                            <a href="#">SOIP02</a>
-                        </li>
-                        <li>
-                            <a href="#">SOIP03 </a>
-                        </li>
-                        <li>
-                             <a href="#">SOIP04 </a>
-                        </li>
-                         <li>
-                             <a href="#">SOIP05 </a>
-                        </li>
-                        <li>
-                            <a href="#">SOIP06 </a>
-                        </li>
-                        <li>
-                            <a href="#">SOIP07 </a>
-                        </li>
-                        <li>
-                            <a href="#">SOIP08 </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-question"></i>
-                        FAQ
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-paper-plane"></i>
-                        Contact
-                    </a>
-                </li>
+                    
+                    <li class="active">
+                        <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-file"></i>
+                              Uploaded Documents
+                        </a>
+                        <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
+                            <li>
+                            <a href="{{route('show.UploadedDocs')}}" ><i class="fas fa-user-plus"></i>My documents</a>
+                            </li>
+                            <li>
+                                <a href="" ><i class="fas fa-user-plus"></i> Notary/Notary Assistant</a>
+                            </li>                                    
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#meetingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-calendar-alt"></i>
+                            Meetings
+                        </a>
+                        <ul class="collapse list-unstyled" id="meetingSubmenu">
+                            <li>
+                                <a href="{{ route('meetings') }}" ><i class="fas fa-calendar-check"></i> View Meetings</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-envelope"></i>
+                            Mails
+                        </a>
+                        <ul class="collapse list-unstyled" id="mailSubmenu">
+                            <li>
+                                <a href="{{ route('show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
+                            </li>
+                            <li>
+                                <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>
+                            </li>
+                            <li>
+                                    <a href="https://mail.google.com/mail/u/2/#sent" target='_blank'><i class="fas fa-share-square"></i> Sent Items</a>
+                            </li>                            
+                        </ul>
+                    </li>
                 <li>
                     <a href="{{ route('logout') }}">
                         <i class="fa fa-power-off"></i>
@@ -146,14 +105,8 @@
                 </li>
             </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-            </ul>
+            
+            
         </nav>
 
         <!-- Page Content  -->

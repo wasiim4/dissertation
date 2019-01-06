@@ -249,5 +249,24 @@ class RgdController extends Controller
         return view('RGD.uploadedDocRgd')->with('uploads',$uploads);
     }
 
+    public function confirmMeeting($pid,$mid,Request $request){
+        //check which link was clicked (coming or not coming) in mail
+        if ($request->has('status')) {
+            $status = $request->input('status');
+        }
+
+        $party = $pid;
+        $meeting_id = $mid;
+        
+        DB::table('meetings')
+        ->where('partyId', $party)
+        ->where('id', $meeting_id)
+        ->update([
+            'meetingStatus' => $status
+        ]);        
+        
+        return redirect('/rgd/login');            
+        // }        
+    }
 
 }
