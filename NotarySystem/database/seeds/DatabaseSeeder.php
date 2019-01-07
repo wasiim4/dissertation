@@ -104,5 +104,43 @@ class DatabaseSeeder extends Seeder
                 'gender'=>'1'
             ],   
         ]);
+
+        DB::table('rgds')->insert([
+            [
+                
+                'roles' =>'1',
+                'name' => 'RGD',  
+                'email' => 'rgdnotary1@gmail.com',
+                'password' => Hash::make(123456),
+                'contactnum'=>'55480990',
+                
+            ],   
+        ]);
+
+        DB::table('banks')->insert([
+            [
+                
+                'roles' =>'1',
+                'name' => 'BANK',  
+                'email' => 'banknotary1@gmail.com',
+                'password' => Hash::make(123456),
+                'contactnum'=>'55480990',
+                
+            ],   
+        ]);
+
+        DB::table('land_surveyors')->insert([
+            [
+                
+                'roles' =>'1',
+                'name' => 'Land Surveyor',  
+                'email' => 'landsurveyornotary1@gmail.com',
+                'password' => Hash::make(123456),
+                'contactnum'=>'55480990',
+                
+            ],   
+        ]);
+
+
     }
 }
