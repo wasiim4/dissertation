@@ -32,19 +32,19 @@
         <div class="userInvEmail">
             <div class="mainUserInvEmail">
                 @if($party=="Client")
-                <strong>Hello {!!$firstname!!} {!!$lastname!!}, </strong> <br><br>
+                    <strong>Hello {!!$firstname!!} {!!$lastname!!}, </strong> <br><br>
                 @endif
 
                 @if($party=="RGD")
-                <strong>Hello {!!$name!!}, </strong> <br><br>
+                    <strong>Hello {!!$name!!}, </strong> <br><br>
                 @endif
 
                 @if($party=="Bank")
-                <strong>Hello {!!$name!!}, </strong> <br><br>
+                    <strong>Hello {!!$name!!}, </strong> <br><br>
                 @endif
 
                 @if($party=="Land Surveyor")
-                <strong>Hello {!!$name!!}, </strong> <br><br>
+                    <strong>Hello {!!$name!!}, </strong> <br><br>
                 @endif
 
                 We are sending you this email to confirm your presence for the following meeting.
@@ -60,20 +60,20 @@
             
                 Click on either link below whether you are coming  or not.<br><br>
                 @if($party=="Client")
-                <a href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
-                <br><br>
+                    <a href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <br><br>
                 @endif
                 @if($party=="RGD")
-                <a href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
-                <br><br>
+                    <a href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <br><br>
                 @endif
                 @if($party=="Bank")
-                <a href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
-                <br><br>
+                    <a href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <br><br>
                 @endif
                 @if($party=="Land Surveyor")
-                <a href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
-                <br><br>
+                    <a href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <br><br>
                 @endif
             </div>
             {{-- <img class="userInvImgEmail" src="{{ $message->embed(('images/'.$image_path)) }}">       --}}

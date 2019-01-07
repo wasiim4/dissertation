@@ -49,22 +49,21 @@
             <div class="row">
               <div class="col-3">
                 <label for="partyId">Party ID</label>
-                  <select name="partyId" id="partyId" class="form-control " >
-                    <option value="">Select name</option>
-                      @foreach($users as $user)
-                        <option value="{{ $user->id}}">{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
-                      @endforeach
-                      @foreach($rgds as $rgd)
-                        <option value="{{ $rgd->id}}">{{$rgd->name}}</option>
-                      @endforeach
-                      @foreach($banks as $bank)
-                        <option value="{{ $bank->id}}">{{$bank->name}}<?php echo"-"?>{{$bank->branch}}</option>
-                      @endforeach
-                      @foreach($landSurveyors as $landSurveyor)
-                        <option value="{{ $landSurveyor->id}}">{{$landSurveyor->name}}<?php echo"-"?>{{$landSurveyor->roles}}</option>
-                      @endforeach
-                     
-                  </select>   
+                <select name="partyId" id="partyId" class="form-control " >
+                  <option value="">Select name</option>
+                  @foreach($users as $user)
+                    <option value="{{ $user->id}}">{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
+                  @endforeach
+                  @foreach($rgds as $rgd)
+                    <option value="{{ $rgd->id}}">{{$rgd->name}}</option>
+                  @endforeach
+                  @foreach($banks as $bank)
+                    <option value="{{ $bank->id}}">{{$bank->name}}<?php echo"-"?>{{$bank->branch}}</option>
+                  @endforeach
+                  @foreach($landSurveyors as $landSurveyor)
+                    <option value="{{ $landSurveyor->id}}">{{$landSurveyor->name}}<?php echo"-"?>{{$landSurveyor->roles}}</option>
+                  @endforeach   
+                </select>   
               </div>
 
               <div class="col-3">
@@ -113,22 +112,20 @@
 
             <div class="row">
               <div class="col-4"></div>
-
               <div class="col-4">
-               <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Add Meeting">
+                <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Add Meeting">
               </div>
-
               <div class="col-4"></div>
             </div>
           </form> 
-    </div>  
+      </div>  
   </div>
 </div>
 <br>
 
 <div class="container">
- <div class="card">
-  <div class="card-header card bg-primary text-white" style=" text-align:center;" >Edit Meeting & Cancel Meeting</div>
+  <div class="card">
+    <div class="card-header card bg-primary text-white" style=" text-align:center;" >Edit Meeting & Cancel Meeting</div>
     <div class="card-body">
       @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -181,8 +178,8 @@
                       {{$meeting->meetingStatus}}
                     </td>
                     <td>
-                        {{$meeting->partyRole}}
-                      </td>
+                      {{$meeting->partyRole}}
+                    </td>
                     <td>
                       {{-- Show Event Button --}}
                         <a style="color:#007bff;" href="/staff/show/client/{{$meeting->id}}">
@@ -206,14 +203,14 @@
             </table>
             <a style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
               <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
-                  <i class="fas fa-calendar-plus"></i>
+                <i class="fas fa-calendar-plus"></i>
               </span>
             </a> 
           </div>
-         </div>
-        </div >
-      </div> 
-    </div>
+        </div>
+      </div >
+    </div> 
   </div>
+</div>
 <br>
 @endsection

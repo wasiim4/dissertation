@@ -16,43 +16,39 @@
     <link rel="icon" href="{{asset('images/addUser.png')}}" />
     <script src="{{url('js/bootstrap.min.js')}}"></script>
     <style>
-        
-        
-        
         input[type=file]:hover {
           box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         }
-        </style>
-  </head>      
+    </style>
+</head>      
 
 @section('content')
 <table class="table table-bordered">
-        <thead>
-            <th>Document Name</th>
-            <th>Document Type</th>
-            <th>Upload Date</th>
-            <th>Action</th>
-        </thead>
+    <thead>
+        <th>Document Name</th>
+        <th>Document Type</th>
+        <th>Upload Date</th>
+        <th>Action</th>
+    </thead>
 
-        <tbody>
-
+    <tbody>
         @foreach($uploads as $upload)
             <tr>
                 <td>{{$upload->docName}}</td>
                 <td>{{$upload->docType}}</td>
                 <td>{{$upload->created_at}}</td>
                 <td>
-                <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
-                    <button type="button" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-download">
-                        Download
-                    </i>
-                    </button>
-                </a>
+                    <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
+                        <button type="button" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-download">
+                                Download
+                            </i>
+                        </button>
+                    </a>
                 </td>
             </tr>
         @endforeach
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
 @endsection

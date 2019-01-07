@@ -148,15 +148,15 @@
               <input type="number"  required class="form-control " name="inputSizeMsF" value="{{ old('inputSizeMsF') }}"  > 
             </div>
 
-            <div class="form-group col-md-4">
+            <!-- <div class="form-group col-md-4">
                 <label for="inputSizeMsW">Size In Meter Squares(Words)</label>
                 <input type="text"  required class="form-control " name="inputSizeMsW" value="{{ old('inputSizeMsW') }}"  autofocus  placeholder=""> 
-            </div>
+            </div> -->
            
 
             <div class="form-group col-md-4">
-                <label for="inputSizeInPerch">Size In Perch(Words)</label>
-                <input type="text"  required class="form-control " name="inputSizeInPerch" value="{{ old('inputSizeInPerch') }}"  autofocus  placeholder=""> 
+                <label for="inputSizeInPerch">Size In Perch(Figures)</label>
+                <input type="number"  required class="form-control " name="inputSizeInPerch" value="{{ old('inputSizeInPerch') }}"  autofocus  placeholder=""> 
             </div>
 
             </div>
@@ -194,11 +194,11 @@
                  
       </div>
       <div class="form-row">
-            <div class="form-group col-md-6">
-            <label for="inputPriceFigures">Price(In words)</label>
-            <input type="number"  class="form-control" name="inputPriceFigures" value="{{ old('inputPriceFigures') }}"  >
+            <!-- <div class="form-group col-md-6">
+                <label for="inputPriceFigures">Price(In words)</label>
+                <input type="number"  class="form-control" name="inputPriceFigures" value="{{ old('inputPriceFigures') }}"  >
+            </div> -->
             
-            </div>
             <div class="form-group col-md-6">
                 <label for="inputPriceWords">Price(In Figures)</label>
                 <input type="text"  class="form-control" name="inputPriceWords" value="{{ old('inputPriceWords') }}"  > 

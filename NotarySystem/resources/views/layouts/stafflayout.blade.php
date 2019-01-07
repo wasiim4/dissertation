@@ -27,22 +27,22 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-        $('#tbluser').DataTable(
-            {'responsive':'true'}
-        );
-        $('#tblbank').DataTable(
-            {'responsive':'true'}
-        );
-        $('#tblRgd').DataTable(
-            {'responsive':'true'}
-        );
-        $('#tblLs').DataTable(
-            {'responsive':'true'}
-        );
-        $('#tblnotary').DataTable(
-            {'responsive':'true'}
-        );
-    } );
+            $('#tbluser').DataTable(
+                {'responsive':'true'}
+            );
+            $('#tblbank').DataTable(
+                {'responsive':'true'}
+            );
+            $('#tblRgd').DataTable(
+                {'responsive':'true'}
+            );
+            $('#tblLs').DataTable(
+                {'responsive':'true'}
+            );
+            $('#tblnotary').DataTable(
+                {'responsive':'true'}
+            );
+        } );
     </script>
     <script>
         $(document).ready(function(){
@@ -53,7 +53,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
     
-   <style>
+    <style>
        a{
            color:white;
        }
@@ -62,160 +62,158 @@
 
 <div class="wrapper">
     <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3> Notary System</h3>
-                <strong>NS</strong>
-            </div>
-            
-            <ul class="list-unstyled components">               
-                <li>
-                    <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                </li>
- 
-                
-
-                <li class="active">
-                        <a href="#uploadSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                <i class="fas fa-upload"></i>
-                            Upload Documents
-                        </a>
-                        <ul class="collapse list-unstyled" id="uploadSubmenu">
-                                <li>
-                                        <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('staff.show.uploadDoc') }}" ><i class="fas fa-upload"></i></i> Upload Documents</a>
-                                    </li>
-                        </ul>
-                    </li>
-                <li class="active">
-                    <a href="#registrationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-plus-square"></i>
-                           Registrations
-                    </a>
-                    <ul class="collapse list-unstyled" id="registrationSubmenu">
-                        <li>
-                            <a href="{{ route('registernew') }}" ><i class="fas fa-user-plus"></i> Add Client</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('confirm.children') }}" ><i class="fas fa-user-plus"></i> Num of Children</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('show.children.form') }}" ><i class="fas fa-user-plus"></i>Add Children</a>
-                        </li>
-                            
-                        <li>
-                            <a href="{{ route('propertyRegistration') }}" ><i class="fas fa-building"></i> Property Registration</a>
-                        </li>
-                                
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-file"></i>
-                          Uploaded Documents
-                    </a>
-                    <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
-                            <li>
-                                    <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> My documents</a>
-                                </li>
-                        <li>
-                            <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
-                        </li>
-                        <li>
-                            <a href="#tblRgd" ><i class="fas fa-user-plus"></i> RGD</a>
-                        </li>
-                        <li>
-                            <a href="#tblbank" ><i class="fas fa-user-plus"></i> Bank</a>
-                        </li>
-                        <li>
-                            <a href="#tblLs" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
-                        </li>
-                            
-                        
-                                
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="#meetingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-calendar-alt"></i>
-                        Meetings
-                    </a>
-                    <ul class="collapse list-unstyled" id="meetingSubmenu">
-                        <li>
-                            <a href="{{ route('meetings') }}" ><i class="fas fa-calendar-check"></i> View Meetings</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-file-alt"></i>
-                        Generate Draft
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="{{ route('generateContract') }}" ><i class="fas fa-key"></i> SOIP01</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('show.partage') }}" ><i class="fas fa-user-plus"></i>ALOT02</a>
-                            </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-envelope"></i>
-                        Mails
-                    </a>
-                    <ul class="collapse list-unstyled" id="mailSubmenu">
-                        <li>
-                            <a href="{{ route('show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
-                        </li>
-                        <li>
-                            <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>
-                        </li>
-                        <li>
-                                <a href="https://mail.google.com/mail/u/2/#sent" target='_blank'><i class="fas fa-share-square"></i> Sent Items</a>
-                        </li>                            
-                    </ul>
-                </li>
-              
-                <li>
-                    <a href="{{ route('staff.logout') }}">
-                        <i class="fa fa-power-off"></i>
-                        <b>Log out<b>
-                    </a>
-                </li>
-            </ul>  
-        </nav>
-
-<!-- Page Content  -->
-<div id="content">
- <nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container-fluid">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
-        </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">  
-                <li class="nav-item">
-                    <a class="nav-link" style="color:aliceblue;" href="{{route('staffdashboard')}}">Welcome,{{ ucfirst(strtolower(Auth::user()->firstname)) }} </a>
-                </li>
-            </ul>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3> Notary System</h3>
+            <strong>NS</strong>
         </div>
+        
+        <ul class="list-unstyled components">               
+            <li>
+                <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
+            </li>
+
+            <li class="active">
+                <a href="#uploadSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-upload"></i>
+                    Upload Documents
+                </a>
+                <ul class="collapse list-unstyled" id="uploadSubmenu">
+                    <li>
+                        <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('staff.show.uploadDoc') }}" ><i class="fas fa-upload"></i></i> Upload Documents</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#registrationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-plus-square"></i>
+                    Registrations
+                </a>
+                <ul class="collapse list-unstyled" id="registrationSubmenu">
+                    <li>
+                        <a href="{{ route('registernew') }}" ><i class="fas fa-user-plus"></i> Add Client</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('confirm.children') }}" ><i class="fas fa-user-plus"></i> Num of Children</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('show.children.form') }}" ><i class="fas fa-user-plus"></i>Add Children</a>
+                    </li>
+                        
+                    <li>
+                        <a href="{{ route('propertyRegistration') }}" ><i class="fas fa-building"></i> Property Registration</a>
+                    </li>
+                            
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#uploadedDocsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-file"></i>
+                    Uploaded Documents
+                </a>
+                <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
+                    <li>
+                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> My documents</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
+                    </li>
+                    <li>
+                        <a href="#tblRgd" ><i class="fas fa-user-plus"></i> RGD</a>
+                    </li>
+                    <li>
+                        <a href="#tblbank" ><i class="fas fa-user-plus"></i> Bank</a>
+                    </li>
+                    <li>
+                        <a href="#tblLs" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
+                    </li>            
+                </ul>
+            </li>
+            
+            <li class="active">
+                <a href="#meetingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-calendar-alt"></i>
+                    Meetings
+                </a>
+                <ul class="collapse list-unstyled" id="meetingSubmenu">
+                    <li>
+                        <a href="{{ route('meetings') }}" ><i class="fas fa-calendar-check"></i> View Meetings</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-file-alt"></i>
+                    Generate Draft
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="{{ route('generateContract') }}" ><i class="fas fa-key"></i> SOIP01</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('show.partage') }}" ><i class="fas fa-user-plus"></i>ALOT02</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-envelope"></i>
+                    Mails
+                </a>
+                <ul class="collapse list-unstyled" id="mailSubmenu">
+                    <li>
+                        <a href="{{ route('show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
+                    </li>
+                    <li>
+                        <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>
+                    </li>
+                    <li>
+                            <a href="https://mail.google.com/mail/u/2/#sent" target='_blank'><i class="fas fa-share-square"></i> Sent Items</a>
+                    </li>                            
+                </ul>
+            </li>
+            
+            <li>
+                <a href="{{ route('staff.logout') }}">
+                    <i class="fa fa-power-off"></i>
+                    <b>Log out<b>
+                </a>
+            </li>
+        </ul>  
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">  
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:aliceblue;" href="{{route('staffdashboard')}}">Welcome,{{ ucfirst(strtolower(Auth::user()->firstname)) }} </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
-</nav>
+</div>        
 <body>
 @yield('content')
             

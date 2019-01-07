@@ -26,7 +26,7 @@
 <div class="row">
     <div class="header">
         <div class="col-12">
-        <h1 style="text-align:center;  margin-bottom: -1%;">Contract Generation</h1>
+        <h1 style="text-align:center;  margin-bottom: -1%;">Draft Generation</h1>
         </div>
     </div>
     </div>
@@ -34,7 +34,7 @@
 <form method="POST" action="{{ route('createWord') }}" id="frmAddUser">
     @csrf
     <fieldset class="addUserFieldset">
-        <legend class="addUserLegend">Contract</legend>
+        <legend class="addUserLegend">Draft</legend>
         <div class="container">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -117,7 +117,7 @@
 
         </div>
             <div class="col-4">
-            <input type="submit" name="btnSubmit" class="btn btn-success btn-block " value="Download Contract">
+            <input type="submit" name="btnSubmit" class="btn btn-success btn-block " value="Generate Draft">
             </div>
             <div class="col-4"></div>
            </div>

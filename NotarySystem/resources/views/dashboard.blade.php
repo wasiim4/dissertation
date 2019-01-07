@@ -4,8 +4,7 @@
 @section('content')
 <body>
 <div>
-    <h1 style="text-align:center;">Welcome to the notary system</h1>
-    
+    <h1 style="text-align:center;">Welcome to the notary system</h1>    
 </div>
  @include('flashy::message') 
 </body>
