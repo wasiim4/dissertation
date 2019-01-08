@@ -31,106 +31,104 @@
 {{-- BY CLIENT --}}
 <div class="row">
     <div class="col-12">
-    <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-    <table id="tbluser" class="table table-hover " style="width:100%;">
-        <thead>
-            <tr>
-                <th>
-                   Doc ID
-                </th> 
-                <th>
-                   Party Id
-                </th>
-                <th>
-                   Role
-                </th>
-                <th>
-                    Doc Type
-                </th> 
-                <th>
-                   Doc Name
-                </th> 
-                <th>
-                    Uploaded At
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($uploads as $upload)
-            <tr >
-                <td>    
-                    {{$upload->id}} 
-                </td>
-                <td>
-                    {{$upload->partyId}}
-                </td>
-                <td>
-                    {{$upload->partyRole}}
-                </td>
-                <td>
-                    {{$upload->docType}}
-                </td>
-                <td>
-                    {{$upload->docName}}
-                </td>
-                <td>
-                    {{$upload->created_at}}
-                </td>
-                <td>
-                    <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
-                        <button type="button" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-download">
-                            Download
-                        </i>
-                        </button>
-                    </a>
-                </td>
-                
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    </div>
-    </div>
-    </div >
-<br>
-    
-        
-            {{-- BY Notary/Notary Assistant --}}
-            <div class="row ">
-                <div class="col-12">
-                <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-                <table id="tblLs" class="table table-hover " style="width:100%;">
-                    <thead>
-                        <tr>
-                            <th>
-                               Doc ID
-                            </th> 
-                            <th>
-                               Party Id
-                            </th>
-                            <th>
-                               Role
-                            </th>
-                            <th>
-                                Doc Type
-                            </th> 
-                            <th>
-                               Doc Name
-                            </th> 
-                            <th>
-                                Uploaded At
-                            </th>
-                            <th>
-                                Actions
-                            </th>
+        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
+            <table id="tbluser" class="table table-hover " style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>
+                            Doc ID
+                        </th> 
+                        <th>
+                            Party Id
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            Doc Type
+                        </th> 
+                        <th>
+                            Doc Name
+                        </th> 
+                        <th>
+                            Uploaded At
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($uploads as $upload)
+                        <tr >
+                            <td>    
+                                {{$upload->id}} 
+                            </td>
+                            <td>
+                                {{$upload->partyId}}
+                            </td>
+                            <td>
+                                {{$upload->partyRole}}
+                            </td>
+                            <td>
+                                {{$upload->docType}}
+                            </td>
+                            <td>
+                                {{$upload->docName}}
+                            </td>
+                            <td>
+                                {{$upload->created_at}}
+                            </td>
+                            <td>
+                                <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
+                                    <button type="button" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-download">
+                                        Download
+                                    </i>
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($uploadsByNotary as $uploadsByNotaries)
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div >
+<br>
+           
+{{-- BY Notary/Notary Assistant --}}
+<div class="row ">
+    <div class="col-12">
+        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
+            <table id="tblLs" class="table table-hover " style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>
+                            Doc ID
+                        </th> 
+                        <th>
+                            Party Id
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            Doc Type
+                        </th> 
+                        <th>
+                            Doc Name
+                        </th> 
+                        <th>
+                            Uploaded At
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($uploadsByNotary as $uploadsByNotaries)
                         <tr >
                             <td>    
                                 {{$uploadsByNotaries->id}} 
@@ -153,18 +151,17 @@
                             <td>
                                 <a href="/storage/images/{{$uploadsByNotaries->docName}}" download="{{$uploadsByNotaries->docName}}">
                                     <button type="button" class="btn btn-primary">
-                                    <i class="glyphicon glyphicon-download">
-                                        Download
-                                    </i>
+                                        <i class="glyphicon glyphicon-download">
+                                            Download
+                                        </i>
                                     </button>
                                 </a>
-                            </td>
-                            
+                            </td>    
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                </div>
-                </div>
-                </div >
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div >
 @endsection

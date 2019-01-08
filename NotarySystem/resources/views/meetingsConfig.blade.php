@@ -37,88 +37,87 @@
 <div class="container">
   <div class="card" id="addMeeting">
     <div class="card-header card bg-primary text-white" style=" text-align:center;">Add Meeting</div>
-      <div class="card-body">
-          @if (Session::has('message'))
-            <div class="alert alert-success">{{ Session::get('message') }}
-              <a href="http://127.0.0.1:8000/staff/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+    <div class="card-body">
+      @if (Session::has('message'))
+        <div class="alert alert-success">{{ Session::get('message') }}
+          <a href="http://127.0.0.1:8000/staff/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+        </div>
+      @endif
+
+      <form action="{{route('meetings.add')}}" method="POST">
+        @csrf
+        <div class="row">
+          <div class="col-3">
+            <label for="partyId">Party ID</label>
+            <select name="partyId" id="partyId" class="form-control " >
+              <option value="">Select name</option>
+              @foreach($users as $user)
+                <option value="{{ $user->id}}">{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
+              @endforeach
+              @foreach($rgds as $rgd)
+                <option value="{{ $rgd->id}}">{{$rgd->name}}</option>
+              @endforeach
+              @foreach($banks as $bank)
+                <option value="{{ $bank->id}}">{{$bank->name}}<?php echo"-"?>{{$bank->branch}}</option>
+              @endforeach
+              @foreach($landSurveyors as $landSurveyor)
+                <option value="{{ $landSurveyor->id}}">{{$landSurveyor->name}}<?php echo"-"?>{{$landSurveyor->roles}}</option>
+              @endforeach   
+            </select>   
+          </div>
+
+          <div class="col-3">
+            <label for="meetingReason">Meeting Reason</label><br>
+            <input type="text" id="meetingReason" name="meetingReason" value="" class="form-control"><br>
+          </div>
+
+          <div class="col-3">
+            <label for="startTime">Start Time</label>
+            <input type="datetime-local" id="startTime" name="startTime" value=""class="form-control"><br>
+          </div>
+
+          <div class="col-3">
+            <label for="endTime">Start Time</label>
+            <input type="datetime-local" id="endTime" name="endTime" value=""class="form-control"><br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="party" id="inlineRadio1" value="Client">
+              <label class="form-check-label" for="inlineRadio1">Client</label>
             </div>
-          @endif
 
-          <form action="{{route('meetings.add')}}" method="POST">
-            @csrf
-            <div class="row">
-              <div class="col-3">
-                <label for="partyId">Party ID</label>
-                <select name="partyId" id="partyId" class="form-control " >
-                  <option value="">Select name</option>
-                  @foreach($users as $user)
-                    <option value="{{ $user->id}}">{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
-                  @endforeach
-                  @foreach($rgds as $rgd)
-                    <option value="{{ $rgd->id}}">{{$rgd->name}}</option>
-                  @endforeach
-                  @foreach($banks as $bank)
-                    <option value="{{ $bank->id}}">{{$bank->name}}<?php echo"-"?>{{$bank->branch}}</option>
-                  @endforeach
-                  @foreach($landSurveyors as $landSurveyor)
-                    <option value="{{ $landSurveyor->id}}">{{$landSurveyor->name}}<?php echo"-"?>{{$landSurveyor->roles}}</option>
-                  @endforeach   
-                </select>   
-              </div>
-
-              <div class="col-3">
-                <label for="meetingReason">Meeting Reason</label><br>
-                <input type="text" id="meetingReason" name="meetingReason" value="" class="form-control"><br>
-              </div>
-
-              <div class="col-3">
-                <label for="startTime">Start Time</label>
-                <input type="datetime-local" id="startTime" name="startTime" value=""class="form-control"><br>
-              </div>
-
-              <div class="col-3">
-                <label for="endTime">Start Time</label>
-                <input type="datetime-local" id="endTime" name="endTime" value=""class="form-control"><br>
-              </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="party" id="inlineRadio2" value="RGD">
+              <label class="form-check-label" for="inlineRadio2">RGD</label>
             </div>
 
-            <div class="row">
-              <div class="col-4"></div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="party" id="inlineRadio1" value="Client">
-                    <label class="form-check-label" for="inlineRadio1">Client</label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="party" id="inlineRadio2" value="RGD">
-                    <label class="form-check-label" for="inlineRadio2">RGD</label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Bank" >
-                    <label class="form-check-label" for="inlineRadio3">Bank </label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Land Surveyor" >
-                    <label class="form-check-label" for="inlineRadio3">Land Surveyor </label>
-                  </div>
-
-                </div>
-                <div class="col-2"></div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Bank" >
+              <label class="form-check-label" for="inlineRadio3">Bank </label>
             </div>
-            <br>
 
-            <div class="row">
-              <div class="col-4"></div>
-              <div class="col-4">
-                <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Add Meeting">
-              </div>
-              <div class="col-4"></div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Land Surveyor" >
+              <label class="form-check-label" for="inlineRadio3">Land Surveyor </label>
             </div>
-          </form> 
-      </div>  
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <input type="submit" name="btnSubmit" class="btn btn-success btn-block" value="Add Meeting">
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </form> 
+    </div>  
   </div>
 </div>
 <br>

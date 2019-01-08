@@ -31,7 +31,7 @@
 <div class="row">
     <div class="header">
         <div class="col-12">
-        <h1 style="text-align:center;">List of Clients</h1>
+            <h1 style="text-align:center;">List of Clients</h1>
         </div>
     </div>
 </div>
@@ -201,8 +201,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        
+            </div>        
         </div>
     </div>
 </div>
