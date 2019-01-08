@@ -28,6 +28,9 @@ Route::get('/compose/email', 'HomeController@showMailCompose')->name('show.mailC
 Route::get('/upload/documents', 'HomeController@showUploadDoc')->name('show.uploadDoc');
 Route::post('/upload/documents', 'HomeController@uploadDoc')->name('show.UploadDocs');
 Route::get('/uploaded/documents', 'HomeController@viewUploadedDoc')->name('show.UploadedDocs');
+Route::get('/meetings', 'HomeController@meeting')->name('client.meetings');
+Route::get('/meeting/add/del/up', 'HomeController@meetingForm')->name('client.show.meetingsForms');
+Route::post('/meeting/add/del/up', 'HomeController@addMeeting')->name('client.meetings.add');
 
 
 //staff only

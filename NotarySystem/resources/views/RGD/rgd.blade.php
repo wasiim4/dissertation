@@ -36,7 +36,7 @@
             </div>
    
     <div class="spacor1"></div>
-<div class="row>"
+<div class="row">
 <div class="col-12">
 <div class="container tableSpacor" style="border: 2mm ridge #212529;">
 <table id="tbluser" class="table table-hover " style="width:100%;">

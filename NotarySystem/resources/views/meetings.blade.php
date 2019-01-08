@@ -84,7 +84,24 @@ fieldset{
 <div class="row" style="width:93% !important;">
     <div class="col-3">
       <div class="container" >
-        <a href="/staff/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>
+        {{-- <a href="/staff/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br> --}}
+        
+        @switch(Auth::user()->roles)
+
+        @case("Notary")
+          <a href="/staff/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>
+        @break
+    
+        @case('acquéreur')
+          <a href="/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>
+        @break
+    
+        @default
+            Default case...
+    @endswitch
+      
+      
+      
       </div>
     </div>
    

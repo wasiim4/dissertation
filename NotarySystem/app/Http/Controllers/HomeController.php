@@ -175,4 +175,100 @@ class HomeController extends Controller
                                                 ->get();
         return view('users.uploadedDoc')->with('uploads',$uploads)->with('uploadsByNotary', $uploadsByNotary);
     }
+
+     //function to show the calendar with all meetings
+     public function meeting(){
+        // $meetings = Meeting::get();
+         $meetings=DB::table('meetings')->where('partyId',Auth::user()->id)
+                                        ->where('partyRole','Client')
+                                        ->get();
+         $meeting_list = [];
+         foreach ($meetings as $key => $meeting) {
+             $meeting_list[] = Calendar::event(
+                 $meeting->meetingReason,
+                 false, //to enable the user to view the date and time as well on the calendar
+                 new \DateTime($meeting->startTime),
+                 new \DateTime($meeting->endTime.' +1 day')
+             );
+         }
+         $users=DB::table('users')->get();
+         $calendar_details = Calendar::addEvents($meeting_list); 
+  
+         return view('meetings', compact('calendar_details','users') );
+ }
+    public function addMeeting(Request $request){
+         $status="Pending";
+         $party=Input::get('party');
+         $id=Input::get('partyId');
+         $reason=Input::get('meetingReason');
+         $start=Input::get('startTime');
+         $end=Input::get('endTime');
+ 
+         $date1=date_create($start);
+         $date2=date_create($end);
+ 
+         $data = array(
+             'partyId' =>  $id, 
+             'partyRole' =>  $party,
+             'meetingReason' => $reason, 
+             'startTime'=>$start,
+             'endTime' =>  $end ,
+             'meetingStatus' =>$status
+             
+             
+         );
+ 
+         // DB::table('meetings')->insert($data);
+         
+         $meeting_id = DB::table('meetings')->insertGetId($data);
+         $meet=(DB::table('meetings')->where('id',$meeting_id)->get())[0];
+ 
+         if($party=="Client"){
+             $user=DB::table('users')
+             ->where('id', $id)
+             ->get();
+             
+             foreach ($user as $users) {
+                
+                     $data = [
+                         'firstname'      => $users->firstname,
+                         'lastname'       => $users->lastname,
+                         'meetingReason' =>$reason,
+                         'startTime'     =>$start,
+                         'endTime'       =>$end,
+                         'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
+                         'pid'           =>$users->id,
+                         'mid'           =>$meeting_id,
+                         'party'         =>$party
+                         
+                     ];
+     
+                     Mail::send('emails.email_invitation', $data, function($m) use ($users){
+                     $m->to('hi@example.com', 'Notary Team')->from($users->email, 'Client')->subject('Meeting');
+                     });
+     
+                     Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
+                     return Redirect::to('/meeting/add/del/up');
+                 
+             }
+         }
+ 
+         
+     }
+ 
+     public function meetingForm(){
+         $staffs=DB::table('staff')->get();
+         $users=DB::table('users')->get();
+         $rgds=DB::table('rgds')->get();
+         $banks=DB::table('banks')->get();
+         $landSurveyors=DB::table('land_surveyors')->get();
+         $meetings=DB::table('meetings')->get();
+         return view('meetingsConfig')->with('users',$users)
+                                      ->with('meetings',$meetings)
+                                      ->with('rgds',$rgds)
+                                      ->with('banks',$banks)
+                                      ->with('staffs',$staffs)
+                                      ->with('landSurveyors',$landSurveyors);
+ 
+     }
 }
