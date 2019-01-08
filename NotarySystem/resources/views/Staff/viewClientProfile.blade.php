@@ -70,52 +70,51 @@
     border: 2px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
+    }
 
-/* input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-} */
+    /* input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    } */
 
-input[type=submit]:hover {
-    background-color:#17a2b887;
-}
+    input[type=submit]:hover {
+        background-color:#17a2b887;
+    }
 
-/* div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-} */
+    /* div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    } */
     </style>
-  </head>      
+</head>      
 
 @section('content')
 {{-- <button class="button" style="vertical-align:middle"><span>Back </span> --}}
-    <a class="back-btn hvr-icon-pulse" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>
-    <br><br>
-    <div class="header">
-        <h1 style="text-align:center;">{{$users->firstname}} <?php echo(strtoupper($users->lastname));?>-Profile</h1>
-    </div>
+<a class="back-btn hvr-icon-pulse" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>
+<br><br>
+<div class="header">
+    <h1 style="text-align:center;">{{$users->firstname}} <?php echo(strtoupper($users->lastname));?>-Profile</h1>
+</div>
 
-    <form action="" method="POST"  enctype="multipart/form-data">
-        @csrf
+<form action="" method="POST"  enctype="multipart/form-data">
+    @csrf
     <div class="row">
         <div class="col-3">
             <h2 style="text-align:right">Profile Picture</h2>   
             <img src="{{asset('/storage/images/'.$users->img_path)}}" style="width:250px; height:250px;" class="rounded float-right" alt="...">  
             <br><br><br><br><br>
             {{-- <input type="file" id="fpropic" name="fpropic" accept="image/*" style="padding-left: 24%; margin-top:5%;" ><br><br> --}}
-        
         </div>
 
-    <div class="col-3">
-      {{-- <h2>Details</h2> --}}
+        <div class="col-3">
+            {{-- <h2>Details</h2> --}}
             <label for="staffid">Client ID</label>
             <input type="text" id="satffId" name="txtid" value="{{$users->id}}" disabled class="form-control"disabled><br>
 
@@ -128,41 +127,39 @@ input[type=submit]:hover {
                 <option>Monsieur</option>
                 <option>Madame</option>
                 <option>Mademoiselle</option>
-             </select>
+            </select>
 
             <label for="fname">First Name</label>
             <input type="text" id="staffFname" name="txtfname" disabled value="{{$users->firstname}}"class="form-control">
         
             <label for="lname">Last Name</label>
             <input type="text" id="stafflname" name="txtlname" disabled value="{{$users->lastname}}"class="form-control">
+        </div>
+
+        <div class="col-3">
+            <label for="country">Email-Address</label>
+            <input type="email" id="staffEmail" name="txtemail" disabled class="form-control" value="{{$users->email}}">
+
+            <label for="contactNum">Contact Number</label>
+            <input type="tel" id="staffContactNum" name="txtcnum" disabled class="form-control"value="{{$users->contactnum}}">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="satffDob" name="txtdob"  disabled class="form-control" value="{{$users->dob}}" >
+
+            <label for="nic">National Identity Card Number</label>
+            <input type="text" maxlength="14" id="satffNic" disabled class="form-control"name="txtnic" value="{{$users->nic}}" >
+            
+            <label for="staffTitle">Title</label>
+            <select  name="txtgender" class="form-control" disabled >
+            <option selected>{{$users->gender}}</option>
+            <option>Female</option>
+            <option>Male</option>
+            </select>
+        </div>
+        <div class="col-3">
+            {{-- <input type="submit" value="Save Changes" class="btn btn-info btn-block"  > --}}
+        </div>
     </div>
-
-    <div class="col-3">
-              <label for="country">Email-Address</label>
-              <input type="email" id="staffEmail" name="txtemail" disabled class="form-control" value="{{$users->email}}">
-
-              <label for="contactNum">Contact Number</label>
-              <input type="tel" id="staffContactNum" name="txtcnum" disabled class="form-control"value="{{$users->contactnum}}">
-
-              <label for="dob">Date of Birth</label>
-              <input type="date" id="satffDob" name="txtdob"  disabled class="form-control" value="{{$users->dob}}" >
-
-              <label for="nic">National Identity Card Number</label>
-              <input type="text" maxlength="14" id="satffNic" disabled class="form-control"name="txtnic" value="{{$users->nic}}" >
-              
-              <label for="staffTitle">Title</label>
-              <select  name="txtgender" class="form-control" disabled >
-                <option selected>{{$users->gender}}</option>
-                <option>Female</option>
-                <option>Male</option>
-              </select>
-    </div>
-    <div class="col-3">
-        {{-- <input type="submit" value="Save Changes" class="btn btn-info btn-block"  > --}}
-    </div>
-
-</div>
 </form>
-
 
 @endsection
