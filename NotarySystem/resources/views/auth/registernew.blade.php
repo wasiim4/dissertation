@@ -34,9 +34,9 @@
 </head>
    
 @section('content')
-      <!-- <div class="registerBox"> 
+       {{-- <div class="registerBox"> 
       <img src="{{ asset('images/avatar.png') }}" class="avatar"> 
-      <a class="centerLink" href="{{ route('loginnew') }}">Already have an account?Login here!</a>  -->
+      <a class="centerLink" href="{{ route('loginnew') }}">Already have an account?Login here!</a> --}}
     <div class="row">
         <div class="header">
             <div class="col-12">

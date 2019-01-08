@@ -146,8 +146,7 @@
                 </div>
             </div>
         </nav>
-    </div>
-</div>    
+       
 <body>
     @yield('content')
                 

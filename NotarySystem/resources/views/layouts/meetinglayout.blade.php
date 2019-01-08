@@ -197,7 +197,7 @@
                 </div>
             </div>
         </nav>
-    </div>    
+      
     <body>
         yield('content')
                 
