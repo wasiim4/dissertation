@@ -526,10 +526,12 @@ public function addMeeting(Request $request){
         $banks=DB::table('banks')->get();
         $landSurveyors=DB::table('land_surveyors')->get();
         $meetings=DB::table('meetings')->get();
+        $meetingsByClient=DB::table('meetings')->where('partyRole','Notary')->get();
         return view('meetingsConfig')->with('users',$users)
                                      ->with('meetings',$meetings)
                                      ->with('rgds',$rgds)
                                      ->with('banks',$banks)
+                                     ->with('meetingsByClient',$meetingsByClient)
                                      ->with('landSurveyors',$landSurveyors);
 
     }
@@ -804,6 +806,64 @@ public function addMeeting(Request $request){
             }
         }
     
+    }
+
+    public function confirmMeeting($mid,$pid,Request $request){
+
+       
+       
+        DB::table('meetings')
+        ->where('id', $mid)
+        ->update([
+            'meetingStatus' => "Confirmed"
+        ]);        
+
+
+        $client= DB::table('users')->where('id',$pid)->get();
+
+       foreach ($client as $clients) {
+
+        $data = [
+            'firstname'          =>$clients->firstname,
+            'lastname'          =>$clients->lastname,
+            'meetingStatus'     =>"Available"
+            
+        ];
+          Mail::send('emails.meetingReqToNotary', $data, function($m) use ($clients){
+            $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
+            });
+       }
+        
+        return redirect('/staff/meeting/add/del/up');            
+        // }        
+    }
+
+    public function rejectMeetingRequest($mid,$pid,Request $request){
+
+        DB::table('meetings')
+        ->where('id', $mid)
+        ->update([
+            'meetingStatus' => "Unavailable"
+        ]);
+        
+       $client= DB::table('users')->where('id',$pid)->get();
+
+       foreach ($client as $clients) {
+
+        $data = [
+            'firstname'          =>$clients->firstname,
+            'lastname'          =>$clients->lastname,
+            'meetingStatus'     =>"Unavailable"
+            
+            
+        ];
+          Mail::send('emails.meetingReqToNotary', $data, function($m) use ($clients){
+            $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Unavailable for requested meeting");
+            });
+       }
+        
+        return redirect('/staff/meeting/add/del/up');            
+        // }        
     }
 }
 ?>

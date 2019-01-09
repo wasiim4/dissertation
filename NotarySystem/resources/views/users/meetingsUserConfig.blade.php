@@ -50,7 +50,7 @@
               <div class="col-3">
                 <label for="partyId">Party ID</label>
                 <select name="partyId" id="partyId" class="form-control " >
-                  <option value="">Select$user name</option>
+                  <option value="">Select name</option>
                   @foreach($staffs as $staff )
                     <option value="{{ $staff->id}}">{{$staff->firstname}}<?php echo" "?>{{$staff->lastname}}<?php echo"-"?>{{$staff->roles}}</option>
                   @endforeach 

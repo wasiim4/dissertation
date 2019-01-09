@@ -69,7 +69,8 @@ Route::prefix('staff')->group(function(){
     Route::get('/upload/documents', 'StaffController@showUploadDoc')->name('staff.show.uploadDoc');
     Route::post('/upload/documents', 'StaffController@uploadDoc')->name('staff.show.UploadDocs');
     Route::get('view/download/uploaded/documents','StaffController@viewUploadedDocuments')->name('download.uploadedDocs');
-    Route::get('/confirm/meeting/{pid}{mid}', 'StaffController@confirmMeeting'); 
+    Route::get('/confirm/meeting/{mid}{pid}', 'StaffController@confirmMeeting'); 
+    Route::get('/confirm/meeting/reject/{mid}{pid}', 'StaffController@rejectMeetingRequest'); 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 

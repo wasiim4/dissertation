@@ -42,6 +42,9 @@
             $('#tblnotary').DataTable(
                 {'responsive':'true'}
             );
+            $('#tblclient').DataTable(
+                {'responsive':'true'}
+            );
         } );
     </script>
     <script>
