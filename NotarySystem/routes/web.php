@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
     
-    return view('auth.login');
-});
+//     return view('auth.login');
+// });
+
+Route::get('/', 'welcomeController@showWelcomePage')->name('welcomePage');
+Route::post('/', 'welcomeController@showlogin')->name('show.role.login');
+
 
 Auth::routes();
 
