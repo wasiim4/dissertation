@@ -269,4 +269,78 @@ class landSurveyorController extends Controller
         // }        
     }
 
+    public function myProfile(){
+        $ls_id = Auth::user()->id;  
+        $ls_get=DB::table('land_surveyors') 
+        ->where(['id'=>$ls_id])
+        ->get();
+
+        $ls_get =  $ls_get[0];
+        return view('landSurveyor.LSProfile')->with('ls_detail',  $ls_get);
+
+    
+    }
+
+    public function profileupdate(Request $request)
+    {
+        $ls_id = Auth::user()->id;
+        $image=$request->file('fpropic');
+
+       
+        $name = Input::get('txtname');
+        $email=Input::get('txtemail');
+        $cnum = Input::get('txtcnum');
+       
+
+        $this->validate($request,
+            [
+                'txtname' => 'required',
+               
+                'txtcnum' => 'required',
+                'txtemail' => 'required'
+                
+            ]);
+
+             // Handle File Upload
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('fpropic')){
+
+                // $this->validate($request,
+                // [
+                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
+                // ]);
+                
+                // Get filename with the extension
+                $filenameWithExt = $request->file('fpropic')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('fpropic')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('fpropic')->storeAs('public/images', $fileNameToStore);
+
+                DB::table('land_surveyors')
+                ->where('id', $ls_id)
+                ->update(['img_path' => $fileNameToStore
+                ]);
+            }
+        }
+        DB::table('land_surveyors')
+           ->where('id', $ls_id)
+           ->update([
+                    
+                   'name' => $name,                  
+                   'email' => $email,
+                   'contactnum' => $cnum
+                   
+                   
+        ]);
+       
+        return redirect('/landSurveyor/profile/view');
+        
+    }
+
+
 }

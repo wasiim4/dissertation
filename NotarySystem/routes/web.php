@@ -71,6 +71,7 @@ Route::prefix('staff')->group(function(){
     Route::get('view/download/uploaded/documents','StaffController@viewUploadedDocuments')->name('download.uploadedDocs');
     Route::get('/confirm/meeting/{mid}{pid}', 'StaffController@confirmMeeting'); 
     Route::get('/confirm/meeting/reject/{mid}{pid}', 'StaffController@rejectMeetingRequest'); 
+    Route::get('/meeting/delete/{id}', 'StaffController@deleteMeeting')->name('staff.client.delete');
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 
@@ -87,6 +88,8 @@ Route::prefix('rgd')->group(function(){
     Route::post('/upload/documents', 'RgdController@uploadDoc')->name('Rgd.show.UploadDocs');
     Route::get('/uploaded/documents', 'RgdController@viewMyUploadedDoc')->name('Rgd.show.UploadedDocs');
     Route::get('/confirm/meeting/{pid}{mid}', 'RgdController@confirmMeeting');
+    Route::get('/profile/view', 'RgdController@myProfile')->name('rgd.myProfile');
+    Route::post('/profile/view', 'RgdController@profileupdate')->name('rgd.profileUpdate');
     // Route::get('view/download/uploaded/documents','RgdController@viewUploadedDocuments')->name('Rgd.download.uploadedDocs');
 
 });
@@ -104,6 +107,8 @@ Route::prefix('bank')->group(function(){
     Route::post('/upload/documents', 'bankController@uploadDoc')->name('bank.show.UploadDocs');
     Route::get('/uploaded/documents', 'bankController@viewMyUploadedDoc')->name('bank.show.UploadedDocs');
     Route::get('/confirm/meeting/{pid}{mid}', 'bankController@confirmMeeting');
+    Route::get('/profile/view', 'bankController@myProfile')->name('bank.myProfile');
+    Route::post('/profile/view', 'bankController@profileupdate')->name('bank.profileUpdate');
 });
 
 //land surveyor only
@@ -119,4 +124,6 @@ Route::prefix('landSurveyor')->group(function(){
     Route::post('/upload/documents', 'landSurveyorController@uploadDoc')->name('ls.show.UploadDocs');
     Route::get('/uploaded/documents', 'landSurveyorController@viewMyUploadedDoc')->name('ls.show.UploadedDocs');
     Route::get('/confirm/meeting/{pid}{mid}', 'landSurveyorController@confirmMeeting');
+    Route::get('/profile/view', 'landSurveyorController@myProfile')->name('ls.myProfile');
+    Route::post('/profile/view', 'landSurveyorController@profileupdate')->name('ls.profileUpdate');
 });

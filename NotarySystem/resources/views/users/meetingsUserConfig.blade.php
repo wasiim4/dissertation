@@ -1,5 +1,5 @@
 @include('flashy::message')
-@extends('layouts.stafflayout')
+@extends('layouts.userlayout')
 <head>
   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -89,7 +89,7 @@
 
 <div class="container">
   <div class="card">
-    <div class="card-header card bg-primary text-white" style=" text-align:center;" >Edit Meeting & Cancel Meeting</div>
+    <div class="card-header card bg-primary text-white" style=" text-align:center;" >Meeting Request From Me</div>
     <div class="card-body">
       @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -177,4 +177,94 @@
   </div>
 </div>
 <br>
+ {{-- MEETING REQUEST FROM NOTARY --}}
+<div class="container">
+    <div class="card">
+      <div class="card-header card bg-primary text-white" style=" text-align:center;" >Meeting Request From Notary</div>
+      <div class="card-body">
+        @if (Session::has('message'))
+          <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        <div class="row">
+          <div class="col-12">
+            <div class="container tableSpacor table-responsive "  style="width:100%;">
+              <table id="tbluser" class="table table-hover " style="width:100%;">
+                <thead>
+                  <tr>
+                    <th>
+                      ID
+                    </th> 
+                    <th>
+                      Meeting Reason
+                    </th>
+                    <th>
+                      Start Time
+                    </th>
+                    <th>
+                      End Time
+                    </th> 
+                    <th>
+                      Status
+                    </th>
+                    <th>
+                      Party
+                    </th>                   
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($meetingByNotary as $meetingByNotarys)
+                    <tr>
+                      <td>    
+                        {{$meetingByNotarys->id}} 
+                      </td>
+                      <td>
+                        {{$meetingByNotarys->meetingReason}}
+                      </td>
+                      <td>
+                        {{$meetingByNotarys->startTime}}
+                      </td>
+                      <td>
+                        {{$meetingByNotarys->endTime}}
+                      </td>
+                      <td>
+                        {{$meetingByNotarys->meetingStatus}}
+                      </td>
+                      <td>
+                        {{$meetingByNotarys->partyRole}}
+                      </td>
+                      <td>
+                        {{-- Show Event Button --}}
+                          <a style="color:#007bff;" href="/staff/show/client/{{$meetingByNotarys->id}}">
+                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
+                              <i class="fas fa-pencil-alt font-color"></i>
+                            </span>
+                          </a> 
+                        {{-- /Show Button --}}
+                          |
+                        {{-- Delete User Button --}}
+                          <a class="btndelevent" style="color:red;" href="/staff/client/delete/{{$meetingByNotarys->id}}">
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
+                              <i class="fas fa-trash-alt font-color"></i>
+                            </span>
+                          </a>
+                        {{-- /Delete User Button --}}
+                      </td>
+                    </tr>
+                  @endforeach               
+                </tbody>
+              </table>
+              <a style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
+                <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
+                  <i class="fas fa-calendar-plus"></i>
+                </span>
+              </a> 
+            </div>
+          </div>
+        </div >
+      </div> 
+    </div>
+  </div>
 @endsection

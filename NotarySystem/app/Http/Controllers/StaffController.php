@@ -328,14 +328,13 @@ class StaffController extends Controller
                 $fileNameToStore= $filename.'_'.time().'.'.$extension;
                 // Upload Image
                 $path = $request->file('fpropic')->storeAs('public/images', $fileNameToStore);
-            }
 
-         DB::table('staff')
-        ->where('id', $staff_id)
-        ->update(['img_path' => $fileNameToStore
-        ]);
-       
-    }
+                DB::table('staff')
+                ->where('id', $staff_id)
+                ->update(['img_path' => $fileNameToStore
+                ]);
+            }
+        }
         DB::table('staff')
            ->where('id', $staff_id)
            ->update([
@@ -349,8 +348,7 @@ class StaffController extends Controller
                    'gender' => $gender
                    
         ]);
-        flashy()->success( ' successfully updated!.');
-
+       
         return redirect('/staff/profile/view');
         
     }
@@ -358,7 +356,7 @@ class StaffController extends Controller
      //function to show the calendar with all meetings
     public function meeting(){
        // $meetings = Meeting::get();
-        $meetings=DB::table('meetings')->get();
+        $meetings=DB::table('meetings') ->where('MeetingStatus','Confirmed')->get();
     	$meeting_list = [];
     	foreach ($meetings as $key => $meeting) {
     		$meeting_list[] = Calendar::event(
@@ -373,8 +371,10 @@ class StaffController extends Controller
  
         return view('meetings', compact('calendar_details','users') );
 }
-public function addMeeting(Request $request){
+
+    public function addMeeting(Request $request){
         $status="Pending";
+
         $party=Input::get('party');
         $id=Input::get('partyId');
         $reason=Input::get('meetingReason');
@@ -386,6 +386,8 @@ public function addMeeting(Request $request){
 
         $data = array(
             'partyId' =>  $id, 
+            'reqFrom'=>Auth::user()->roles,
+            'requestorId'=>Auth::user()->id,
             'partyRole' =>  $party,
             'meetingReason' => $reason, 
             'startTime'=>$start,
@@ -525,13 +527,20 @@ public function addMeeting(Request $request){
         $rgds=DB::table('rgds')->get();
         $banks=DB::table('banks')->get();
         $landSurveyors=DB::table('land_surveyors')->get();
-        $meetings=DB::table('meetings')->get();
+        $meetings=DB::table('meetings')->where('requestorId',Auth::user()->id)
+                                    ->where('reqFrom',Auth::user()->roles)
+                                    ->get();
+
         $meetingsByClient=DB::table('meetings')->where('partyRole','Notary')->get();
+        $meetingsBank=DB::table('meetings')->where('partyRole','Notary')->get();
+        $meetingsByRGD=DB::table('meetings')->where('partyRole','Notary')->get();
         return view('meetingsConfig')->with('users',$users)
                                      ->with('meetings',$meetings)
                                      ->with('rgds',$rgds)
                                      ->with('banks',$banks)
                                      ->with('meetingsByClient',$meetingsByClient)
+                                     ->with('meetingsBank',$meetingsBank)
+                                     ->with('meetingsByRGD',$meetingsByRGD)
                                      ->with('landSurveyors',$landSurveyors);
 
     }
@@ -864,6 +873,18 @@ public function addMeeting(Request $request){
         
         return redirect('/staff/meeting/add/del/up');            
         // }        
+    }
+
+    //delete a client
+    public function deleteMeeting($id){
+        DB::table('meetings')
+            ->where('id', $id)
+            ->delete();
+
+            $message="alert alert-danger";
+            Session::flash($message, 'Meeting Successfully deleted'); 
+            return Redirect::to('/staff/meeting/add/del/up');
+       
     }
 }
 ?>

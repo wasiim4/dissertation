@@ -216,7 +216,7 @@
             });
         </script>
     </body>
-</div>    
+  
 <footer>
     <img src="{{ asset('images/certificate.png') }}" class="footerlogo" alt="logo notary">  Copyright &copy; <script type="text/JavaScript"> var theDate=new Date(); document.write(theDate.getFullYear()); </script> NW Mauritius.
 </footer>

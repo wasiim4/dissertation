@@ -268,4 +268,79 @@ class bankController extends Controller
         // }        
     }
 
+    public function myProfile(){
+        $bank_id = Auth::user()->id;  
+        $bank_get=DB::table('banks') 
+        ->where(['id'=>$bank_id])
+        ->get();
+
+        $bank_get =  $bank_get[0];
+        return view('bank.bankProfile')->with('bank_detail',  $bank_get);
+
+    
+    }
+
+    public function profileupdate(Request $request)
+    {
+        $bank_id = Auth::user()->id;
+        $image=$request->file('fpropic');
+
+       
+        $name = Input::get('txtname');
+        $branch = Input::get('txtbranch');
+        $email=Input::get('txtemail');
+        $cnum = Input::get('txtcnum');
+       
+
+        $this->validate($request,
+            [
+                'txtname' => 'required',
+                'txtbranch' => 'required',
+                'txtcnum' => 'required',
+                'txtemail' => 'required'
+                
+            ]);
+
+             // Handle File Upload
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('fpropic')){
+
+                // $this->validate($request,
+                // [
+                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
+                // ]);
+                
+                // Get filename with the extension
+                $filenameWithExt = $request->file('fpropic')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('fpropic')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('fpropic')->storeAs('public/images', $fileNameToStore);
+
+                DB::table('banks')
+                ->where('id', $bank_id)
+                ->update(['img_path' => $fileNameToStore
+                ]);
+            }
+        }
+        DB::table('banks')
+           ->where('id', $bank_id)
+           ->update([
+                    
+                   'name' => $name,
+                   'branch' => $branch,
+                   'email' => $email,
+                   'contactnum' => $cnum
+                   
+                   
+        ]);
+       
+        return redirect('/bank/profile/view');
+        
+    }
+
 }

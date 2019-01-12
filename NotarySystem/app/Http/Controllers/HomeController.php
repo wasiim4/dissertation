@@ -181,6 +181,7 @@ class HomeController extends Controller
         // $meetings = Meeting::get();
          $meetings=DB::table('meetings')->where('partyId',Auth::user()->id)
                                         ->where('partyRole','Client')
+                                        ->where('MeetingStatus','Confirmed')                                    
                                         ->get();
          $meeting_list = [];
          foreach ($meetings as $key => $meeting) {
@@ -204,11 +205,11 @@ class HomeController extends Controller
          $start=Input::get('startTime');
          $end=Input::get('endTime');
  
-         $date1=date_create($start);
-         $date2=date_create($end);
  
          $data = array(
              'partyId' =>  $id, 
+             'reqFrom'=>"Client",
+             'requestorId'=>Auth::user()->id,
              'partyRole' =>  $party,
              'meetingReason' => $reason, 
              'startTime'=>$start,
@@ -224,33 +225,14 @@ class HomeController extends Controller
          $meet=(DB::table('meetings')->where('id',$meeting_id)->get())[0];
  
          
-             $staff=DB::table('staff')
-             ->where('id', $id)
-             ->get();
-             
-             foreach ( $staff as  $staffs) {
-                
-                     $data = [
-                         'firstname'      => $staffs->firstname,
-                         'lastname'       =>$staffs->lastname,
-                         'meetingReason' =>$reason,
-                         'startTime'     =>$start,
-                         'endTime'       =>$end,
-                         'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
-                         'pid'           =>$staffs->id,
-                         'mid'           =>$meeting_id
-                         
-                         
-                     ];
-     
-                    //  Mail::send('emails.meetingReqToNotary', $data, function($m) use ($staffs){
-                    //  $m->to($staffs->email, 'Notary Team')->from(Auth::user()->email, 'Client')->subject('Meeting');
-                    //  });
-     
-                     Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
-                     return Redirect::to('/meeting/add/del/up');
+         $staff=DB::table('staff')
+                ->where('id', $id)
+                ->get();
+
+        Session::flash('message', 'Meeting successfully added'); 
+        return Redirect::to('/meeting/add/del/up');
                  
-             }
+           
          
  
          
@@ -262,12 +244,19 @@ class HomeController extends Controller
          $rgds=DB::table('rgds')->get();
          $banks=DB::table('banks')->get();
          $landSurveyors=DB::table('land_surveyors')->get();
-         $meetings=DB::table('meetings')->get();
+         $meetings=DB::table('meetings')->where('reqFrom',"Client")
+                                        ->where('requestorId',Auth::user()->id)
+                                        ->get();
+         $meetingByNotary=DB::table('meetings')->where('reqFrom',"Notary")
+                                               ->where('partyId',Auth::user()->id)
+                                               ->where('partyRole',"Client")
+                                               ->get();                                
          return view('users.meetingsUserConfig')->with('users',$users)
                                       ->with('meetings',$meetings)
                                       ->with('rgds',$rgds)
                                       ->with('banks',$banks)
                                       ->with('staffs',$staffs)
+                                      ->with('meetingByNotary', $meetingByNotary)
                                       ->with('landSurveyors',$landSurveyors);
  
      }

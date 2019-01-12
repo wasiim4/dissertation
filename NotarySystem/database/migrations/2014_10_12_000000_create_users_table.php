@@ -174,6 +174,8 @@ class CreateUsersTable extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('partyId');
+            $table->string('reqFrom');
+            $table->integer('requestorId');
             $table->string('partyRole');
             $table->string('meetingReason');
             $table->datetime('startTime');

@@ -269,4 +269,76 @@ class RgdController extends Controller
         // }        
     }
 
+    public function myProfile(){
+        $rgd_id = Auth::user()->id;  
+        $rgd_get=DB::table('rgds') 
+        ->where(['id'=>$rgd_id])
+        ->get();
+
+        $rgd_get =  $rgd_get[0];
+        return view('RGD.rgdProfile')->with('rgd_detail',  $rgd_get);
+
+    
+    }
+
+    public function profileupdate(Request $request)
+    {
+        $rgd_id = Auth::user()->id;
+        $image=$request->file('fpropic');
+
+       
+        $name = Input::get('txtname');
+        $email=Input::get('txtemail');
+        $cnum = Input::get('txtcnum');
+       
+
+        $this->validate($request,
+            [
+                'txtname' => 'required',
+                
+                'txtcnum' => 'required',
+                'txtemail' => 'required'
+                
+            ]);
+
+             // Handle File Upload
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('fpropic')){
+
+                // $this->validate($request,
+                // [
+                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
+                // ]);
+                
+                // Get filename with the extension
+                $filenameWithExt = $request->file('fpropic')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('fpropic')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('fpropic')->storeAs('public/images', $fileNameToStore);
+
+                DB::table('rgds')
+                ->where('id', $rgd_id)
+                ->update(['img_path' => $fileNameToStore
+                ]);
+            }
+        }
+        DB::table('rgds')
+           ->where('id', $rgd_id)
+           ->update([
+                    
+                   'name' => $name,
+                   'email' => $email,
+                   'contactnum' => $cnum
+                   
+                   
+        ]);
+       
+        return redirect('/rgd/profile/view');
+        
+    }
 }

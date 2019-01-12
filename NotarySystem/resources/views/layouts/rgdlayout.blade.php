@@ -58,7 +58,7 @@
         
         <ul class="list-unstyled components">               
             <li>
-                <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                <a href="{{ route('rgd.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
             </li>
             <li>
                 <a href="{{ route('Rgd.show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>

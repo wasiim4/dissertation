@@ -96,15 +96,12 @@ fieldset{
           <a href="/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>
         @break
     
-        @default
-            Default case...
+        
     @endswitch
-      
-      
       
       </div>
     </div>
-  </div>
+  
   
   <div class="col-3">
     <div class="container" style="width:93% !important;">

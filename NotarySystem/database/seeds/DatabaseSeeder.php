@@ -121,7 +121,8 @@ class DatabaseSeeder extends Seeder
             [
                 
                 'roles' =>'1',
-                'name' => 'BANK',  
+                'name' => 'SBM', 
+                'branch'=> 'St Pierre' ,
                 'email' => 'banknotary1@gmail.com',
                 'password' => Hash::make(123456),
                 'contactnum'=>'55480990',

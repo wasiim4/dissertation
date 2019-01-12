@@ -197,7 +197,7 @@
                       {{-- /Show Button --}}
                         |
                       {{-- Delete User Button --}}
-                        <a class="btndelevent" style="color:red;" href="/staff/client/delete/{{$meeting->id}}">
+                        <a class="btndelevent" style="color:red;" href="/staff/meeting/delete/{{$meeting->id}}">
                           <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                             <i class="fas fa-trash-alt font-color"></i>
                           </span>
@@ -300,6 +300,328 @@
                         {{-- /Accept meeting  Button --}}
                         |
                         {{-- Delete User Button --}}
+                          <a class="btndelevent" style="color:black;" href="/staff/meeting/delete/{{$meetingsByClients->id}}">
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
+                              <i class="fas fa-trash-alt font-color"></i>
+                            </span>
+                          </a>
+                        {{-- /Delete User Button --}}
+                        
+                        
+                      </td>
+                    </tr>
+                  @endforeach               
+                </tbody>
+              </table>
+              <a  style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
+                <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
+                  <i class="fas fa-calendar-plus"></i>
+                </span>
+              </a> 
+            </div>
+          </div>
+        </div >
+      </div> 
+    </div>
+  </div>
+{{-- END OF MEETING REQUEST FROM CLIENT --}}
+<br>
+{{-- MEETING REQUEST FROM BANK --}}
+<div class="container">
+    <div class="card">
+      <div class="card-header card bg-primary text-white" style=" text-align:center;" >Meeting Request From Bank</div>
+      <div class="card-body">
+        @if (Session::has('message'))
+          <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        <div class="row">
+          <div class="col-12">
+            <div class="container tableSpacor table-responsive "  style="width:100%;">
+              <table id="tblclient" class="table table-hover " style="width:100%;">
+                <thead>
+                  <tr>
+                    <th>
+                      ID
+                    </th> 
+                    <th>
+                      Meeting Reason
+                    </th>
+                    <th>
+                      Start Time
+                    </th>
+                    <th>
+                      End Time
+                    </th> 
+                    <th>
+                      Status
+                    </th>
+                                     
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($meetingsBank as $meetingsBanks)
+                      <td>    
+                        {{$meetingsBanks->id}} 
+                      </td>
+                      <td>
+                        {{$meetingsBanks->meetingReason}}
+                      </td>
+                      <td>
+                        {{$meetingsBanks->startTime}}
+                      </td>
+                      <td>
+                        {{$meetingsBanks->endTime}}
+                      </td>
+                      <td>
+                        {{$meetingsBanks->meetingStatus}}
+                      </td>
+                      
+                      <td>
+                        {{-- Accept meeting  Button --}}
+                        @if($meetingsBanks->meetingStatus=="Confirmed")
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @else
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @endif
+                          |
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
+                                <i class="fas fa-times"></i>
+                            </span>
+                          </a>
+                        {{-- /Accept meeting  Button --}}
+                        |
+                        {{-- Delete User Button --}}
+                          <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$meetingsBanks->id}}">
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
+                              <i class="fas fa-trash-alt font-color"></i>
+                            </span>
+                          </a>
+                        {{-- /Delete User Button --}}
+                        
+                        
+                      </td>
+                    </tr>
+                  @endforeach               
+                </tbody>
+              </table>
+              <a   style="color:green;font-size: 411%; padding-left: 46%;" href="#addMeeting">
+                <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
+                  <i class="fas fa-calendar-plus"></i>
+                </span>
+              </a> 
+            </div>
+          </div>
+        </div >
+      </div> 
+    </div>
+  </div>
+
+  {{-- END OF MEETING REQUEST FROM BANK --}}
+<br>
+
+{{-- MEETING REQUEST FROM RGD --}}
+<div class="container">
+    <div class="card">
+      <div class="card-header card bg-primary text-white" style=" text-align:center;" >Meeting Request From RGD</div>
+      <div class="card-body">
+        @if (Session::has('message'))
+          <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        <div class="row">
+          <div class="col-12">
+            <div class="container tableSpacor table-responsive "  style="width:100%;">
+              <table id="tblclient" class="table table-hover " style="width:100%;">
+                <thead>
+                  <tr>
+                    <th>
+                      ID
+                    </th> 
+                    <th>
+                      Meeting Reason
+                    </th>
+                    <th>
+                      Start Time
+                    </th>
+                    <th>
+                      End Time
+                    </th> 
+                    <th>
+                      Status
+                    </th>
+                                     
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($meetingsByRGD as $meetingsByRGDs)
+                      <td>    
+                        {{$meetingsByRGDs->id}} 
+                      </td>
+                      <td>
+                        {{$meetingsByRGDs->meetingReason}}
+                      </td>
+                      <td>
+                        {{$meetingsByRGDs->startTime}}
+                      </td>
+                      <td>
+                        {{$meetingsByRGDs->endTime}}
+                      </td>
+                      <td>
+                        {{$meetingsByRGDs->meetingStatus}}
+                      </td>
+                      
+                      <td>
+                        {{-- Accept meeting  Button --}}
+                        @if($meetingsByRGDs->meetingStatus=="Confirmed")
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @else
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @endif
+                          |
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
+                                <i class="fas fa-times"></i>
+                            </span>
+                          </a>
+                        {{-- /Accept meeting  Button --}}
+                        |
+                        {{-- Delete User Button --}}
+                          <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$meetingsByRGDs->id}}">
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
+                              <i class="fas fa-trash-alt font-color"></i>
+                            </span>
+                          </a>
+                        {{-- /Delete User Button --}}
+                        
+                        
+                      </td>
+                    </tr>
+                  @endforeach               
+                </tbody>
+              </table>
+              <a   style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
+                <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
+                  <i class="fas fa-calendar-plus"></i>
+                </span>
+              </a> 
+            </div>
+          </div>
+        </div >
+      </div> 
+    </div>
+  </div>
+
+  {{-- END OF MEETING REQUEST FROM RGD --}}
+<br>
+
+{{-- MEETING REQUEST FROM Land Surveyor --}}
+<div class="container">
+    <div class="card">
+      <div class="card-header card bg-primary text-white" style=" text-align:center;" >Meeting Request From Land Surveyor</div>
+      <div class="card-body">
+        @if (Session::has('message'))
+          <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        <div class="row">
+          <div class="col-12">
+            <div class="container tableSpacor table-responsive "  style="width:100%;">
+              <table id="tblclient" class="table table-hover " style="width:100%;">
+                <thead>
+                  <tr>
+                    <th>
+                      ID
+                    </th> 
+                    <th>
+                      Meeting Reason
+                    </th>
+                    <th>
+                      Start Time
+                    </th>
+                    <th>
+                      End Time
+                    </th> 
+                    <th>
+                      Status
+                    </th>
+                                     
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($meetingsByClient as $meetingsByClients)
+                      <td>    
+                        {{$meetingsByClients->id}} 
+                      </td>
+                      <td>
+                        {{$meetingsByClients->meetingReason}}
+                      </td>
+                      <td>
+                        {{$meetingsByClients->startTime}}
+                      </td>
+                      <td>
+                        {{$meetingsByClients->endTime}}
+                      </td>
+                      <td>
+                        {{$meetingsByClients->meetingStatus}}
+                      </td>
+                      
+                      <td>
+                        {{-- Accept meeting  Button --}}
+                        @if($meetingsByClients->meetingStatus=="Confirmed")
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @else
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
+                                <i class="fas fa-check"></i>
+                            </span>
+                          </a>
+                          @endif
+                          |
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                            
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
+                                <i class="fas fa-times"></i>
+                            </span>
+                          </a>
+                        {{-- /Accept meeting  Button --}}
+                        |
+                        {{-- Delete User Button --}}
                           <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$meetingsByClients->id}}">
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                               <i class="fas fa-trash-alt font-color"></i>
@@ -313,7 +635,7 @@
                   @endforeach               
                 </tbody>
               </table>
-              <a  href="/staff/client/delete/{{$meetingsByClients->id}} style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
+              <a   style="color:green;font-size: 411%;    padding-left: 46%;" href="#addMeeting">
                 <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Add Meeting">
                   <i class="fas fa-calendar-plus"></i>
                 </span>
@@ -324,6 +646,7 @@
       </div> 
     </div>
   </div>
-  {{-- END OF MEETING REQUEST FROM CLIENT --}}
+
+  {{-- END OF MEETING REQUEST FROM LAND SURVEYOR --}}
 <br>
 @endsection
