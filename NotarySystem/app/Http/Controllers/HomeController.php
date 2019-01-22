@@ -260,4 +260,133 @@ class HomeController extends Controller
                                       ->with('landSurveyors',$landSurveyors);
  
      }
+
+      //function for client to view his/her own profile as well as editing his/her details
+    public function myProfile(){
+        $client_id = Auth::user()->id;  
+        $client_get=DB::table('users') 
+        ->where(['id'=>$client_id])
+        ->get();
+
+        $client_get =  $client_get[0];
+        return view('users.userProfile')->with('client_detail',  $client_get);
+
+    
+    }
+
+    public function profileupdate(Request $request)
+    {
+        $client_id = Auth::user()->id;
+        $image=$request->file('fpropic');
+
+        $title=Input::get('txtTitle');
+        $fname = Input::get('txtfname');
+        $lname = Input::get('txtlname');
+        $email=Input::get('txtemail');
+        $cnum = Input::get('txtcnum');
+        $dob = Input::get('txtdob');
+        $nic = Input::get('txtnic');
+        $gender=Input::get('txtgender');
+        $status=Input::get('inputStatus');
+        $address=Input::get('txtaddress');
+        $BcNum=Input::get('txtBcNum');
+        $BcDistrict=Input::get('inputDistrict');
+        $PlaceOfBirth=Input::get('inputPlaceOfBirth');
+        $spouseFname=Input::get('txtspousefn');
+        $spouseLname=Input::get('txtspouseln');
+        $spouseTitle=Input::get('txtspouseTitle');
+        $spouseNic=Input::get('txtSpousenic');
+        $spouseDob=Input::get('txtSpousedob');
+        $spouseBcNum=Input::get('txtSpouseBcNum');
+        $spouseBcDistrict=Input::get('inputSpouseDistrict');
+        $marriageDate=Input::get('txtMarriageDate');
+        $mcNum=Input::get('txtMcNum');
+        $mcDistrict=Input::get('inputMDistrict');
+        $spouseProfession=Input::get('txtSpouseProfession');
+        $spouseGender=Input::get('txtSpousegender');
+        $spousePlaceOfBirth=Input::get('inputSpousePlaceOfBirth');
+        $divorceDate=Input::get('txtDivDate');
+        $divCertificateNum=Input::get('txtDivCNum');
+        $DivDistrict=Input::get('inputDivDistrict');
+        $DeathDate=Input::get('inputSpouseMarriageDate');
+        $DeathCertificateNum=Input::get('txtDeathCNum');
+        $DeathDistrict=Input::get('inputDeathDistrict');
+
+        $this->validate($request,
+            [
+                'txtfname' => 'required',
+                'txtlname' => 'required',
+                'txtcnum' => 'required',
+                'txtemail' => 'required',
+                'txtdob' => 'required',
+                'txtnic' => 'required',
+                'txtTitle' => 'required',
+                'txtgender'=>'required'
+            ]);
+
+             // Handle File Upload
+        if(isset($image)) { //to check if user has selected an image
+            if($request->hasFile('fpropic')){
+
+                // $this->validate($request,
+                // [
+                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
+                // ]);
+                
+                // Get filename with the extension
+                $filenameWithExt = $request->file('fpropic')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just the file extension
+                $extension = $request->file('fpropic')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+                $path = $request->file('fpropic')->storeAs('public/images', $fileNameToStore);
+
+                DB::table('users')
+                ->where('id', $client_id)
+                ->update(['img_path' => $fileNameToStore
+                ]);
+            }
+        }
+        DB::table('users')
+           ->where('id', $client_id)
+           ->update([
+                    'title'=>$title,
+                   'firstname' => $fname,
+                   'lastname' => $lname,
+                   'email' => $email,
+                   'dob' =>$dob,
+                   'nic'=>$nic,
+                   'contactnum' => $cnum,
+                   'gender' => $gender
+                //    'birthCertificateNumber'
+                //    'districtIssued'
+                //    'placeOfBirth'
+                //    'address'
+                //    'marriageStatus'
+                //    'profession'
+                //    'spouseTitle'
+                //    'spouseFirstname'
+                //    'spouseLastname'
+                //    'spouseDob'
+                //    'spouseBCNum'
+                //    'spouseBCdistrictIssued'
+                //    'spousePlaceOfBirth'
+                //    'spouseGender'
+                //    'spouseNic'
+                //    'marriageDate'
+                //    'MCNumber'
+                //    'MCdistrictIssued'
+                //    'spouseProfession'
+                //    'spouseDCNum'
+
+
+        ]);
+       
+        return redirect('/profile/view');
+        
+    }
+
 }

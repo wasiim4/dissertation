@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 use Calendar;
+use App\Rules\validateOldPassword;
 
 class StaffController extends Controller
 {
@@ -456,7 +458,7 @@ class StaffController extends Controller
                     });
     
                     Session::flash('message', 'Meeting successfully added and mail successfully sent!'); 
-                     return Redirect::to('staff/meeting/add/del/up');
+                    return Redirect::to('staff/meeting/add/del/up');
                 
             }
         }
@@ -818,8 +820,6 @@ class StaffController extends Controller
     }
 
     public function confirmMeeting($mid,$pid,Request $request){
-
-       
        
         DB::table('meetings')
         ->where('id', $mid)
@@ -885,6 +885,45 @@ class StaffController extends Controller
             Session::flash($message, 'Meeting Successfully deleted'); 
             return Redirect::to('/staff/meeting/add/del/up');
        
+    }
+
+    public function showChangePassword(){
+        return view('Staff.changePassword');
+    }
+
+    public function changePassword(Request $request){
+        $this->validate($request,
+        [
+            'txtpassword' => 'required|string|min:6|confirmed',
+            'txtOldpassword' => ['required', new validateOldPassword(auth()->user())]
+        ]       
+        );
+
+
+        //retrieve the email address of the user logged in
+        $email= Auth::user()->email;
+
+        //retrieve the input of password
+        $NewPassword = Input::get('txtpassword');
+        
+        //validating old password
+        $result = DB::table('staff')
+                    ->where('email', $email)->get()
+                    ->pluck('password');
+        $password=$result[0];
+        if (!(Hash::check($NewPassword, $password))) {
+            //SQL update for updating the db
+            DB::table('staff')
+            ->where(['email'=> $email])
+            ->where(['password' => $password])
+            ->update(['password' => Hash::make($NewPassword)]);
+            Auth::logout();
+            return redirect('/staff/login');
+            
+        }else{            
+            return back();
+        }
+        //end of validation    
     }
 }
 ?>

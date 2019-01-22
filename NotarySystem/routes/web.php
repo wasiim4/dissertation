@@ -35,6 +35,8 @@ Route::get('/uploaded/documents', 'HomeController@viewUploadedDoc')->name('show.
 Route::get('/meetings', 'HomeController@meeting')->name('client.meetings');
 Route::get('/meeting/add/del/up', 'HomeController@meetingForm')->name('client.show.meetingsForms');
 Route::post('/meeting/add/del/up', 'HomeController@addMeeting')->name('client.meetings.add');
+Route::get('/profile/view', 'HomeController@myProfile')->name('client.myProfile');
+Route::post('/profile/view', 'HomeController@profileupdate')->name('client.profileUpdate');
 
 
 //staff only
@@ -76,6 +78,8 @@ Route::prefix('staff')->group(function(){
     Route::get('/confirm/meeting/{mid}{pid}', 'StaffController@confirmMeeting'); 
     Route::get('/confirm/meeting/reject/{mid}{pid}', 'StaffController@rejectMeetingRequest'); 
     Route::get('/meeting/delete/{id}', 'StaffController@deleteMeeting')->name('staff.client.delete');
+    Route::get('/reset/password', 'StaffController@showChangePassword')->name('show.change.pass');
+    Route::post('/reset/password','StaffController@changePassword')->name('staff.change.pass');
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 

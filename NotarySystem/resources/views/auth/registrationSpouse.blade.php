@@ -15,6 +15,9 @@
     <script src="{{url('js/bootstrap.min.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
+        #content{
+            width: 113.5% !important;
+        }
         .header {
             width: 97.2%;
             margin-left:1.5%;
@@ -113,14 +116,14 @@
                     <label for="inputSpouseLastName">Last Name</label>
                     <input type="text" required class="form-control" name="inputSpouseLastName" value="{{ old('inputSpouseLastName') }}"  autofocus  placeholder="First Name">
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-2">
                     <label for="inputSpouseTitle">Title</label>
                     <select  name="inputSpouseTitle" class="form-control">
                         <option selected>Madame</option>
                         <option>Monsieur</option>
                     </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="inputSpouseNIC">NIC Number</label>
                     <input type="text" required maxlength="14" class="form-control" name="inputSpouseNIC" value="{{ old('inputSpouseNIC') }}"  >    
                 </div>

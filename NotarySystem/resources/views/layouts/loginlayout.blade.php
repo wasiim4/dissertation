@@ -7,10 +7,24 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/footer.css')}}">
     {{-- <script src="{{url('js/bootstrap.min.js')}}"></script> --}}
+
+    <style>
+    .backBtn{
+        float: left;
+        margin-left: 1%;
+        margin-top: 1%;
+
+    }
+    
+    </style>
 </head>
    
 
 <body>
+  
+        <a href="/" class="btn btn-success btn-lg backBtn" >BACK</a>
+
+    
     <h1  style="color:white; padding-top:2%;"> <img src="{{ asset('images/mru1.png') }}" height="10%" width="5%" alt="Mauritius">Welcome to Mauritius e-Notary</h1>
     <div class="loginbox">
         @yield('content')

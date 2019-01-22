@@ -95,6 +95,7 @@ class partageController extends Controller
         // }
 
         function asLetters($currentYear,$separateur=",") {
+            
             $convert = explode($separateur, $currentYear);
             $num[17] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit',
                              'neuf', 'dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize');
@@ -220,6 +221,7 @@ class partageController extends Controller
         $newSection = $wordTest->addSection();
 
         //setting different paragraph styles
+        
         $alignment=$wordTest->addParagraphStyle('centerTitles', array( 'size' => 12,'align'=>'center', 'name' => 'Times New Roman'));
         $alignment2=$wordTest->addParagraphStyle('Indent', array( 'tabPos'=>720));
         $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 'underline'=> 'single','name' => 'Times New Roman','bold'=>true));

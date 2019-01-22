@@ -51,6 +51,7 @@ class wordTest extends Controller
         $alignment2=$wordTest->addParagraphStyle('Indent', array( 'tabPos'=>720));
         $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 'underline'=> 'single','name' => 'Times New Roman','bold'=>true));
 
+        //displaying seller/buyer/immovable property details
         foreach ($sellers as $seller ) {
             foreach ($buyers as $buyer ) {
                 foreach($propertyDetails as $propertyDetail){
@@ -343,8 +344,10 @@ class wordTest extends Controller
 
         $wordFont=$wordTest->addFontStyle('header', array('bold' => true, 'size' => 20, 'name' => 'Times New Roman'));
         $desc2=$wordTest->addParagraphStyle('header', array('align' => 'center', 'lineHeight' => 1.0, 'spaceAfter' => 40, 'keepNext' => true, 'keepLines' => true,'bold' => true));
-        $desc1 = "The Portfolio details is a very useful feature of the web page. You can establish your archived details and the works to the entire web community. It was outlined to bring in extra clients, get you selected based on this details.";
-        $newSection->addText($desc1, $desc2,array('name' => 'Tahoma','align'=>'center','size' => 15, 'color' => 'red','bold' => true),$wordFont);
+        // $desc1 = "The Portfolio details is a very useful feature of the web page. You can establish your archived details and the works to the entire web community. It was outlined to bring in extra clients, get you selected based on this details.";
+        // $newSection->addText($desc1, $desc2,array('name' => 'Tahoma','align'=>'center','size' => 15, 'color' => 'red','bold' => true),$wordFont);
+        
+        //create word document and save in storage folder under the buyer's name
         $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($wordTest, 'Word2007');
         try {
             $objectWriter->save(storage_path($buyer->firstname.$buyer->lastname.'.docx'));
