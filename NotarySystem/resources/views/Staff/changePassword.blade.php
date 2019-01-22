@@ -97,6 +97,41 @@
     } */
     
     </style>
+    <script>
+        function showPassword() {                      
+            var old = document.getElementById("txtOldpassword");
+                if (old.type === "password") {
+                old.type = "text";
+            } 
+            else {
+                old.type = "password";
+            }
+        }           
+    </script>
+    <script>
+        function showNewPassword() {            
+            var new = document.getElementById("txtpassword");
+                if (new.type === "password") {
+                new.type = "text";
+            } 
+            else {
+                new.type = "password";
+            }
+                       
+        }
+    </script>
+    <script>
+        function showConfirmPassword() {            
+            var confirmPass = document.getElementById("txtpassword_confirmation");
+                if (confirmPass.type === "password") {
+                confirmPass.type = "text";
+            } 
+            else {
+                confirmPass.type = "password";
+            }
+                       
+        }
+    </script>
 </head>      
 
 @section('content')
@@ -124,15 +159,25 @@
                     @endif
                     <div class="row">
                         <div class="col-4">
-                            <label>Old Password</label>
+                            <label>Old Password</label>&nbsp;&nbsp;
+                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Show Password" class="input-group-label">
+                                <i class="fas fa-eye-slash" onclick="showPassword()"></i>
+                            </span>
                             <input class="form-control" type="password" placeholder="Old Password" id="txtOldpassword" name="txtOldpassword">               
+                            
                         </div>
                         <div class="col-4">
-                            <label>New Password</label>
+                            <label>New Password</label>&nbsp;&nbsp;
+                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Show New Password" class="input-group-label">
+                                <i class="fas fa-eye-slash" onclick="showNewPassword()"></i>
+                            </span>
                             <input class="form-control" type="password" placeholder="New Password" id="txtpassword" name="txtpassword">
                         </div>
                         <div class="col-4">
-                            <label>Confirm Password</label>
+                            <label>Confirm Password</label>&nbsp;&nbsp;
+                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Show Confirm Password" class="input-group-label">
+                                <i class="fas fa-eye-slash" onclick="showConfirmPassword()"></i>
+                            </span>
                             <input class="form-control" type="password" placeholder="Confirm Password" id="txtpassword_confirmation"  name="txtpassword_confirmation">
                         </div>
                     </div>
