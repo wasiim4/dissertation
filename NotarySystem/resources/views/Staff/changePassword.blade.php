@@ -110,12 +110,12 @@
     </script>
     <script>
         function showNewPassword() {            
-            var new = document.getElementById("txtpassword");
-                if (new.type === "password") {
-                new.type = "text";
+            var newPass = document.getElementById("txtpassword");
+                if (newPass.type === "password") {
+                newPass.type = "text";
             } 
             else {
-                new.type = "password";
+                newPass.type = "password";
             }
                        
         }
