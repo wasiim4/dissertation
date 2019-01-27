@@ -138,8 +138,12 @@
 {{-- <button class="button" style="vertical-align:middle"><span>Back </span> --}}
 <a class="back-btn hvr-icon-pulse" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>
 <br><br>
+<div class="row">
+    <div class="col-12">
 <div class="header">
     <h1 style="text-align:center;">Password Change</h1>
+</div>
+    </div>
 </div>
 
 <form action="{{route('staff.change.pass')}}" method="POST"  enctype="multipart/form-data">

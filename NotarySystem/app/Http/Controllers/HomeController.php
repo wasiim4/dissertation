@@ -290,6 +290,7 @@ class HomeController extends Controller
         $status=Input::get('inputStatus');
         $address=Input::get('txtaddress');
         $BcNum=Input::get('txtBcNum');
+        $profession=Input::get('txtprofession');
         $BcDistrict=Input::get('inputDistrict');
         $PlaceOfBirth=Input::get('inputPlaceOfBirth');
         $spouseFname=Input::get('txtspousefn');
@@ -360,28 +361,32 @@ class HomeController extends Controller
                    'dob' =>$dob,
                    'nic'=>$nic,
                    'contactnum' => $cnum,
-                   'gender' => $gender
-                //    'birthCertificateNumber'
-                //    'districtIssued'
-                //    'placeOfBirth'
-                //    'address'
-                //    'marriageStatus'
-                //    'profession'
-                //    'spouseTitle'
-                //    'spouseFirstname'
-                //    'spouseLastname'
-                //    'spouseDob'
-                //    'spouseBCNum'
-                //    'spouseBCdistrictIssued'
-                //    'spousePlaceOfBirth'
-                //    'spouseGender'
-                //    'spouseNic'
-                //    'marriageDate'
-                //    'MCNumber'
-                //    'MCdistrictIssued'
-                //    'spouseProfession'
-                //    'spouseDCNum'
-
+                   'gender' => $gender,
+                   'birthCertificateNumber'=>$BcNum,
+                   'districtIssued'=>$BcDistrict,
+                   'placeOfBirth'=>$PlaceOfBirth,
+                   'address'=>$address,
+                   'marriageStatus'=> $status,
+                   'profession'=>$profession,
+                   'spouseTitle'=> $spouseTitle,
+                   'spouseFirstname'=>$spouseFname,
+                   'spouseLastname'=> $spouseLname,
+                   'spouseDob'=>$spouseDob,
+                   'spouseBCNum'=> $spouseBcNum,
+                   'spouseBCdistrictIssued'=> $spouseBcDistrict,
+                   'spousePlaceOfBirth'=>$spousePlaceOfBirth,
+                   'spouseGender'=> $spouseGender,
+                   'spouseNic'=>$spouseNic,
+                   'marriageDate'=> $marriageDate,
+                   'MCNumber'=>$mcNum,
+                   'MCdistrictIssued'=>$mcDistrict,
+                   'spouseProfession'=> $spouseProfession,
+                   'spouseDCNum'=> $DeathCertificateNum,
+                   'DeathDate'=>$DeathDate,
+                   'DCdistrictIssued'=>$DeathDistrict,
+                   'DivCNum'=>$divCertificateNum,
+                   'DivDate'=>$divorceDate,
+                   'DivCdistrictIssued'=>$DivDistrict
 
         ]);
        
