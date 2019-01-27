@@ -830,18 +830,18 @@ class StaffController extends Controller
 
         $client= DB::table('users')->where('id',$pid)->get();
 
-       foreach ($client as $clients) {
+        foreach ($client as $clients) {
 
-        $data = [
-            'firstname'          =>$clients->firstname,
-            'lastname'          =>$clients->lastname,
-            'meetingStatus'     =>"Available"
+            $data = [
+                'firstname'          =>$clients->firstname,
+                'lastname'          =>$clients->lastname,
+                'meetingStatus'     =>"Available"               
+            ];
             
-        ];
-          Mail::send('emails.meetingReqToNotary', $data, function($m) use ($clients){
-            $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
+            Mail::send('emails.meetingReqToNotary', $data, function($m) use ($clients){
+                $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
             });
-       }
+        }
         
         return redirect('/staff/meeting/add/del/up');            
         // }        
