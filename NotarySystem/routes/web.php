@@ -98,6 +98,9 @@ Route::prefix('rgd')->group(function(){
     Route::get('/confirm/meeting/{pid}{mid}', 'RgdController@confirmMeeting');
     Route::get('/profile/view', 'RgdController@myProfile')->name('rgd.myProfile');
     Route::post('/profile/view', 'RgdController@profileupdate')->name('rgd.profileUpdate');
+    Route::get('/meetings', 'RgdController@meeting')->name('rgd.meetings');
+    Route::get('/meeting/add/del/up', 'RgdController@meetingForm')->name('rgd.show.meetingsForms');
+    Route::post('/meeting/add/del/up', 'RgdController@addMeeting')->name('rgd.meetings.add');
     // Route::get('view/download/uploaded/documents','RgdController@viewUploadedDocuments')->name('Rgd.download.uploadedDocs');
 
 });
@@ -117,6 +120,9 @@ Route::prefix('bank')->group(function(){
     Route::get('/confirm/meeting/{pid}{mid}', 'bankController@confirmMeeting');
     Route::get('/profile/view', 'bankController@myProfile')->name('bank.myProfile');
     Route::post('/profile/view', 'bankController@profileupdate')->name('bank.profileUpdate');
+    Route::get('/meetings', 'bankController@meeting')->name('bank.meetings');
+    Route::get('/meeting/add/del/up', 'bankController@meetingForm')->name('bank.show.meetingsForms');
+    Route::post('/meeting/add/del/up', 'bankController@addMeeting')->name('bank.meetings.add');
 });
 
 //land surveyor only
@@ -134,4 +140,7 @@ Route::prefix('landSurveyor')->group(function(){
     Route::get('/confirm/meeting/{pid}{mid}', 'landSurveyorController@confirmMeeting');
     Route::get('/profile/view', 'landSurveyorController@myProfile')->name('ls.myProfile');
     Route::post('/profile/view', 'landSurveyorController@profileupdate')->name('ls.profileUpdate');
+    Route::get('/meetings', 'landSurveyorController@meeting')->name('ls.meetings');
+    Route::get('/meeting/add/del/up', 'landSurveyorController@meetingForm')->name('ls.show.meetingsForms');
+    Route::post('/meeting/add/del/up', 'landSurveyorController@addMeeting')->name('ls.meetings.add');
 });

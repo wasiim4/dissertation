@@ -195,7 +195,7 @@ class HomeController extends Controller
          $users=DB::table('users')->get();
          $calendar_details = Calendar::addEvents($meeting_list); 
   
-         return view('meetings', compact('calendar_details','users') );
+         return view('users.meetingClient', compact('calendar_details','users') );
  }
     public function addMeeting(Request $request){
          $status="Pending";
@@ -329,10 +329,10 @@ class HomeController extends Controller
         if(isset($image)) { //to check if user has selected an image
             if($request->hasFile('fpropic')){
 
-                // $this->validate($request,
-                // [
-                //     'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
-                // ]);
+                $this->validate($request,
+                [
+                    'fpropic' => 'mimes:jpeg,jpg,png'      
+                ]);
                 
                 // Get filename with the extension
                 $filenameWithExt = $request->file('fpropic')->getClientOriginalName();

@@ -44,39 +44,7 @@ fieldset{
   margin-left:16px;
 }
 </style> 
-<script>
-  $(document).ready(function(){
-    $("#demo1").hide();
-    $("#demo2").hide();
-      $("#demo3").hide();
-    
-    $("#addMeeting").click(function(){
-      $("#demo1").show();
-        $("#demo2").hide();
-      $("#demo3").hide();
-      
-    });
-    
-    $("#updateMeeting").click(function(){
-      $("#demo2").show();
-        $("#demo1").hide();
-      $("#demo3").hide();
-      
-    });
-    $("#delMeeting").click(function(){
-      $("#demo3").show();
-        $("#demo1").hide();
-      $("#demo2").hide();
-      
-    });
 
-    $("#cancel").click(function(){
-      
-        $("#demo1").hide();
-  
-    });
-  });
-</script>
 </head>
 
 @section('content')

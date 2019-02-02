@@ -94,10 +94,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="meetingSubmenu">
                         <li>
-                            <a href="{{ route('meetings') }}" ><i class="fas fa-calendar-check"></i> View Meetings</a>
+                            <a href="{{ route('bank.meetings') }}" ><i class="fas fa-calendar-check"></i> View Meetings</a>
                         </li>
                         <li>
-                            <a href="{{ route('show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
+                            <a href="{{ route('bank.show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
                         </li>
                     </ul>
                 </li>
