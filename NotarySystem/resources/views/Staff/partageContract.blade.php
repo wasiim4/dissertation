@@ -1,6 +1,6 @@
 @include('flashy::message')
 @extends('layouts.stafflayout')
-@extends('layouts.global')
+
 <head>
 <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">

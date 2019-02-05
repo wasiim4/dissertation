@@ -61,8 +61,8 @@ class CreateUsersTable extends Migration
             $table->increments('propertyId');
             $table->integer('clientId');
             $table->string('address');
-            $table->string('priceInFigures');
-            $table->string('priceInWords');
+            $table->integer('priceInFigures');
+            // $table->string('priceInWords');
             $table->enum('propertyType', ['Land','Company','Hotel','House'])->default("Land");
             $table->integer('sizeInMSFigures');
             $table->integer('sizeInPerchFigures');

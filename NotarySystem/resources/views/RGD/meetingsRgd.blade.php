@@ -51,7 +51,7 @@ fieldset{
 <div class="row" style="width:93% !important;">
     <div class="col-3">
       <div class="container" >
-          <a href="/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
+          <a href="/rgd/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
       </div>
     </div>
   

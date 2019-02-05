@@ -51,7 +51,7 @@ fieldset{
 <div class="row" style="width:93% !important;">
     <div class="col-3">
       <div class="container" >
-          <a href="/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
+          <a href="/landSurveyor/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
       </div>
     </div>
   
@@ -68,7 +68,7 @@ fieldset{
   </div>
   <div class="col-3">
     <div class="container">
-      <a class="btn btn-info btn-lg" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>   
+      <a class="btn btn-info btn-lg" href="/landSurveyor"><i class="fa fa-home hvr-icon"></i> Back</a>   
     </div>
   </div>
 </div>

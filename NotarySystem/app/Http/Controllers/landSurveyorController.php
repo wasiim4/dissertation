@@ -342,5 +342,107 @@ class landSurveyorController extends Controller
         
     }
 
+        //function to show the calendar with all meetings
+        public function meeting(){
+            // $meetings = Meeting::get();
+             $meetings=DB::table('meetings')->where('partyId',Auth::user()->id)
+                                            ->where('partyRole','Land Surveyor')
+                                            ->where('MeetingStatus','Confirmed')                                    
+                                            ->get();
+
+             $meetingReqFromClient=DB::table('meetings')->where('requestorId',Auth::user()->id)
+                                                        ->where('reqFrom','Land Surveyor')
+                                                        ->where('MeetingStatus','Confirmed')                                    
+                                                        ->get();                               
+            $meeting_list = [];
+             foreach ($meetings as $key => $meeting) {
+                 $meeting_list[] = Calendar::event(
+                     $meeting->meetingReason,
+                     false, //to enable the user to view the date and time as well on the calendar
+                     new \DateTime($meeting->startTime),
+                     new \DateTime($meeting->endTime.' +1 day')
+                 );
+             }
+
+             $meeting_list2 = [];
+            foreach ( $meetingReqFromClient as $key =>  $meetingReqFromClients) {
+                
+                $meeting_list2[] = Calendar::event(
+                    $meetingReqFromClients->meetingReason,
+                    false, //to enable the user to view the date and time as well on the calendar
+                    new \DateTime($meetingReqFromClients->startTime),
+                    new \DateTime($meetingReqFromClients->endTime.' +1 day')
+                );
+            }
+
+             $ls=DB::table('land_surveyors')->get();
+             $calendar_details = Calendar::addEvents($meeting_list); 
+             $calendar_details2 = Calendar::addEvents($meeting_list2); 
+      
+             return view('landSurveyor.lsMeetings', compact('calendar_details','land_surveyors','calendar_details2') );
+     }
+        public function addMeeting(Request $request){
+             $status="Pending";
+             $party="Notary";
+             $id=Input::get('partyId');
+             $reason=Input::get('meetingReason');
+             $start=Input::get('startTime');
+             $end=Input::get('endTime');
+     
+     
+             $data = array(
+                 'partyId' =>  $id, 
+                 'reqFrom'=>"Land Surveyor",
+                 'requestorId'=>Auth::user()->id,
+                 'partyRole' =>  $party,
+                 'meetingReason' => $reason, 
+                 'startTime'=>$start,
+                 'endTime' =>  $end ,
+                 'meetingStatus' =>$status
+                 
+                 
+             );
+     
+             // DB::table('meetings')->insert($data);
+             
+             $meeting_id = DB::table('meetings')->insertGetId($data);
+             $meet=(DB::table('meetings')->where('id',$meeting_id)->get())[0];
+     
+             
+             $staff=DB::table('staff')
+                    ->where('id', $id)
+                    ->get();
+    
+            Session::flash('message', 'Meeting successfully added'); 
+            return Redirect::to('/landSurveyor/meeting/add/del/up');
+                     
+               
+             
+     
+             
+         }
+     
+         public function meetingForm(){
+             $staffs=DB::table('staff')->get();
+             $users=DB::table('users')->get();
+             $rgds=DB::table('rgds')->get();
+             $banks=DB::table('banks')->get();
+             $landSurveyors=DB::table('land_surveyors')->get();
+             $meetings=DB::table('meetings')->where('reqFrom',"Land Surveyor")
+                                            ->where('requestorId',Auth::user()->id)
+                                            ->get();
+             $meetingByNotary=DB::table('meetings')->where('reqFrom',"Notary")
+                                                   ->where('partyId',Auth::user()->id)
+                                                   ->where('partyRole',"Land Surveyor")
+                                                   ->get();                                
+             return view('landSurveyor.lsMeetingConf')->with('users',$users)
+                                          ->with('meetings',$meetings)
+                                          ->with('rgds',$rgds)
+                                          ->with('banks',$banks)
+                                          ->with('staffs',$staffs)
+                                          ->with('meetingByNotary', $meetingByNotary)
+                                          ->with('landSurveyors',$landSurveyors);
+     
+         }
 
 }

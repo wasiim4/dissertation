@@ -13,6 +13,10 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
   <style>
+    #content {
+    width: 105.5% !important;
+    }
+    
     .header {
       width: 97.2%;
       margin-left:1.5%;
@@ -337,7 +341,7 @@
         <div class="row">
           <div class="col-12">
             <div class="container tableSpacor table-responsive "  style="width:100%;">
-              <table id="tblclient" class="table table-hover " style="width:100%;">
+              <table id="tblbank" class="table table-hover " style="width:100%;">
                 <thead>
                   <tr>
                     <th>
@@ -445,7 +449,7 @@
         <div class="row">
           <div class="col-12">
             <div class="container tableSpacor table-responsive "  style="width:100%;">
-              <table id="tblclient" class="table table-hover " style="width:100%;">
+              <table id="tblRgd" class="table table-hover " style="width:100%;">
                 <thead>
                   <tr>
                     <th>
@@ -553,7 +557,7 @@
         <div class="row">
           <div class="col-12">
             <div class="container tableSpacor table-responsive "  style="width:100%;">
-              <table id="tblclient" class="table table-hover " style="width:100%;">
+              <table id="tblLs" class="table table-hover " style="width:100%;">
                 <thead>
                   <tr>
                     <th>
@@ -578,34 +582,34 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($meetingsByClient as $meetingsByClients)
+                  @foreach($meetingsByLS as $meetingsByLSs)
                       <td>    
-                        {{$meetingsByClients->id}} 
+                        {{$meetingsByLSs->id}} 
                       </td>
                       <td>
-                        {{$meetingsByClients->meetingReason}}
+                        {{$meetingsByLSs->meetingReason}}
                       </td>
                       <td>
-                        {{$meetingsByClients->startTime}}
+                        {{$meetingsByLSs->startTime}}
                       </td>
                       <td>
-                        {{$meetingsByClients->endTime}}
+                        {{$meetingsByLSs->endTime}}
                       </td>
                       <td>
-                        {{$meetingsByClients->meetingStatus}}
+                        {{$meetingsByLSs->meetingStatus}}
                       </td>
                       
                       <td>
                         {{-- Accept meeting  Button --}}
-                        @if($meetingsByClients->meetingStatus=="Confirmed")
-                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                        @if($meetingsByLSs->meetingStatus=="Confirmed")
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
                             </span>
                           </a>
                           @else
-                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
@@ -613,7 +617,7 @@
                           </a>
                           @endif
                           |
-                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByClients->id}}{{$meetingsByClients->partyId}}" >
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
                                 <i class="fas fa-times"></i>
@@ -622,7 +626,7 @@
                         {{-- /Accept meeting  Button --}}
                         |
                         {{-- Delete User Button --}}
-                          <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$meetingsByClients->id}}">
+                          <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$meetingsByLSs->id}}">
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                               <i class="fas fa-trash-alt font-color"></i>
                             </span>

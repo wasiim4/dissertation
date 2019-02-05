@@ -54,8 +54,8 @@ class StaffController extends Controller
         
         $this->validate($request,
         [
-            'inputFirstName' => 'required|alpha|max:255',
-            'inputLastName' => 'required|alpha|max:255',
+            'inputFirstName' => 'required|string|max:255',
+            'inputLastName' => 'required|string|max:255',
             'inputContactNum' => 'required|regex:/^[5][0-9]{7}+$/u|integer|unique:users,contactnum',
             'inputEmail' => 'required|string|email|max:255|unique:users,email',
             'inputDob' => 'required|date',
@@ -89,6 +89,8 @@ class StaffController extends Controller
         $bcNum=Input::get('inputBcNum');
         $districtIssued=Input::get('inputDistrict');
         $placeOfBirth=Input::get('inputPlaceOfBirth');
+      
+        $commonLawMarriage=Input::get('lawMarriage');
 
         $generatedPassword=str_random(8);
         self::sendEmail($generatedPassword,$email,$fname,$lname);
@@ -125,15 +127,22 @@ class StaffController extends Controller
         
         // return redirect('/dashboard');
 
-        if($marriageStatus=="Married"){
-            flashy()->success($fname.' '.$lname. ' successfully added!.');
+        // if($marriageStatus=="Married"){
+            
+        //     return redirect('staff/registerSpouse');
+        // }
+        // else{
+           
+        //      return redirect('staff/registernew');
+
+        // }  
+
+        if($commonLawMarriage=="Yes"){
             return redirect('staff/registerSpouse');
         }
         else{
-            flashy()->success($fname.' '.$lname. ' successfully added!.');
-             return redirect('staff/registernew');
-
-        }  
+            return redirect('staff/registernew');
+        }
     }
 
     public function sendEmail($genPass,$email,$fname,$lname)
@@ -151,8 +160,8 @@ class StaffController extends Controller
         $this->validate($request,
         [
             'inputClientID' => 'required',
-            'inputSpouseFirstName'=> 'required|alpha|max:255',
-            'inputSpouseLastName'=> 'required',
+            'inputSpouseFirstName'=> 'required|string|max:255',
+            'inputSpouseLastName'=> 'required|string|max:255',
             'inputSpouseTitle' =>'required',
             'inputSpouseNIC' => 'required|alpha_num|unique:users,spouseNic',
             'inputSpouseDob' =>'required|date',
@@ -200,7 +209,7 @@ class StaffController extends Controller
                         'MCdistrictIssued' => $mcDistrict,
                         'spouseProfession' =>$profession     
                     ]); 
-        flashy()->success($fname.' '.$lname. ' successfully added!.');
+       
             return redirect('staff/registernew');
     }
 
@@ -218,7 +227,7 @@ class StaffController extends Controller
         $clientId=Input::get('inputClientID');
         $propertyAdd=Input::get('inputAddress');
         $sizeMsFigures=Input::get('inputSizeMsF');
-        $sizeMsWords=Input::get('inputSizeMsW');
+       
         $sizeInPerch=Input::get('inputSizeInPerch');
         $transcriptionVol=Input::get('inputTranscriptionVolume');
         $pinNum=Input::get('inputPinNum');
@@ -226,25 +235,31 @@ class StaffController extends Controller
         $surveyorFirstName=Input::get('inputLsFn');
         $surveyorLastName=Input::get('inputLsLn');
         $surveyingDate=Input::get('inputSurveyingDate');
-        $priceFigures=Input::get('inputPriceFigures');
-        $priceWords=Input::get('inputPriceWords');
+        $priceFigures=Input::get('inputPrice');
+        
         $firstDeedReg=Input::get('inputFirstDeedReg');
         $firstDeedGeneration=Input::get('inputFirstDeedGeneration');
         $previousNotaryTitle=Input::get('inputPreviousNotaryTitle');
         $previousNotaryFN=Input::get('inputPreviousNotaryFN');
         $previousNotaryLN=Input::get('inputPreviousNotaryLN');
         $districtSituated=Input::get('inputDistrict');
-        $taxduty=(0.05*$priceFigures);
+        $checkBuyer=Input::get('checkBuyer');
+
+        if($checkBuyer=="No"){
+            $taxduty=(0.05*$priceFigures);
+        }
+        else{
+            $taxduty=0;
+        }
+       
 
         $data = array(
             'clientId' =>  $clientId, 
             'address' => $propertyAdd, 
-            'priceInFigures' =>  $priceFigures, 
-            'priceInWords' =>  $priceWords,
+            'priceInFigures' =>  $priceFigures,            
             'propertyType' => $propertyType, 
             'sizeInMSFigures' =>   $sizeMsFigures,
-            'sizeInMSWords' => $sizeMsWords,
-            'sizeInPerchWords' => $sizeInPerch,
+            'sizeInPerchFigures' => $sizeInPerch,
             'taxDuty' => $taxduty,
             'transcriptionVol' => $transcriptionVol,
             'pinNum' =>  $pinNum,
@@ -261,7 +276,7 @@ class StaffController extends Controller
         );
 
         DB::table('immovableproperty')->insert($data);
-         return $taxduty;
+        return $taxduty;
 
     }
 
@@ -506,7 +521,8 @@ class StaffController extends Controller
                         'endTime'       =>$end,
                         'duration'      =>date_diff($date1,$date2)->format("%dd %hh %im"),
                         'pid'           =>$landSurveyors->id,
-                        'mid'           =>$meeting_id
+                        'mid'           =>$meeting_id,
+                        'party'         =>$party
                         
                     ];
     
@@ -533,9 +549,10 @@ class StaffController extends Controller
                                     ->where('reqFrom',Auth::user()->roles)
                                     ->get();
 
-        $meetingsByClient=DB::table('meetings')->where('partyRole','Notary')->get();
-        $meetingsBank=DB::table('meetings')->where('partyRole','Notary')->get();
-        $meetingsByRGD=DB::table('meetings')->where('partyRole','Notary')->get();
+        $meetingsByClient=DB::table('meetings')->where('reqFrom','Client')->get();
+        $meetingsBank=DB::table('meetings')->where('reqFrom','Bank')->get();
+        $meetingsByRGD=DB::table('meetings')->where('reqFrom','RGD')->get();
+        $meetingsByLS=DB::table('meetings')->where('reqFrom','Land Surveyor')->get();
         return view('meetingsConfig')->with('users',$users)
                                      ->with('meetings',$meetings)
                                      ->with('rgds',$rgds)
@@ -543,6 +560,7 @@ class StaffController extends Controller
                                      ->with('meetingsByClient',$meetingsByClient)
                                      ->with('meetingsBank',$meetingsBank)
                                      ->with('meetingsByRGD',$meetingsByRGD)
+                                     ->with('meetingsByLS',$meetingsByLS)
                                      ->with('landSurveyors',$landSurveyors);
 
     }

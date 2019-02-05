@@ -183,8 +183,14 @@ class HomeController extends Controller
                                         ->where('partyRole','Client')
                                         ->where('MeetingStatus','Confirmed')                                    
                                         ->get();
+
+         $meetingReqFromClient=DB::table('meetings')->where('requestorId',Auth::user()->id)
+                                        ->where('reqFrom','Client')
+                                        ->where('MeetingStatus','Confirmed')                                    
+                                        ->get();
          $meeting_list = [];
          foreach ($meetings as $key => $meeting) {
+             
              $meeting_list[] = Calendar::event(
                  $meeting->meetingReason,
                  false, //to enable the user to view the date and time as well on the calendar
@@ -192,10 +198,22 @@ class HomeController extends Controller
                  new \DateTime($meeting->endTime.' +1 day')
              );
          }
+
+         $meeting_list2 = [];
+         foreach ( $meetingReqFromClient as $key =>  $meetingReqFromClients) {
+             
+            $meeting_list2[] = Calendar::event(
+                $meetingReqFromClients->meetingReason,
+                false, //to enable the user to view the date and time as well on the calendar
+                new \DateTime($meetingReqFromClients->startTime),
+                new \DateTime($meetingReqFromClients->endTime.' +1 day')
+            );
+        }
          $users=DB::table('users')->get();
          $calendar_details = Calendar::addEvents($meeting_list); 
+         $calendar_details2 = Calendar::addEvents($meeting_list2); 
   
-         return view('users.meetingClient', compact('calendar_details','users') );
+         return view('users.meetingClient', compact('calendar_details','users','calendar_details2') );
  }
     public function addMeeting(Request $request){
          $status="Pending";

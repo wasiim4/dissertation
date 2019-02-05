@@ -16,6 +16,9 @@
         <link rel="icon" href="{{asset('images/addUser.png')}}" />
         <script src="{{url('js/bootstrap.min.js')}}"></script>
     <style>
+        #content {
+    width: 116.8% !important;
+    }
     * {
         box-sizing: border-box;
     }
@@ -25,21 +28,21 @@
         display: table;
     }
     [class*="col-"] {
-        float: left;
-        padding: 15px;
+        float: left !important;
+        padding: 15px!important;
     }
-    .col-1 {width: 8.33%;}
-    .col-2 {width: 16.66%;}
-    .col-3 {width: 25%;}
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
+    .col-1 {width: 8.33% !important;}
+    .col-2 {width: 16.66% !important;}
+    .col-3 {width: 25% !important;}
+    .col-4 {width: 33.33% !important;}
+    .col-5 {width: 41.66% !important;}
+    .col-6 {width: 50% !important;}
+    .col-7 {width: 58.33% !important;}
+    .col-8 {width: 66.66% !important;}
+    .col-9 {width: 75% !important;}
+    .col-10 {width: 83.33% !important;}
+    .col-11 {width: 91.66% !important;}
+    .col-12 {width: 100% !important;}
     html {
         font-family: "Lucida Sans", sans-serif;
     }

@@ -1,4 +1,3 @@
-@include('flashy::message')
 @extends('layouts.stafflayout')
 <!DOCTYPE html>
 <html>
@@ -198,6 +197,23 @@
                     </select>
                 </div>
             </div>
+
+            
+            <div class="form-row">
+                    <div class="form-group col-md-1"></div>
+                    <div class="form-group col-md-5">
+                        <label for="checkBuyer">Common Law Marrige(Mariage de droit commun)</label> 
+                    </div>
+                    <div class="form-group col-md-1">
+                        <input class="form-check-input" type="radio"name="lawMarriage" id="lawMarriage" value="Yes"> 
+                        <label for="checkBuyer">Yes</label>       
+                    </div>
+                    <div class="form-group col-md-1">
+                            <input class="form-check-input" type="radio"name="lawMarriage" id="lawMarriage" value="No">  
+                        <label for="checkBuyer">No</label>       
+                    </div>
+                    <div class="form-group col-md-4"></div>
+                </div>
         
             <div class="row">
                 <div class="col-4"></div>

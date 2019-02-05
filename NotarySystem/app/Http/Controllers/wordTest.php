@@ -46,6 +46,86 @@ class wordTest extends Controller
         $currentYear = date('Y');
         $newSection = $wordTest->addSection();
 
+        //function to convert number into french words
+        function asLetters($currentYear,$separateur=",") {
+            
+            $convert = explode($separateur, $currentYear);
+            $num[17] = array('zero', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit',
+                             'neuf', 'dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize');
+                              
+            $num[100] = array(20 => 'vingt', 30 => 'trente', 40 => 'quarante', 50 => 'cinquante',
+                              60 => 'soixante', 70 => 'soixante-dix', 80 => 'quatre-vingt', 90 => 'quatre-vingt-dix');
+                                              
+            if (isset($convert[1]) && $convert[1] != '') {
+                return asLetters($convert[0]).' et '.asLetters($convert[1]);
+            }
+            if ($currentYear < 0) {
+                return 'moins '.asLetters(-$currentYear);
+            }    
+            if ($currentYear < 17) {
+                return $num[17][$currentYear];
+            }
+            elseif ($currentYear < 20) {
+                return 'dix-'.asLetters($currentYear-10);
+            }
+            elseif ($currentYear < 100) {
+                
+                if ($currentYear%10 == 0) {
+                    return $num[100][$currentYear];
+                }                
+                elseif (substr($currentYear, -1) == 1) {
+                    if( ((int)($currentYear/10)*10)<70 ){
+                        return asLetters((int)($currentYear/10)*10).'-et-un';
+                    }
+                    elseif ($currentYear == 71) {
+                        return 'soixante-et-onze';
+                    }
+                    elseif ($currentYear == 81) {
+                        return 'quatre-vingt-un';
+                    }
+                    elseif ($currentYear == 91) {
+                        return 'quatre-vingt-onze';
+                    }
+                }
+                elseif ($currentYear < 70) {
+                    return asLetters($currentYear-$currentYear%10).'-'.asLetters($currentYear%10);
+                }
+                elseif ($currentYear < 80) {
+                    return asLetters(60).'-'.asLetters($currentYear%20);
+                }
+                else {
+                    return asLetters(80).'-'.asLetters($currentYear%20);
+                }
+            }
+            elseif ($currentYear == 100) {
+                return 'cent';
+            }
+            elseif ($currentYear < 200) {
+                return asLetters(100).' '.asLetters($currentYear%100);
+            }
+            elseif ($currentYear < 1000) {
+                return asLetters((int)($currentYear/100)).' '.asLetters(100).($currentYear%100 > 0 ? ' '.asLetters($currentYear%100): '');
+            }
+            elseif ($currentYear == 1000){
+                return 'mille';
+            }
+            elseif ($currentYear < 2000) {
+                return asLetters(1000).' '.asLetters($currentYear%1000).' ';
+            }
+            elseif ($currentYear < 1000000) {
+                return asLetters((int)($currentYear/1000)).' '.asLetters(1000).($currentYear%1000 > 0 ? ' '.asLetters($currentYear%1000): '');
+            }
+            elseif ($currentYear == 1000000) {
+                return 'un million';
+            }
+            elseif ($currentYear < 2000000) {
+                return 'un million'.' '.asLetters($currentYear%1000000);
+            }
+            elseif ($currentYear < 1000000000) {
+                return asLetters((int)($currentYear/1000000)).' '.'millions'.($currentYear%1000000 > 0 ? ' '.asLetters($currentYear%1000000): '');
+            }
+        }
+
         //setting different paragraph styles
         $alignment=$wordTest->addParagraphStyle('centerTitles', array( 'size' => 12,'align'=>'center', 'name' => 'Times New Roman'));
         $alignment2=$wordTest->addParagraphStyle('Indent', array( 'tabPos'=>720));
@@ -104,7 +184,7 @@ class wordTest extends Controller
                     $newSection->addText("DESIGNATION",
                     array('name' => 'Times New Roman','align'=>'center','size' => 12,'bold' => true,'underline'=> 'single'),'centerTitles');
 
-                    $newSection->addText("Une portion de terrain vague située au quartier de ".$propertyDetail->districtSituated.",lieu dit ".$propertyDetail->address." de la contenance de ".$propertyDetail->sizeInPerchWords." perches soit ".strtoupper($propertyDetail->sizeInMSWords)." METRES CARRES (".$propertyDetail->sizeInMSFigures." m2) - PIN No ".$propertyDetail->pinNum."
+                    $newSection->addText("Une portion de terrain vague située au quartier de ".$propertyDetail->districtSituated.",lieu dit ".$propertyDetail->address." de la contenance de ".asLetters($propertyDetail->sizeInPerchFigures)." perches soit ".strtoupper(asLetters($propertyDetail->sizeInMSFigures))." METRES CARRES (".$propertyDetail->sizeInMSFigures." m2) - PIN No ".$propertyDetail->pinNum."
                     ] et bornée d'après le titre de propriété ci-après relate, d'après un rapport avec plan figuratif y joint,dresse par "
                     .$propertyDetail->surveyorTitle." ".$propertyDetail->surveyorFN." ".$propertyDetail->surveyorLN.", arpenteur, le".$propertyDetail->surveyorDate.", enregistrée au Reg ".$propertyDetail->regNumLSReport.", comme suit:",
                     array('name' => 'Times New Roman','align'=>'left','size' => 12,'tabPos' => 720),'Indent');
@@ -190,7 +270,7 @@ class wordTest extends Controller
 
                     $newSection->addText("La présente vente est faite aux charges ordinaires et de droit.",array('name' => 'Times New Roman','align'=>'left','size' => 12,'tabPos' => 720),'Indent');
 
-                    $newSection->addText("Et en outre, pour et moyennant le prix principal d".strtoupper($propertyDetail->priceInWords)." (Rs".$propertyDetail->priceInFigures."-) que les vendeurs reconnaissent avoir reçu et touché de l'acquéreur, à l’instant même et à la vue du notaire soussignée.
+                    $newSection->addText("Et en outre, pour et moyennant le prix principal d".strtoupper(asLetters($propertyDetail->priceInFigures))." (Rs".$propertyDetail->priceInFigures."-) que les vendeurs reconnaissent avoir reçu et touché de l'acquéreur, à l’instant même et à la vue du notaire soussignée.
                     ",array('name' => 'Times New Roman','align'=>'left','size' => 12));
 
                     $newSection->addText(strtoupper("dont quittance"),'rightAlignUnderline');

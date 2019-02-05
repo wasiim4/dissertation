@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.rgdlayout')
 <head>
   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -12,8 +12,11 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
   <style>
+    #content {
+    width: 106.5% !important;
+    }
     .header {
-      width: 97.2%;
+    
       margin-left:1.5%;
       background-color: #17a2b8;
       color: #ffffff;
@@ -24,6 +27,14 @@
     html {
      scroll-behavior: smooth;
     }
+
+    .isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
+}
   </style> 
   <script>
     $(document).ready(function(){
@@ -39,11 +50,11 @@
       <div class="card-body">
           @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}
-              <a href="http://127.0.0.1:8000/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+              <a href="http://127.0.0.1:8000/rgd/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
             </div>
           @endif
 
-          <form action="{{route('client.meetings.add')}}" method="POST">
+          <form action="{{route('rgd.meetings.add')}}" method="POST">
             @csrf
             <div class="row">
               <div class="col-3">

@@ -159,6 +159,11 @@
                 <input type="number"  required class="form-control " name="inputSizeInPerch" value="{{ old('inputSizeInPerch') }}"  autofocus  placeholder=""> 
             </div>
 
+            <div class="form-group col-md-4">
+                <label for="inputPrice">Price(In Figures)</label>
+                <input type="number" required  class="form-control" name="inputPrice" value="{{ old('inputPrice') }}"  > 
+            </div>
+
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
@@ -193,18 +198,7 @@
                 </div>
                  
       </div>
-      <div class="form-row">
-            <!-- <div class="form-group col-md-6">
-                <label for="inputPriceFigures">Price(In words)</label>
-                <input type="number"  class="form-control" name="inputPriceFigures" value="{{ old('inputPriceFigures') }}"  >
-            </div> -->
-            
-            <div class="form-group col-md-6">
-                <label for="inputPriceWords">Price(In Figures)</label>
-                <input type="text"  class="form-control" name="inputPriceWords" value="{{ old('inputPriceWords') }}"  > 
-            </div>
-         
-        </div>
+     
 
         <div class="form-row">
             <div class="form-group col-md-4">
@@ -255,6 +249,22 @@
             </div>
 
             </div>
+            <div class="form-row">
+                    <div class="form-group col-md-4"></div>
+                    <div class="form-group col-md-2">
+                        <label for="checkBuyer">First Time Buyer</label>  
+                    </div>
+                    <div class="form-group col-md-1">
+                        <input class="form-check-input" type="radio"name="checkBuyer" id="checkBuyer" value="Yes"> 
+                        <label for="checkBuyer">Yes</label>       
+                    </div>
+                    <div class="form-group col-md-1">
+                            <input class="form-check-input" type="radio"name="checkBuyer" id="checkBuyer" value="No">  
+                        <label for="checkBuyer">No</label>       
+                    </div>
+                    <div class="form-group col-md-4"></div>
+                </div>
+    
             <div class="row">
             <div class="col-4"></div>
             <div class="col-4">

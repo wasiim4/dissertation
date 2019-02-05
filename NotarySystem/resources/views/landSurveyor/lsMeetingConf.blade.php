@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.landSurveyorlayout')
 <head>
   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -39,11 +39,11 @@
       <div class="card-body">
           @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}
-              <a href="http://127.0.0.1:8000/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+              <a href="http://127.0.0.1:8000/landSurveyor/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
             </div>
           @endif
 
-          <form action="{{route('client.meetings.add')}}" method="POST">
+          <form action="{{route('ls.meetings.add')}}" method="POST">
             @csrf
             <div class="row">
               <div class="col-3">

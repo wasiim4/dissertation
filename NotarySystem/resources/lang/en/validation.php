@@ -162,24 +162,7 @@ return [
             'inputPlaceOfBirth' =>'Place of Birth',
             'inputProfession' =>'Profession',
             'inputTitle' =>'Title',
-
-            'inputChildrenFirstName' => ' Children First name',
-            'inputChildrenLastName' => 'Children Last name',
-            'inputChildrenContactNum' => 'Children Contact number',
-            'contactnum' => 'Children Contact Number',
-            'inputChildrenEmail' => 'Children Email-address',
-            'inputChildrenAddress' => 'Children Address',
-            'inputChildrenGender' => 'Children Gender',
-            'inputChildrenDob' => 'Children Date of Birth',
-            'inputChildrenNIC1' => 'Children National Identity Card Number',
-         
-            'inputChildrenMarriageStatus' => 'Children Marriage Status',
             
-            'inputChildrenBcNum' => 'Children Birth Certificate Number',
-            'inputChildrenDistrict' =>'Children District in which the birth certificate was issued',
-            'inputChildrenPlaceOfBirth' =>'Children Place of Birth',
-            'inputChildrenProfession' =>' ChildrenProfession',
-            'inputChildrenTitle' =>'Children Title',
     ],
 
 ];

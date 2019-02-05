@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.banklayout')
 <head>
   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
@@ -39,11 +39,11 @@
       <div class="card-body">
           @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}
-              <a href="http://127.0.0.1:8000/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+              <a href="http://127.0.0.1:8000/bank/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
             </div>
           @endif
 
-          <form action="{{route('client.meetings.add')}}" method="POST">
+          <form action="{{route('bank.meetings.add')}}" method="POST">
             @csrf
             <div class="row">
               <div class="col-3">
@@ -145,7 +145,7 @@
                     </td>
                     <td>
                       {{-- Show Event Button --}}
-                        <a style="color:#007bff;" href="/show/client/{{$meeting->id}}">
+                        <a style="color:#007bff;" href="/bank/show/client/{{$meeting->id}}">
                           <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
                             <i class="fas fa-pencil-alt font-color"></i>
                           </span>
@@ -153,7 +153,7 @@
                       {{-- /Show Button --}}
                         |
                       {{-- Delete User Button --}}
-                        <a class="btndelevent" style="color:red;" href="/client/delete/{{$meeting->id}}">
+                        <a class="btndelevent" style="color:red;" href="/bank/client/delete/{{$meeting->id}}">
                           <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                             <i class="fas fa-trash-alt font-color"></i>
                           </span>
