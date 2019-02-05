@@ -330,10 +330,10 @@ class StaffController extends Controller
         if(isset($image)) { //to check if user has selected an image
             if($request->hasFile('fpropic')){
 
-                $this->validate($request,
-                [
-                    'fpropic' => 'mimes:jpeg,jpg,png | max:1999'      
-                ]);
+                // $this->validate($request,
+                // [
+                //     'fpropic' => 'mimes:jpeg,jpg,png '      
+                // ]);
                 
                 // Get filename with the extension
                 $filenameWithExt = $request->file('fpropic')->getClientOriginalName();
