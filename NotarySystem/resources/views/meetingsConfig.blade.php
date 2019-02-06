@@ -89,7 +89,7 @@
           </div>
 
           <div class="col-3">
-            <label for="endTime">Start Time</label>
+            <label for="endTime">End Time</label>
             <input type="datetime-local" id="endTime" name="endTime" value=""class="form-control"><br>
           </div>
         </div>
