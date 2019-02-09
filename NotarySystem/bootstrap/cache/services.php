@@ -38,9 +38,10 @@
     34 => 'Ken\\FlashMe\\FlashMeServiceProvider',
     35 => 'App\\Providers\\AppServiceProvider',
     36 => 'App\\Providers\\AuthServiceProvider',
-    37 => 'App\\Providers\\EventServiceProvider',
-    38 => 'App\\Providers\\RouteServiceProvider',
-    39 => 'MercurySeries\\Flashy\\FlashyServiceProvider',
+    37 => 'App\\Providers\\BroadcastServiceProvider',
+    38 => 'App\\Providers\\EventServiceProvider',
+    39 => 'App\\Providers\\RouteServiceProvider',
+    40 => 'MercurySeries\\Flashy\\FlashyServiceProvider',
   ),
   'eager' => 
   array (
@@ -67,9 +68,10 @@
     20 => 'Ken\\FlashMe\\FlashMeServiceProvider',
     21 => 'App\\Providers\\AppServiceProvider',
     22 => 'App\\Providers\\AuthServiceProvider',
-    23 => 'App\\Providers\\EventServiceProvider',
-    24 => 'App\\Providers\\RouteServiceProvider',
-    25 => 'MercurySeries\\Flashy\\FlashyServiceProvider',
+    23 => 'App\\Providers\\BroadcastServiceProvider',
+    24 => 'App\\Providers\\EventServiceProvider',
+    25 => 'App\\Providers\\RouteServiceProvider',
+    26 => 'MercurySeries\\Flashy\\FlashyServiceProvider',
   ),
   'deferred' => 
   array (

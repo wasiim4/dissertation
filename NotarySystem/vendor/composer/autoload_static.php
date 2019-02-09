@@ -15,6 +15,7 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '3109cb1a231dcd04bee1f9f620d46975' => __DIR__ . '/..' . '/paragonie/sodium_compat/autoload.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'd92e6dafb93e67e5b59c39d9b9d00659' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/functions.php',
         '974ce3986b2f81344d3ce484b96c08e6' => __DIR__ . '/..' . '/mercuryseries/flashy/src/MercurySeries/Flashy/functions.php',
@@ -72,6 +73,7 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         ),
         'P' => 
         array (
+            'Pusher\\' => 7,
             'Psy\\' => 4,
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
@@ -238,6 +240,10 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Pusher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
         ),
         'Psy\\' => 
         array (
@@ -420,12 +426,17 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\RgdLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RgdLoginController.php',
         'App\\Http\\Controllers\\Auth\\StaffLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/StaffLoginController.php',
+        'App\\Http\\Controllers\\Auth\\bankLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/bankLoginController.php',
+        'App\\Http\\Controllers\\Auth\\landSurveyorLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/landSurveyorLoginController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\RgdController' => __DIR__ . '/../..' . '/app/Http/Controllers/RgdController.php',
         'App\\Http\\Controllers\\StaffController' => __DIR__ . '/../..' . '/app/Http/Controllers/StaffController.php',
+        'App\\Http\\Controllers\\bankController' => __DIR__ . '/../..' . '/app/Http/Controllers/bankController.php',
+        'App\\Http\\Controllers\\landSurveyorController' => __DIR__ . '/../..' . '/app/Http/Controllers/landSurveyorController.php',
         'App\\Http\\Controllers\\partageController' => __DIR__ . '/../..' . '/app/Http/Controllers/partageController.php',
         'App\\Http\\Controllers\\userController' => __DIR__ . '/../..' . '/app/Http/Controllers/userController.php',
+        'App\\Http\\Controllers\\welcomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/welcomeController.php',
         'App\\Http\\Controllers\\wordTest' => __DIR__ . '/../..' . '/app/Http/Controllers/wordTest.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -442,8 +453,11 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rgd' => __DIR__ . '/../..' . '/app/Rgd.php',
+        'App\\Rules\\validateOldPassword' => __DIR__ . '/../..' . '/app/Rules/validateOldPassword.php',
         'App\\Staff' => __DIR__ . '/../..' . '/app/Staff.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\bank' => __DIR__ . '/../..' . '/app/bank.php',
+        'App\\landSurveyor' => __DIR__ . '/../..' . '/app/landSurveyor.php',
         'Barryvdh\\DomPDF\\Facade' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade.php',
         'Barryvdh\\DomPDF\\PDF' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/PDF.php',
         'Barryvdh\\DomPDF\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/ServiceProvider.php',
@@ -3436,6 +3450,11 @@ class ComposerStaticInit4a39e2423aa6ca02f27a096608ea41a5
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'Pusher\\Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Pusher.php',
+        'Pusher\\PusherCrypto' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherCrypto.php',
+        'Pusher\\PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherException.php',
+        'Pusher\\PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherInstance.php',
+        'Pusher\\Webhook' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Webhook.php',
         'QRcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
         'Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
