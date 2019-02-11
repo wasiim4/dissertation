@@ -15,20 +15,20 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Matcher\UrlMatcher
     {
         $this->context = $context;
         $this->matchHost = true;
-        $this->regexpList = array(
+        $this->regexpList = [
             0 => '{^(?'
                 .'|(?i:([^\\.]++)\\.exampple\\.com)\\.(?'
                     .'|/abc([^/]++)(?'
                         .'|(*:56)'
                     .')'
                 .')'
-                .')(?:/?)$}sD',
-        );
-        $this->dynamicRoutes = array(
-            56 => array(
-                array(array('_route' => 'r1'), array('foo', 'foo'), null, null, false, null),
-                array(array('_route' => 'r2'), array('foo', 'foo'), null, null, false, null),
-            ),
-        );
+                .')/?$}sD',
+        ];
+        $this->dynamicRoutes = [
+            56 => [
+                [['_route' => 'r1'], ['foo', 'foo'], null, null, false, true, null],
+                [['_route' => 'r2'], ['foo', 'foo'], null, null, false, true, null],
+            ],
+        ];
     }
 }

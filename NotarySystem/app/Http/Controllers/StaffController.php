@@ -926,5 +926,11 @@ class StaffController extends Controller
             }
             //end of validation    
         }
+
+    
+    public function home()
+    {
+        return view('home');
+    }
 }
 ?>

@@ -8,6 +8,20 @@
 
 ### [Unreleased]
 
+### [v8.13.4] - 2019-01-29
+
+- Added optional merge of config raw columns to rawColumns method. [#1960], credits to [@Spodnet]
+
+### [v8.13.3] - 2019-01-05
+
+- Revert [#1942].
+- Fix [#1951].
+
+### [v8.13.2] - 2019-01-04
+
+- Keep casted attributes. [#1942], credits to [@ridaamirini].
+- Fix [#1747].
+
 ### [v8.13.1] - 2018-11-23
 
 - Revert v8.12.0 changes.
@@ -267,7 +281,10 @@ return (new CollectionDataTable(User::all())->toJson();
 - Fix orderColumn api where related tables are not joined.
 - Fix nested with relation search and sort function.
 
-[Unreleased]: https://github.com/yajra/laravel-datatables/compare/v8.13.1...8.0
+[Unreleased]: https://github.com/yajra/laravel-datatables/compare/v8.13.4...8.0
+[v8.13.4]: https://github.com/yajra/laravel-datatables/compare/v8.13.3...v8.13.4
+[v8.13.3]: https://github.com/yajra/laravel-datatables/compare/v8.13.2...v8.13.3
+[v8.13.2]: https://github.com/yajra/laravel-datatables/compare/v8.13.1...v8.13.2
 [v8.13.1]: https://github.com/yajra/laravel-datatables/compare/v8.13.0...v8.13.1
 [v8.13.0]: https://github.com/yajra/laravel-datatables/compare/v8.11.0...v8.13.0
 [v8.11.0]: https://github.com/yajra/laravel-datatables/compare/v8.10.0...v8.11.0
@@ -354,6 +371,8 @@ return (new CollectionDataTable(User::all())->toJson();
 [#1911]: https://github.com/yajra/laravel-datatables/pull/1911
 [#1912]: https://github.com/yajra/laravel-datatables/pull/1912
 [#1852]: https://github.com/yajra/laravel-datatables/pull/1852
+[#1942]: https://github.com/yajra/laravel-datatables/pull/1942
+[#1960]: https://github.com/yajra/laravel-datatables/pull/1960
 
 [#1626]: https://github.com/yajra/laravel-datatables/issues/1626
 [#1617]: https://github.com/yajra/laravel-datatables/issues/1617
@@ -373,6 +392,8 @@ return (new CollectionDataTable(User::all())->toJson();
 [#1752]: https://github.com/yajra/laravel-datatables/issues/1752
 [#1824]: https://github.com/yajra/laravel-datatables/issues/1824
 [#1805]: https://github.com/yajra/laravel-datatables/issues/1805
+[#1747]: https://github.com/yajra/laravel-datatables/issues/1747
+[#1951]: https://github.com/yajra/laravel-datatables/issues/1951
 
 [laravel-datatables-fractal]: https://github.com/yajra/laravel-datatables-fractal
 
@@ -395,3 +416,5 @@ return (new CollectionDataTable(User::all())->toJson();
 [@ptuchik]: https://github.com/ptuchik
 [@zeyad82]: https://github.com/zeyad82
 [@sharifzadesina]: https://github.com/sharifzadesina
+[@ridaamirini]: https://github.com/ridaamirini
+[@Spodnet]: https://github.com/Spodnet
