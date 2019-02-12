@@ -220,7 +220,20 @@
         </nav>
             
 <body>
-@yield('content')
+<div  class="translate" >
+   
+        <div id="google_translate_element" style="padding-bottom: 2%;"></div>
+        
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        </script>
+        
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>
+
+        @yield('content')
             
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
