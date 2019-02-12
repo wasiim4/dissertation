@@ -1,5 +1,5 @@
-@extends('layouts.stafflayout')
-
+@extends('layouts.app')
+<audio src="{{asset('images/notification.mp3')}}" autoplay></audio>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

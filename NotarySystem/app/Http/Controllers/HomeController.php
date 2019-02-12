@@ -411,5 +411,8 @@ class HomeController extends Controller
         return redirect('/profile/view');
         
     }
-
+    public function home()
+    {
+        return view('home');
+    }
 }

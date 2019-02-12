@@ -37,7 +37,10 @@ Route::get('/meeting/add/del/up', 'HomeController@meetingForm')->name('client.sh
 Route::post('/meeting/add/del/up', 'HomeController@addMeeting')->name('client.meetings.add');
 Route::get('/profile/view', 'HomeController@myProfile')->name('client.myProfile');
 Route::post('/profile/view', 'HomeController@profileupdate')->name('client.profileUpdate');
-
+Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/contacts', 'ContactsController@get');
+Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
+Route::post('/conversation/send', 'ContactsController@send');
 
 //staff only
 Route::prefix('staff')->group(function(){
@@ -80,7 +83,7 @@ Route::prefix('staff')->group(function(){
     Route::get('/meeting/delete/{id}', 'StaffController@deleteMeeting')->name('staff.client.delete');
     Route::get('/reset/password', 'StaffController@showChangePassword')->name('show.change.pass');
     Route::post('/reset/password','StaffController@changePassword')->name('staff.change.pass');
-    Route::get('/home', 'StaffController@home')->name('home');
+    
 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
