@@ -143,9 +143,9 @@
 <br><br>
 <div class="row">
     <div class="col-12">
-<div class="header">
-    <h1 style="text-align:center;">Password Change</h1>
-</div>
+        <div class="header">
+            <h1 style="text-align:center;">Password Change</h1>
+        </div>
     </div>
 </div>
 

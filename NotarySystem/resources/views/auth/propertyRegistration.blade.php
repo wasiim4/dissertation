@@ -23,6 +23,10 @@
             font-size: 5px !important;
         }
 
+        #content {
+    width:113.5% !important;
+        }
+
     </style>
 </head>
    

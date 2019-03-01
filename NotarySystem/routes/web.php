@@ -83,6 +83,9 @@ Route::prefix('staff')->group(function(){
     Route::get('/meeting/delete/{id}', 'StaffController@deleteMeeting')->name('staff.client.delete');
     Route::get('/reset/password', 'StaffController@showChangePassword')->name('show.change.pass');
     Route::post('/reset/password','StaffController@changePassword')->name('staff.change.pass');
+    Route::get('/contacts', 'ContactsController@get');
+    Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
+    Route::post('/conversation/send', 'ContactsController@send');
     
 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');

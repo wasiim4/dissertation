@@ -19,11 +19,29 @@
         input[type=file]:hover {
           box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         }
+
+        .header {
+        background-color: #17a2b8;
+        color: #ffffff;
+        padding: 1px;
+        font-size: 5px !important;
+        padding-bottom: 0% !important;
+    }
+
+    #content {
+    width: 117.5% !important;
+    }
     </style>
 </head>      
 
 @section('content')
-<h1 class="datatableTitleUsers"> Upload Documents</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="header">
+            <h1 style="text-align:center;">Upload Documents</h1>
+        </div>
+    </div>
+</div>
 <form method="POST" action="{{ route('staff.show.UploadDocs') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
     @csrf
     <fieldset class="addUserFieldset">

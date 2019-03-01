@@ -230,7 +230,7 @@ class partageController extends Controller
         $selectedOption = "";
         $x=1;
         $n=1;
-        $I="II";
+        // $I="II";
         
         foreach ($buyers as $buyer ) {
             $newSection->addText("TRANSCRIPTION",array('name' => 'Times New Roman','align'=>'center','size' => 12,'bold' => true,'underline'=> 'single'),'centerTitles');
@@ -271,7 +271,7 @@ class partageController extends Controller
                 foreach ( $variable as $partageant ) {
                     if($x == $n){
 
-                        $newSection->addText($I." ".$partageant->title." ".$partageant->firstname." ".strtoupper($partageant->lastname)." né/e à".$partageant->placeOfBirth.
+                        $newSection->addText($partageant->title." ".$partageant->firstname." ".strtoupper($partageant->lastname)." né/e à".$partageant->placeOfBirth.
                         " le ".$partageant->dob.
                         ", (Acte de Naissance portant le No.".$partageant->birthCertificateNumber."), propriétaire, demeurant au dit endroit.
                         ",array('name' => 'Times New Roman','align'=>'left','size' => 12));
@@ -289,6 +289,11 @@ class partageController extends Controller
                             array('name' => 'Times New Roman','align'=>'left','size' => 12));
                         }
 
+                        if($partageant->marriageStatus=="Célibataire"){
+                            $newSection->addText($partageant->title." ".$partageant->firstname." ".strtoupper($partageant->lastname)." né/e à".$partageant->placeOfBirth.
+                            " le ".$partageant->dob.", (Acte de Naissance portant le No.".$partageant->birthCertificateNumber."), propriétaire, demeurant au dit endroit.
+                            ",array('name' => 'Times New Roman','align'=>'left','size' => 12));
+                        }
                         if($partageant->marriageStatus=="Mariés" && $partageant->spouseFirstname ==null ){
                             $newSection->addText("Déclare le dit ".$partageant->title." ".strtoupper($partageant->lastname)." qu’il n’a jamais été marié civilement."
                             ,array('name' => 'Times New Roman','align'=>'left','size' => 12));
@@ -298,7 +303,8 @@ class partageController extends Controller
                     
                 $x++;
                 $n++;
-                $I=$I."I";
+                // $I=$I."I";
+                // if($I=="III")
             }
             
             $newSection->addText(strtoupper("LESQUELS COMPARANTS,"),array('name' => 'Times New Roman','size' => 12,'bold' => true,'underline'=> 'single')," préalablement au partage en nature que ces présentes ont pour but de constater, ont d’abord dit et exposé ce qui suit:-
@@ -310,7 +316,7 @@ class partageController extends Controller
             $newSection->addText("EXPOSE",array('name' => 'Times New Roman','align'=>'center','size' => 12,'bold' => true,'underline'=> 'single'),'centerTitles');
 
             foreach ( $propertyDetails as $propertyDetail ) {
-                $newSection->addText("Suivant contrat dressé par ".$propertyDetail->previousNotaryTitle." ".$propertyDetail->previousNotaryFN." ".$propertyDetail->previousNotaryLN." ancien Notaire a Port Louis, le ".$propertyDetail->firstDeedRegistration." , enregistrés au Reg: ".$propertyDetail->regcurrentYearLSReport." et transcrit au volume ".$propertyDetail->transcriptionVol.",..",array('name' => 'Times New Roman','align'=>'left','size' => 12));
+                $newSection->addText("Suivant contrat dressé par ".$propertyDetail->previousNotaryTitle." ".$propertyDetail->previousNotaryFN." ".$propertyDetail->previousNotaryLN." ancien Notaire a Port Louis, le ".$propertyDetail->firstDeedRegistration." , enregistrés au Reg: ".$propertyDetail->regNumLSReport." et transcrit au volume ".$propertyDetail->transcriptionVol.",..",array('name' => 'Times New Roman','align'=>'left','size' => 12));
                 $newSection->addText("CES FAITS EXPOSES",array('name' => 'Times New Roman','align'=>'center','size' => 12,'bold' => true,'underline'=> 'single'),'centerTitles');
                 $newSection->addText("Les comparants aux présentes désirant procéder entre eux au partage à l’amiable et en
                 nature du susdit immeuble terrain érigé sur une portion de terrain, de la contenance de

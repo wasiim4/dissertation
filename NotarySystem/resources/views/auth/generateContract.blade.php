@@ -19,6 +19,10 @@
             font-size: 5px !important;
         }
 
+        #content {
+    width: 120% !important;
+        }
+
     </style> 
 </head>
    

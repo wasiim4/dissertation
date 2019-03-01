@@ -47898,14 +47898,14 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "avatar" }, [
-              _c("img", {
-                attrs: { src: contact.profile_image, alt: contact.name }
-              })
+              _c("img", { attrs: { src: contact.img_path, alt: contact.name } })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "contact" }, [
               _c("p", { staticClass: "name" }, [
-                _vm._v(_vm._s(contact.firstname))
+                _vm._v(
+                  _vm._s(contact.firstname) + " " + _vm._s(contact.lastname)
+                )
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "email" }, [_vm._v(_vm._s(contact.email))])
@@ -60090,12 +60090,9 @@ module.exports = function(module) {
 /*!************************************!*\
   !*** ./resources/assets/js/app.js ***!
   \************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -60103,11 +60100,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
-
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  broadcaster: 'pusher',
-  key: '43d30f8f36445c1e6fed'
-});
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -60179,8 +60171,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "43d30f8f36445c1e6fed",
-  cluster: "mt1",
+  key: "e0e1e09ec1f90d7d70bc",
+  cluster: "ap2",
   encrypted: true
 });
 

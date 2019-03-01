@@ -37,7 +37,7 @@
 <div class="row">
     <form method="POST" action="{{ route('generate.partage') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
         @csrf
-        <fieldset class="addUserFieldset">
+        <fieldset class="addUserFieldset" style="padding: 4.25rem !important;">
             <legend class="addUserLegend">Children</legend>
             <div class="container">
                 @if ($errors->any())
