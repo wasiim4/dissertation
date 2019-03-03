@@ -169,9 +169,10 @@ class HomeController extends Controller
     
     public function viewUploadedDoc()
     {
-        $uploadsByNotary=DB::table('uploaded_documents')->where('partyRole','Notary')->get();
-        $uploads=DB::table('uploaded_documents')->where('partyId',Auth::user()->id)
-                                                ->where('partyRole','Client')
+        $uploadsByNotary=DB::table('uploaded_documents')->where('senderRole','Notary')
+        ->where('receiverId',Auth::user()->id)->where('receiverRole','Client')->get();
+        $uploads=DB::table('uploaded_documents')->where('senderId',Auth::user()->id)
+                                                ->where('senderRole','Client')
                                                 ->get();
         return view('users.uploadedDoc')->with('uploads',$uploads)->with('uploadsByNotary', $uploadsByNotary);
     }

@@ -37,9 +37,7 @@
                         <th>
                             Doc ID
                         </th> 
-                        <th>
-                            Party Id
-                        </th>
+                        
                         <th>
                             Role
                         </th>
@@ -63,16 +61,21 @@
                             <td>    
                                 {{$documentsByNotaries->id}} 
                             </td>
-                            <td>
+                            {{-- <td>
                                 {{$documentsByNotaries->partyId}}
+                            </td> --}}
+                            {{-- <td>
+                                {{$documentsByNotaries->firstname}}
+                                {{$documentsByNotaries->lastname}}
+                            </td> --}}
+                            <td>
+                                {{$documentsByNotaries->receiverRole}}
+                               
                             </td>
                             <td>
-                                {{$documentsByNotaries->partyRole}}
-                            </td>
-                            <td>
+                              
                                 {{$documentsByNotaries->docType}}
                             </td>
-                            <td>
                                 {{$documentsByNotaries->docName}}
                             </td>
                             <td>
@@ -83,6 +86,13 @@
                                     <button type="button" class="btn btn-primary">
                                         <i class="glyphicon glyphicon-download">
                                             Download
+                                        </i>
+                                    </button>
+                                </a>
+                                <a href="/storage/images/{{$documentsByNotaries->docName}}" download="{{$documentsByNotaries->docName}}">
+                                    <button type="button" class="btn btn-danger">
+                                      
+                                            Delete
                                         </i>
                                     </button>
                                 </a>

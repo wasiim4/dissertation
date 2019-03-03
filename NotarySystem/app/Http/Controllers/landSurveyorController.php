@@ -245,8 +245,15 @@ class landSurveyorController extends Controller
     
     public function viewMyUploadedDoc()
     {
-        $uploads=DB::table('uploaded_documents')->where('partyRole',Auth::user()->roles)->get();
-        return view('landSurveyor.uploadedDocLS')->with('uploads',$uploads);
+        // $uploads=DB::table('uploaded_documents')->where('partyRole',Auth::user()->roles)->get();
+        // return view('landSurveyor.uploadedDocLS')->with('uploads',$uploads);
+
+        $uploadsByNotary=DB::table('uploaded_documents')->where('senderRole','Notary')
+        ->where('receiverId',Auth::user()->id)->where('receiverRole','Land Surveyor')->get();
+        $uploads=DB::table('uploaded_documents')->where('senderId',Auth::user()->id)
+                                                ->where('senderRole','Land Surveyor')
+                                                ->get();
+        return view('landSurveyor.uploadedDocLS')->with('uploads',$uploads)->with('uploadsByNotary', $uploadsByNotary);
     }
 
     public function confirmMeeting($pid,$mid,Request $request){

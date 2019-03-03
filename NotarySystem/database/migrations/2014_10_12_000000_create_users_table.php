@@ -192,8 +192,10 @@ class CreateUsersTable extends Migration
 
         Schema::create('uploaded_documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('partyId');
-            $table->string('partyRole');
+            $table->integer('senderId');
+            $table->string('senderRole');
+            $table->integer('receiverId');
+            $table->string('receiverRole');
             $table->enum('docType', ['Birth Certificate','Spouse Birth Certificate','Marriage Certificate','Divorce Certificate','NIC','Spouse NIC','Site Plan','Title Deed','Surveyor Report'])->default('Birth Certificate');
             $table->string('docName');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

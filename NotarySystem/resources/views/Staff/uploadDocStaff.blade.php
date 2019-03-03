@@ -61,7 +61,30 @@
             @endif
             <br>
             <div class="row">
-                <div class="col-6">
+                    <div class="col-4">
+                            <label>Upload To</label>
+                            <select name="inputClientName" id="inputClientName" class="form-control " >
+                                <option value="">Select name</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id}}">{{$user->id}}<?php echo"-"?>{{$user->firstname}}<?php echo" "?>{{$user->lastname}}<?php echo"-"?>{{$user->roles}}</option>
+                                @endforeach
+
+                                @foreach($rgds as $rgd)
+                                <option value="{{ $rgd->id}}">{{$rgd->id}}<?php echo"-"?>{{$rgd->name}}</option>
+                                @endforeach
+
+                                @foreach($banks as $bank)
+                                <option value="{{ $bank->id}}">{{$bank->id}}<?php echo"-"?>{{$bank->name}}</option>
+                                @endforeach
+
+                                @foreach($landSurveyors as $landSurveyor)
+                                <option value="{{ $landSurveyor->id}}">{{$landSurveyor->id}}<?php echo"-"?>{{$landSurveyor->name}}</option>
+                                @endforeach
+
+                            </select>                
+                        </div>
+
+                    <div class="col-4">
                     <label>Document Type</label>
                     <select name="inputDocType" id="inputDocType" class="form-control " >
                         <option value="">Select type</option>
@@ -76,11 +99,37 @@
                         <option>Surveyor Report</option>
                     </select>                
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <label>Document</label>
                     <input type="file"  id="document"  name="document" class="btn  btn-block"  >
                 </div>
             </div>
+            <br>
+            <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-6">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="party" id="inlineRadio1" value="Client">
+                        <label class="form-check-label" for="inlineRadio1">Client</label>
+                      </div>
+          
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="party" id="inlineRadio2" value="RGD">
+                        <label class="form-check-label" for="inlineRadio2">RGD</label>
+                      </div>
+          
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Bank" >
+                        <label class="form-check-label" for="inlineRadio3">Bank </label>
+                      </div>
+          
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="party" id="inlineRadio3" value="Land Surveyor" >
+                        <label class="form-check-label" for="inlineRadio3">Land Surveyor </label>
+                      </div>
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
             <br>
             <div class="row">
                 <div class="col-4"></div>

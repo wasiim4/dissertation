@@ -23,32 +23,140 @@
 </head>      
 
 @section('content')
-<table class="table table-bordered">
-    <thead>
-        <th>Document Name</th>
-        <th>Document Type</th>
-        <th>Upload Date</th>
-        <th>Action</th>
-    </thead>
-
-    <tbody>
-        @foreach($uploads as $upload)
-            <tr>
-                <td>{{$upload->docName}}</td>
-                <td>{{$upload->docType}}</td>
-                <td>{{$upload->created_at}}</td>
-                <td>
-                    <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
-                        <button type="button" class="btn btn-primary">
-                            <i class="glyphicon glyphicon-download">
-                                Download
-                            </i>
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
+{{-- BY Land surveyors --}}
+<div class="row">
+    <div class="col-12">
+        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
+            <table id="tbluser" class="table table-hover " style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>
+                            Doc ID
+                        </th> 
+                        <th>
+                            Sender Id
+                        </th>
+                        <th>
+                           Sender Role
+                        </th>
+                        <th>
+                            Doc Type
+                        </th> 
+                        <th>
+                            Doc Name
+                        </th> 
+                        <th>
+                            Uploaded At
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($uploads as $upload)
+                        <tr >
+                            <td>    
+                                {{$upload->id}} 
+                            </td>
+                            <td>
+                                {{$upload->senderId}}
+                            </td>
+                            <td>
+                                {{$upload->senderRole}}
+                            </td>
+                            <td>
+                                {{$upload->docType}}
+                            </td>
+                            <td>
+                                {{$upload->docName}}
+                            </td>
+                            <td>
+                                {{$upload->created_at}}
+                            </td>
+                            <td>
+                                <a href="/storage/images/{{$upload->docName}}" download="{{$upload->docName}}">
+                                    <button type="button" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-download">
+                                        Download
+                                    </i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div >
+<br>
+           
+{{-- BY Notary/Notary Assistant --}}
+<div class="row ">
+    <div class="col-12">
+        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
+            <table id="tblLs" class="table table-hover " style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>
+                            Doc ID
+                        </th> 
+                        <th>
+                            Party Id
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            Doc Type
+                        </th> 
+                        <th>
+                            Doc Name
+                        </th> 
+                        <th>
+                            Uploaded At
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($uploadsByNotary as $uploadsByNotaries)
+                        <tr >
+                            <td>    
+                                {{$uploadsByNotaries->id}} 
+                            </td>
+                            <td>
+                                {{$uploadsByNotaries->receiverId}}
+                            </td>
+                            <td>
+                                {{$uploadsByNotaries->receiverRole}}
+                            </td>
+                            <td>
+                                {{$uploadsByNotaries->docType}}
+                            </td>
+                            <td>
+                                {{$uploadsByNotaries->docName}}
+                            </td>
+                            <td>
+                                {{$uploadsByNotaries->created_at}}
+                            </td>
+                            <td>
+                                <a href="/storage/images/{{$uploadsByNotaries->docName}}" download="{{$uploadsByNotaries->docName}}">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="glyphicon glyphicon-download">
+                                            Download
+                                        </i>
+                                    </button>
+                                </a>
+                            </td>    
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div >
 @endsection

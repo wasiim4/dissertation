@@ -39,10 +39,10 @@
                             Doc ID
                         </th> 
                         <th>
-                            Party Id
+                            Sender Id
                         </th>
                         <th>
-                            Role
+                           Sender Role
                         </th>
                         <th>
                             Doc Type
@@ -65,10 +65,10 @@
                                 {{$upload->id}} 
                             </td>
                             <td>
-                                {{$upload->partyId}}
+                                {{$upload->senderId}}
                             </td>
                             <td>
-                                {{$upload->partyRole}}
+                                {{$upload->senderRole}}
                             </td>
                             <td>
                                 {{$upload->docType}}
@@ -134,10 +134,10 @@
                                 {{$uploadsByNotaries->id}} 
                             </td>
                             <td>
-                                {{$uploadsByNotaries->partyId}}
+                                {{$uploadsByNotaries->receiverId}}
                             </td>
                             <td>
-                                {{$uploadsByNotaries->partyRole}}
+                                {{$uploadsByNotaries->receiverRole}}
                             </td>
                             <td>
                                 {{$uploadsByNotaries->docType}}

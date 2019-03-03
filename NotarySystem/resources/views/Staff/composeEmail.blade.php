@@ -70,6 +70,12 @@
                         @foreach($rgds as $rgd)
                             <option value="{{ $rgd->id}}">{{$rgd->id}}<?php echo"-"?>{{$rgd->name}}</option>
                         @endforeach
+                        @foreach($rgds as $rgd)
+                        <option value="{{ $rgd->id}}">{{$rgd->id}}<?php echo"-"?>{{$rgd->name}}</option>
+                    @endforeach
+                    @foreach($rgds as $rgd)
+                    <option value="{{ $rgd->id}}">{{$rgd->id}}<?php echo"-"?>{{$rgd->name}}</option>
+                @endforeach
                     </select>                       
                 </div>
 

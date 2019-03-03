@@ -770,15 +770,23 @@ class StaffController extends Controller
 
         public function showUploadDoc()
         {
-            return view('Staff.uploadDocStaff');
+            $users=DB::table('users')->get();
+            $banks=DB::table('banks')->get();
+            $rgds=DB::table('rgds')->get();
+            $landSurveyors=DB::table('land_surveyors')->get();
+            return view('Staff.uploadDocStaff')->with('users',$users)
+                                                ->with('banks',$banks)
+                                                ->with('rgds',$rgds)
+                                                ->with('landSurveyors',$landSurveyors);
         }
 
         public function viewUploadedDocuments(){
-            $documentsByNotary=DB::table('uploaded_documents')->where('partyRole','Notary')->get();
-            $documents=DB::table('uploaded_documents')->where('partyRole','Client')->get();
-            $documentsByBank=DB::table('uploaded_documents')->where('partyRole','BANK')->get();
-            $documentsByRGD=DB::table('uploaded_documents')->where('partyRole','RGD')->get();
-            $documentsByLS=DB::table('uploaded_documents')->where('partyRole','Land Surveyor')->get();
+            $documentsByNotary=DB::table('uploaded_documents')->where('senderRole','Notary')
+          ->get();
+            $documents=DB::table('uploaded_documents')->where('senderRole','Client')->get();
+            $documentsByBank=DB::table('uploaded_documents')->where('senderRole','BANK')->get();
+            $documentsByRGD=DB::table('uploaded_documents')->where('senderRole','RGD')->get();
+            $documentsByLS=DB::table('uploaded_documents')->where('senderRole','Land Surveyor')->get();
             return view('Staff.uploadedDocuments')->with('documents',$documents)
                                                     ->with('documentsByBank',$documentsByBank)
                                                     ->with('documentsByRGD',$documentsByRGD)
@@ -787,8 +795,10 @@ class StaffController extends Controller
         }
 
         public function uploadDoc(Request $request){
-            $party_id = Auth::user()->id;
-            $party_role = "Notary";
+            $sender_id = Auth::user()->id;
+            $sender_role = "Notary";
+            $receiver_id = Input::get('inputClientName');
+            $receiver_role=Input::get('party');
             $docType=Input::get('inputDocType');
             $image=$request->file('document');
             if(isset($image)) { //to check if user has selected an image
@@ -806,8 +816,10 @@ class StaffController extends Controller
                     $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
                 
                     $data = array(
-                        'partyId' => $party_id, 
-                        'partyRole' =>  $party_role, 
+                        'senderId' => $sender_id, 
+                        'senderRole' =>  $sender_role, 
+                        'receiverId' => $receiver_id, 
+                        'receiverRole' =>  $receiver_role, 
                         'docType' => $docType, 
                         'docName' => $fileNameToStore 
                     );
