@@ -164,13 +164,11 @@ class CreateUsersTable extends Migration
         Schema::create('transaction', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('clientId');
-            $table->string('name');
-            $table->string('mime');
-            // $table->integer('staffId');
-            // $table->integer('propertyId');
-            // $table->integer('fees');
-            // $table->enum('transactionType', ['SOIP1','SOIP2','ALOTO2'])->default("SOIP1");
-            $table->binary('generatedContract');
+            $table->string('contractName');
+            $table->integer('staffId');
+            $table->integer('propertyId');
+            $table->integer('fees')->nullable();
+            $table->enum('transactionType', ['SOIP1','ALOTO2'])->default("SOIP1");
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

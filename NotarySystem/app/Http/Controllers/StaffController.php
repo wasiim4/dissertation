@@ -548,36 +548,74 @@ class StaffController extends Controller
 
         }
 
+        //upload contract form
         public function showUploadForm(){
             $transactions=DB::table('transaction')->get();
+            $properties=DB::table('immovableproperty')->get();
             $users=DB::table('users')->get();
-            return view('Staff.uploadContract')->with('users',$users)->with('transactions',$transactions);
+            return view('Staff.uploadContract')->with('users',$users)->with('transactions',$transactions)
+            ->with('properties',$properties);
         }
+
+        // public function uploadContract(Request $request){
+        //     $upload=$request->file('contract');
+        //     $clientName=Input::get('inputClientName');
+
+        //     if(isset($upload)){
+        //         $name = $_FILES['contract']['name'];
+        //         $mime = $_FILES['contract']['type'];
+        //         $datas = file_get_contents($_FILES['contract']['tmp_name']);
+        //         $path = $request->file('contract')->storeAs('public/images', $name);
+        //         $data = array(
+        //             'clientId' =>  $clientName, 
+        //             'name' => $name, 
+        //             'mime'=>$mime,
+        //             'generatedContract' =>  $datas 
+                    
+        //         );
+        
+        //         DB::table('transaction')->insert($data);
+        //         // flashy()->success($fname.' '.$lname. ' successfully added!.');
+        //         return redirect('staff/registernew');
+        
+        //     }   
+        // }
 
         public function uploadContract(Request $request){
             $upload=$request->file('contract');
             $clientName=Input::get('inputClientName');
+            $property=Input::get('inputProperty');
+            $transactionType=Input::get('inputTransaction');
+            // $image=$request->file('document');
+            if(isset($upload)) { //to check if user has selected an image
+                if($request->hasFile('contract')){
 
-            if(isset($upload)){
-                $name = $_FILES['contract']['name'];
-                $mime = $_FILES['contract']['type'];
-                $datas = file_get_contents($_FILES['contract']['tmp_name']);
-                $path = $request->file('contract')->storeAs('public/images', $name);
-                $data = array(
-                    'clientId' =>  $clientName, 
-                    'name' => $name, 
-                    'mime'=>$mime,
-                    'generatedContract' =>  $datas 
-                    
-                );
-        
-                DB::table('transaction')->insert($data);
-                // flashy()->success($fname.' '.$lname. ' successfully added!.');
-                return redirect('staff/registernew');
-        
-            }   
+                    // Get filename with the extension
+                    $filenameWithExt = $request->file('contract')->getClientOriginalName();
+                    // Get just filename
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    // Get just the file extension
+                    $extension = $request->file('contract')->getClientOriginalExtension();
+                    // Filename to store
+                    $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                    // Upload Image
+                    $path = $request->file('contract')->storeAs('public/images', $fileNameToStore);
+                
+                    $data = array(
+                        'clientId' =>  $clientName, 
+                        'contractName' => $fileNameToStore, 
+                        'staffId'=>Auth::user()->id,
+                        'propertyId' =>  $property,
+                        'transactionType'=> $transactionType
+                    );
+            
+                    DB::table('transaction')->insert($data);
+                    Session::flash('message', 'Successfully uploaded!'); 
+                    return Redirect::to('/staff/upload/contract');
+                }
+
         }
-
+    }
         //view final contract uploaded by notary/notary assistant directly on browser in PDF Format
         public function viewContract($id){
             $transactions=DB::table('transaction')->where('id', $id)->get();

@@ -29,7 +29,7 @@
     }
 
     #content {
-    width: 117% !important;
+    width: 115.7% !important;
     }
     </style>
 </head>      
@@ -58,7 +58,7 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-6">
+                <div class="col-3">
                     <label>Client Name</label>
                     <select name="inputClientName" id="inputClientName" class="form-control " >
                         <option value="">Select name</option>
@@ -67,9 +67,26 @@
                         @endforeach
                     </select>                
                 </div>
-                <div class="col-6">
+                <div class="col-3">
+                    <label>Property ID</label>
+                    <select name="inputProperty" id="inputProperty" class="form-control " >
+                        <option value="">Select property</option>
+                        @foreach($properties as $property)
+                            <option value="{{ $property->propertyId}}">{{$property->propertyId}}<?php echo"-"?>{{$property->pinNum}}</option>
+                        @endforeach
+                    </select>                
+                </div>
+                <div class="col-3">
                     <label>Generated Contract</label>
                     <input type="file" accept=".pdf" id="contract"  name="contract" class="btn  btn-block"  >
+                </div>
+                <div class="col-3">
+                    <label>Transaction Type</label>
+                    <select name="inputTransaction" id="inputTransaction" class="form-control " >
+                        <option value="">Select type</option>
+                        <option selected>SOIP1</option>
+                        <option>ALOTO2</option>             
+                    </select>                
                 </div>
             </div>
             <br>
@@ -86,7 +103,7 @@
 
 <ol>
 @foreach($transactions as $transaction)
-    <li><a href="chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank' download="{{$transaction->name}}">{{$transaction->name}}</a></li>
+    <li><a href="chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank' download="{{$transaction->contractName}}">{{$transaction->contractName}}</a></li>
     {{-- <li><a download="{{$transaction->name}}"style="color:black;" target='_blank' download="{{$transaction->name}}">{{$transaction->name}}</a></li> --}}
 
     {{-- <li><a href="http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank'>{{$transaction->name}}</a></li> --}}
