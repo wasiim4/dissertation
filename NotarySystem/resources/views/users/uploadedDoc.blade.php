@@ -101,7 +101,7 @@
 <div class="row ">
     <div class="col-12">
         <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-            <table id="tblLs" class="table table-hover " style="width:100%;">
+            <table id="tlbDoc" class="table table-hover " style="width:100%;">
                 <thead>
                     <tr>
                         <th>

@@ -977,7 +977,14 @@ class StaffController extends Controller
             //end of validation    
         }
 
-    
+    public function getAllTransaction(){
+        $transactions=DB::table('transaction')->get();
+        return view('staff.transactionList')->with('transactions',$transactions);
+    }
 
+    public function getClientTransactions($id){
+        $transactions=DB::table('transaction')->where('clientId',$id)->get();
+        return view('staff.viewClientTransactions')->with('transactions',$transactions);
+    }
 }
 ?>

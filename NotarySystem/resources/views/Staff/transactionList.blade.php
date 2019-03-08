@@ -1,10 +1,10 @@
 @include('flashy::message')
-@extends('layouts.userlayout')
+@extends('layouts.stafflayout')
 <head>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/style4.css')}}">
-    {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"> --}}
+<link rel="stylesheet" type="text/css" href="{{asset('css/footer.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/style4.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"> --}}
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.bootstrap4.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"> 
@@ -39,7 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-            <table id="tblUsertransaction" class="table table-hover " style="width:100%;">
+            <table id="tbltransactionList" class="table table-hover " style="width:100%;">
                 <thead>
                     <tr>
                         <th>
@@ -76,19 +76,32 @@
                                 {{$transaction->created_at}}
                             </td>
                             <td>
-                                {{$transaction->created_at}}
+                                {{$transaction->feeStatus}}
                             </td>
                             <td>
                                 {{$transaction->created_at}}
                             </td>                 
                             <td>
-                                <a href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">
-                                    <button type="button" class="btn btn-primary">
-                                    <i class="glyphicon glyphicon-download">
-                                        Download
-                                    </i>
-                                    </button>
-                                </a>
+                                <a  style="color:blue;" href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">
+                                    {{-- <button type="button" class="btn btn-primary"> --}}
+                                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Download Contract">
+
+                                        <i class="fas fa-arrow-circle-down"></i>
+                                        {{-- Download --}}
+                                    {{-- </i> --}}
+                                    {{-- </button> --}}
+                                </a> &nbsp;&nbsp; |&nbsp;&nbsp;
+                                <a class="btndelevent" style="color:red;" href="/staff/transaction/delete/{{$transaction->id}}">
+                                    <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
+                                      <i class="fas fa-trash-alt font-color"></i>
+                                    </span>
+                                  </a>
+                                  &nbsp;&nbsp; |&nbsp;&nbsp;
+                                <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/delete/{{$transaction->id}}">
+                                    <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Update payment">
+                                            <i class="fas fa-hand-holding-usd"></i>
+                                    </span>
+                                  </a>
                             </td>        
                         </tr>
                     @endforeach

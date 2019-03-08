@@ -25,7 +25,7 @@ Auth::routes();
 //clients only
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/logout', 'HomeController@userlogout');
-Route::get('/view/user/transaction','userController@getTransactions')->name('view.transaction');
+Route::get('/view/user/transaction','HomeController@getTransactions')->name('view.transaction');
 Route::post('propertyRegistration/fetch', 'HomeController@fetch')->name('dynamicdependent.fetch');
 Route::get('/confirm/meeting/{pid}{mid}', 'HomeController@confirmMeeting');
 Route::get('/compose/email', 'HomeController@showMailCompose')->name('show.mailCompose');
@@ -86,7 +86,8 @@ Route::prefix('staff')->group(function(){
     Route::get('/contacts', 'ContactsController@get');
     Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
     Route::post('/conversation/send', 'ContactsController@send');
-    
+    Route::get('/transactions/list', 'StaffController@getAllTransaction')->name('transactionsList');
+    Route::get('/show/client_transactions/{id}', 'StaffController@getClientTransactions')->name('client.transaction.show');
 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });

@@ -22,7 +22,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-        $('#tbltransaction').DataTable(
+        $('#tblUsertransaction').DataTable(
             {'responsive':'true'}
         );
         $('#tbluser').DataTable(
@@ -30,6 +30,11 @@
         );
     } );
     </script>  
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
 </head>
 
 <div class="wrapper">

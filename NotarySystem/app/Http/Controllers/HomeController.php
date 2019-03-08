@@ -416,4 +416,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function getTransactions(Request $request){
+        $transactions=DB::table('transaction')->where('clientId',(Auth::user()->id))->get();
+        return view('users.myTransactions')->with('transactions',$transactions);
+    }
 }

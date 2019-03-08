@@ -44,11 +44,9 @@
                 <thead>
                     <tr>
                         <th>
-                            First Name
+                            Name
                         </th> 
-                        <th>
-                            Last Name
-                        </th>
+                        
                         <th>
                             Date of Birth
                         </th>
@@ -70,14 +68,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                   
                     @foreach($users as $user)
                         <tr >
                             <td>    
-                                {{$user->firstname}} 
+                                {{$user->firstname}} {{$user->lastname}}
                             </td>
-                            <td>
-                                {{$user->lastname}}
-                            </td>
+                            
                             <td>
                                 {{$user->dob}}
                             </td>
@@ -121,12 +118,12 @@
                                 {{-- /Delete User Button --}}
                             |
                                 {{-- Show transactions Button --}}
-                                    {{-- <a href="/usersfound/show/{{$user->id}}"> --}}
+                                    <a style="color:black;" href="/staff/show/client_transactions/{{$user->id}}">
                                         <span data-toggle="tooltip" data-placement="top" tabindex="1" style="border-bottom:none" title="Transactions">
                                             <i class="fas fa-handshake"></i>
                                         </span>
                                     </a> 
-                                {{-- /Show Button --}}
+                                {{-- /Show Transaction Button --}}
                             </td>
                         </tr>
                     @endforeach
