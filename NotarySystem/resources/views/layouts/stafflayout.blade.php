@@ -81,17 +81,27 @@
             <li>
                 <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
             </li>
-            <li>
-                <a href="{{ route('staffdashboard') }}"><i class="fas fa-user-circle"></i> Client List</a></li>
-            </li><li>
-                <a href="{{ route('transactionsList') }}"><i class="fas fa-user-circle"></i> Transactions List</a></li>
-            </li><li>
-                <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> Immovable Property List</a></li>
-            </li>
+
             <li>
                 <a href="{{ route('show.change.pass') }}"><i class=" fa fa-key"></i> Change Password</a></li>
             </li>
-
+            <li class="active">
+                    <a href="#recordsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-copy"></i>
+                       All Records
+                    </a>
+                    <ul class="collapse list-unstyled" id="recordsSubmenu">
+                        <li>
+                            <a href="{{ route('staffdashboard') }}"><i class="fas fa-users"></i> Client List</a></li>
+                        </li>
+                        <li>
+                            <a href="{{ route('transactionsList') }}"><i class="fas fa-hand-holding-usd"></i> Transactions List</a></li>
+                        </li>
+                        <li>
+                            <a href="{{ route('myProfile') }}"><i class="fas fa-building"></i> Immovable Property List</a></li>
+                        </li>
+                    </ul>
+                </li>
             <li class="active">
                 <a href="#uploadSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-upload"></i>
