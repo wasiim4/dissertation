@@ -35,8 +35,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Posts</span>
-                        <h6 class="stats-small__value count my-3">2,390</h6>
+                        <span class="stats-small__label text-uppercase">Clients</span>
+                        <h6 class="stats-small__value count my-3">1</h6>
                       </div>
                      
                     </div>
@@ -49,8 +49,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Pages</span>
-                        <h6 class="stats-small__value count my-3">182</h6>
+                        <span class="stats-small__label text-uppercase">Transactions</span>
+                        <h6 class="stats-small__value count my-3">2</h6>
                       </div>
                       
                     </div>
@@ -63,8 +63,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Comments</span>
-                        <h6 class="stats-small__value count my-3">8,147</h6>
+                        <span class="stats-small__label text-uppercase">Immovable Properties</span>
+                        <h6 class="stats-small__value count my-3">7</h6>
                       </div>
                       
                     </div>
@@ -77,8 +77,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Users</span>
-                        <h6 class="stats-small__value count my-3">2,413</h6>
+                        <span class="stats-small__label text-uppercase">Meetings</span>
+                        <h6 class="stats-small__value count my-3">3</h6>
                       </div>
                       
                     </div>
@@ -91,8 +91,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Subscribers</span>
-                        <h6 class="stats-small__value count my-3">17,281</h6>
+                        <span class="stats-small__label text-uppercase">Documents</span>
+                        <h6 class="stats-small__value count my-3">1</h6>
                       </div>
                       
                     </div>

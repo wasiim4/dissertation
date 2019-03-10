@@ -1,8 +1,4 @@
-/*
- |--------------------------------------------------------------------------
- | Shards Dashboards: Blog Overview Template
- |--------------------------------------------------------------------------
- */
+
 
 'use strict';
 
@@ -234,7 +230,7 @@
           'rgba(0,123,255,0.3)'
         ]
       }],
-      labels: ["Desktop", "Tablet", "Mobile"]
+      labels: ["Clients", "Meetings", "Transactions"]
     };
 
     // Options
