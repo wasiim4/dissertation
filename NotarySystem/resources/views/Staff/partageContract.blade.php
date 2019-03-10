@@ -30,7 +30,7 @@
 <div class="row">
     <div class="header">
         <div class="col-12">
-            <h1 style="text-align:center;  margin-bottom: -1%;">Add Children</h1>
+            <h1 style="text-align:center;  margin-bottom: -1%;">Draft Generation-ALOT02</h1>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
     <form method="POST" action="{{ route('generate.partage') }}" id="frmAddUser" files="true" enctype="multipart/form-data">
         @csrf
         <fieldset class="addUserFieldset" style="padding: 4.25rem !important;">
-            <legend class="addUserLegend">Children</legend>
+            <legend class="addUserLegend">Draft</legend>
             <div class="container">
                 @if ($errors->any())
                     <div class="alert alert-danger">
