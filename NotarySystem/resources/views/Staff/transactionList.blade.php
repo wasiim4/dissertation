@@ -23,7 +23,7 @@
     }
 
     #content{
-        width:106% !important;
+        width:105% !important;
     }
 
     </style> 
@@ -47,13 +47,13 @@
                 <thead>
                     <tr>
                         <th>
-                        Transaction ID
+                            Transaction ID
                         </th> 
                         <th>
-                        Contract
+                            Contract
                         </th>
                         <th>
-                        Uploaded At
+                            Uploaded At
                         </th>
                         
                         <th>
@@ -86,20 +86,15 @@
                                 {{$transaction->feeStatus}}
                             </td>                 
                             <td>
-                                <a  style="color:blue;" href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">
-                                    {{-- <button type="button" class="btn btn-primary"> --}}
-                                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Download Contract">
-
+                                <a  style="color:blue;" href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">                                  
+                                        <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Download Contract">
                                         <i class="fas fa-arrow-circle-down"></i>
-                                        {{-- Download --}}
-                                    {{-- </i> --}}
-                                    {{-- </button> --}}
                                 </a> |
                                 <a class="btndelevent" style="color:red;" href="/staff/transaction/delete/{{$transaction->id}}">
                                     <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                                       <i class="fas fa-trash-alt font-color"></i>
                                     </span>
-                                  </a>
+                                </a>
                                   |
                                 <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/delete/{{$transaction->id}}">
                                     <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Update payment">

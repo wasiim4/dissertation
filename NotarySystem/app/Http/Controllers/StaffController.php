@@ -986,5 +986,9 @@ class StaffController extends Controller
         $transactions=DB::table('transaction')->where('clientId',$id)->get();
         return view('staff.viewClientTransactions')->with('transactions',$transactions);
     }
+
+    public function getDashboard(){
+        return view('staff.staffDashboard');
+    }
 }
 ?>

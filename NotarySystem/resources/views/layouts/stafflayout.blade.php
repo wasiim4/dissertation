@@ -92,13 +92,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="recordsSubmenu">
                         <li>
-                            <a href="{{ route('staffdashboard') }}"><i class="fas fa-users"></i> Client List</a></li>
+                            <a href="{{ route('staffdashboard') }}"><i class="fas fa-users"></i> Clients </a></li>
                         </li>
                         <li>
-                            <a href="{{ route('transactionsList') }}"><i class="fas fa-hand-holding-usd"></i> Transactions List</a></li>
+                            <a href="{{ route('transactionsList') }}"><i class="fas fa-hand-holding-usd"></i> Transactions</a></li>
                         </li>
                         <li>
-                            <a href="{{ route('myProfile') }}"><i class="fas fa-building"></i> Immovable Property List</a></li>
+                            <a href="{{ route('myProfile') }}"><i class="fas fa-building"></i> Immovable Properties</a></li>
                         </li>
                     </ul>
                 </li>

@@ -88,7 +88,7 @@ Route::prefix('staff')->group(function(){
     Route::post('/conversation/send', 'ContactsController@send');
     Route::get('/transactions/list', 'StaffController@getAllTransaction')->name('transactionsList');
     Route::get('/show/client_transactions/{id}', 'StaffController@getClientTransactions')->name('client.transaction.show');
-
+    Route::get('/dashboard','StaffController@getDashboard')->name('staff.dashboard');
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 
