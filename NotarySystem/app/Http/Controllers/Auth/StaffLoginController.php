@@ -13,7 +13,7 @@ class StaffLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/staff';
+    protected $redirectTo = '/staff/dashboard';
     public function __construct(){
         $this->middleware('guest:staff', ['except' => ['logout','userlogout','rgdlogout','banklogout','landSurveyorlogout']]);
     }
@@ -34,7 +34,7 @@ class StaffLoginController extends Controller
         // Attempt to log the user in
         if (Auth::guard('staff')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // if successful, then redirect to their intended location
-            return redirect()->intended(route('staffdashboard'));
+            return redirect()->intended(route('staff.dashboard'));
         }
 
         // if unsuccessful, then redirect back to the login with the form data

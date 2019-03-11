@@ -988,7 +988,19 @@ class StaffController extends Controller
     }
 
     public function getDashboard(){
-        return view('staff.staffDashboard');
+        
+        $numClients = DB::table('users') ->count();
+        $numTransactions=DB::table('transaction')->count();
+        $numProperties=DB::table('immovableproperty')->count();
+        $numMeetings=DB::table('meetings')->count();
+        $numDocuments=DB::table('uploaded_documents')->count();   
+
+        return view('staff.staffDashboard')->with('numClients',$numClients)
+                                            ->with('numTransactions',$numTransactions)
+                                            ->with('numProperties',$numProperties)
+                                            ->with('numMeetings',$numMeetings)
+                                            ->with('numDocuments',$numDocuments);
+                                        
     }
 }
 ?>
