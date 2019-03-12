@@ -155,6 +155,78 @@
       </div>
       <!-- End Small Stats Blocks -->
       <div class="row">
+          <div class="col-lg col-md-6 col-sm-6 mb-4">
+            <div class="stats-small stats-small--1 card card-small">
+              <div class="card-body p-0 d-flex">
+                <div class="d-flex flex-column m-auto">
+                  <div class="stats-small__data text-center">
+                  <a href="/staff/registernew"> <span class="stats-small__label text-uppercase"> New Client</span></a>
+                  <h6 class="stats-small__value count my-3"><i class="fas fa-user-plus" style="color:#17a2b8;"></i></h6>
+                  </div>
+                  
+                </div>
+                <canvas height="120" class="blog-overview-stats-small-1"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg col-md-6 col-sm-6 mb-4">
+            <div class="stats-small stats-small--1 card card-small">
+              <div class="card-body p-0 d-flex">
+                <div class="d-flex flex-column m-auto">
+                  <div class="stats-small__data text-center">
+                    <a href="/staff/transactions/list"><span class="stats-small__label text-uppercase"> New Transaction</span></a>
+                  <h6 class="stats-small__value count my-3"><i class="fas fa-hand-holding-usd" style="color:#17a2b8;"></i></h6>
+                  </div>
+                  
+                </div>
+                <canvas height="120" class="blog-overview-stats-small-2"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 mb-4">
+            <div class="stats-small stats-small--1 card card-small">
+              <div class="card-body p-0 d-flex">
+                <div class="d-flex flex-column m-auto">
+                  <div class="stats-small__data text-center">
+                    <span class="stats-small__label text-uppercase">New Property</span>
+                  <h6 class="stats-small__value count my-3"><i class="fas fa-building" style="color:#17a2b8;"></i></h6>
+                  </div>
+                  
+                </div>
+                <canvas height="120" class="blog-overview-stats-small-3"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 mb-4">
+            <div class="stats-small stats-small--1 card card-small">
+              <div class="card-body p-0 d-flex">
+                <div class="d-flex flex-column m-auto">
+                  <div class="stats-small__data text-center">
+                    <span class="stats-small__label text-uppercase">New Meeting</span>
+                  <h6 class="stats-small__value count my-3">  <i class="fas fa-calendar-alt" style="color:#17a2b8;"></i></h6>
+                  </div>
+                  
+                </div>
+                <canvas height="120" class="blog-overview-stats-small-4"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-12 mb-4">
+            <div class="stats-small stats-small--1 card card-small">
+              <div class="card-body p-0 d-flex">
+                <div class="d-flex flex-column m-auto">
+                  <div class="stats-small__data text-center">
+                    <span class="stats-small__label text-uppercase">New Upload</span>
+                  <h6 class="stats-small__value count my-3"> <i class="fas fa-upload" style="color:#17a2b8;"></i></h6>
+                  </div>
+                  
+                </div>
+                <canvas height="120" class="blog-overview-stats-small-5"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row">
         <!-- Users Stats -->
         <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
           <div class="card card-small">
@@ -228,5 +300,7 @@
 <script src="{{url('js/extras.1.1.0.min.js')}}"></script>
 <script src="{{url('js/shards-dashboards.1.1.0.min.js')}}"></script>
 <script src="{{url('js/app-blog-overview.1.1.0.js')}}"></script>
- @endsection
+</body>
+
+@endsection
 
