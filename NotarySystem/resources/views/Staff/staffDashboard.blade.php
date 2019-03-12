@@ -30,6 +30,13 @@
         display:inline;
       }
     </style>
+   
+   <script>
+      setTimeout(function(){
+          window.location.reload(1);
+       }, 300000);
+       </script> 
+      
   </head>
   @section('content')
   

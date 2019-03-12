@@ -99,34 +99,22 @@ fieldset{
 
 @section('content')
 
-<div class="row" style="width:93% !important; margin-left:8% !important;">
-    <div class="col-3">
-      <div class="container" >
-          <a href="/staff/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>
-      </div>
+<div class="row" style="width:93% !important; margin-left:3.5% !important; ">
+    <div class="col-4">
+          <a href="/staff/meeting/add/del/up" class="btn btn-success btn-block btn-lg" id="addMeeting"  >Add Meeting</a><br>
     </div>
   
-  
-  <div class="col-3">
-    {{-- <div class="container" style="width:93% !important;"> --}}
-      <button class="btn btn-primary btn-lg" id="updateMeeting">Update Meeting</button>
-    {{-- </div> --}}
+  <div class="col-4">
+        <a href="/staff/meeting/add/del/up" class="btn btn-warning btn-block btn-lg" id="delMeeting"  >Delete Meeting</a><br>
   </div>
-  <div class="col-3">
-    {{-- <div class="container" style="width:93% !important;"> --}}
-      <button class="btn btn-danger btn-lg" id="delMeeting">Delete Meeting</button>
-    {{-- </div> --}}
-  </div>
-  <div class="col-3">
-    {{-- <div class="container"> --}}
-      <a class="btn btn-info btn-lg" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>   
-    {{-- </div> --}}
+  <div class="col-4">
+      <a class="btn btn-info btn-block  btn-lg" href="/staff/dashboard"><i class="fa fa-home hvr-icon"></i> Back</a>   
   </div>
 </div>
-<br><br>
-<div class="row" >
+
+{{-- <div class="row" >
   <div class="col-12"></div>
-</div>
+</div> --}}
 <div class="panel panel-primary" style="width: 93%;  margin-left:3.5%; ">
   <div class="panel-heading"style="background-color:#17a2b8;border-color:#17a2b8; text-align:center; font-size: 34px;">Meeting Details</div>
   <div class="panel-body" >
