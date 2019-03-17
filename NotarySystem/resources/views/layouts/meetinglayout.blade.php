@@ -89,9 +89,12 @@
         </div>
         
         <ul class="list-unstyled components">               
-            <li>
-                <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
-            </li>
+                <li>
+                        <a href="{{ route('staff.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    </li>               
+                    <li>
+                        <a href="{{ route('myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                    </li>
             <li>
                 <a href="{{ route('show.change.pass') }}"><i class=" fa fa-key"></i> Change Password</a></li>
             </li>

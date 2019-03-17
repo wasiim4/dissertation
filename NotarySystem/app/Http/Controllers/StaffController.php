@@ -600,6 +600,50 @@ class StaffController extends Controller
                     $fileNameToStore= $filename.'_'.time().'.'.$extension;
                     // Upload Image
                     $path = $request->file('contract')->storeAs('public/images', $fileNameToStore);
+
+                    //fetching the price of the selected property
+                    $propertyPrice=DB::table('immovableproperty')->('propertyId',$property)->get();
+
+                    if($transactionType=='SOIP1'){
+                        foreach ($propertyPrice as $propertyPRICE) {
+                            $price=$propertyPRICE->priceInFigures;
+                        }
+
+                        $fees=0;
+                        if(($price  <=500000)||(($price > 500000) &&($price < 1000000))){
+                            //2% on the first RS 250,000
+                            payment1=(0.02*250000);
+                            //1.5% on the next RS 500,000
+                            payment2=(0.015*($price-250000));
+                            $fees=payment1+payment2;
+                        }
+                        elseif (($price >= 1000000 ) {
+                            //2% on the first RS 250,000
+                            payment1=(0.02*250000);
+                            //1.5% on the next RS 500,000
+                            payment2=(0.015*(500000));
+                            $fees=payment1+payment2;
+
+                            //1% on the next RS 1000,000
+                            $remainings=$price-750000;
+
+                            if($remainings<1000000){
+                                payment3=(0.01*($remainings));
+                                $fees=$fees+payment3;
+                            }
+                            else{
+                                //1% on the next RS 1000,000
+                                $payment3=(0.01*1000000);
+                                $fees=$fees+payment3;
+                                $remainings($price-1750000);
+                                $payment4=(0.005*$remainings);
+                                $fees=$fees+payment4;
+
+                            }
+
+                                              
+                        }
+                    }
                 
                     $data = array(
                         'clientId' =>  $clientName, 
