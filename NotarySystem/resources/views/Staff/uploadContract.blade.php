@@ -88,7 +88,7 @@
                     <select name="inputTransaction" id="inputTransaction" class="form-control " >
                         <option value="">Select type</option>
                         <option selected>SOIP1</option>
-                        <option>ALOTO2</option>             
+                        <option>ALOT02</option>             
                     </select>                
                 </div>
                 <div class="col-4">

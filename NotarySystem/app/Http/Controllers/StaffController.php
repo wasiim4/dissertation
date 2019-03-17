@@ -609,14 +609,16 @@ class StaffController extends Controller
                     //fetching the price of the selected property
                     $propertyPrice=DB::table('immovableproperty')->where('propertyId',$property)->get();
 
-                    foreach ($propertyPrice as $propertyPRICE) {
-                        $price=$propertyPRICE->priceInFigures;
-                    }
+                   
 
                     $fees=0;
+                    $totalFees=0;
 
                     if($transactionType=='SOIP1'){
-                       
+                        foreach ($propertyPrice as $propertyPRICE) {
+                            $price=$propertyPRICE->priceInFigures;
+                        }
+
                         if(($price  <=500000)||(($price > 500000) &&($price < 1000000))){
 
                             //2% on the first RS 250,000
@@ -656,10 +658,14 @@ class StaffController extends Controller
                         }
 
                         $VAT=(0.15*$fees);
-                        $totalFees=$fees+$VAT+$stampDuty+$administrativeFees;
+                        $totalFees=$totalFees+$fees+$VAT+$stampDuty+$administrativeFees;
                     }
 
                     elseif ($transactionType=='ALOT02') {
+
+                        foreach ($propertyPrice as $propertyPRICE) {
+                            $price=$propertyPRICE->priceInFigures;
+                        }
 
                         if($price <= 100000){
                             //2% on the first 100,000
@@ -715,7 +721,7 @@ class StaffController extends Controller
                         }
                         
                         $VAT=(0.15*$fees);
-                        $totalFees=$fees+$VAT+$stampDuty+$administrativeFees;
+                        $totalFees=$totalFees+$fees+$VAT+$stampDuty+$administrativeFees;
                     }
                 
                     $data = array(

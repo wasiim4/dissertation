@@ -169,7 +169,7 @@ class CreateUsersTable extends Migration
             $table->integer('propertyId');
             $table->integer('fees')->nullable();
             $table->string('feeStatus')->default('PENDING');
-            $table->enum('transactionType', ['SOIP1','ALOTO2'])->default("SOIP1");
+            $table->enum('transactionType', ['SOIP1','ALOT02'])->default("SOIP1");
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
