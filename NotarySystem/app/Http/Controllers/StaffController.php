@@ -582,12 +582,17 @@ class StaffController extends Controller
         // }
 
         public function uploadContract(Request $request){
+
             $upload=$request->file('contract');
             $clientName=Input::get('inputClientName');
             $property=Input::get('inputProperty');
             $transactionType=Input::get('inputTransaction');
+            $stampDuty=Input::get('inputStampDuty');
+            $administrativeFees=Input::get('inputAdministrativeFees');
+
             // $image=$request->file('document');
             if(isset($upload)) { //to check if user has selected an image
+
                 if($request->hasFile('contract')){
 
                     // Get filename with the extension
@@ -602,47 +607,115 @@ class StaffController extends Controller
                     $path = $request->file('contract')->storeAs('public/images', $fileNameToStore);
 
                     //fetching the price of the selected property
-                    $propertyPrice=DB::table('immovableproperty')->('propertyId',$property)->get();
+                    $propertyPrice=DB::table('immovableproperty')->where('propertyId',$property)->get();
+
+                    foreach ($propertyPrice as $propertyPRICE) {
+                        $price=$propertyPRICE->priceInFigures;
+                    }
+
+                    $fees=0;
 
                     if($transactionType=='SOIP1'){
-                        foreach ($propertyPrice as $propertyPRICE) {
-                            $price=$propertyPRICE->priceInFigures;
+                       
+                        if(($price  <=500000)||(($price > 500000) &&($price < 1000000))){
+
+                            //2% on the first RS 250,000
+                            $payment1=(0.02*250000);
+
+                            //1.5% on the next RS 500,000
+                            $payment2=(0.015*($price-250000));
+                            $fees=$payment1+$payment2;
                         }
 
-                        $fees=0;
-                        if(($price  <=500000)||(($price > 500000) &&($price < 1000000))){
+                        elseif (($price >= 1000000 )) {
+
                             //2% on the first RS 250,000
-                            payment1=(0.02*250000);
+                            $payment1=(0.02*250000);
+
                             //1.5% on the next RS 500,000
-                            payment2=(0.015*($price-250000));
-                            $fees=payment1+payment2;
-                        }
-                        elseif (($price >= 1000000 ) {
-                            //2% on the first RS 250,000
-                            payment1=(0.02*250000);
-                            //1.5% on the next RS 500,000
-                            payment2=(0.015*(500000));
-                            $fees=payment1+payment2;
+                            $payment2=(0.015*(500000));
+                            $fees=$payment1+$payment2;
 
                             //1% on the next RS 1000,000
                             $remainings=$price-750000;
 
                             if($remainings<1000000){
-                                payment3=(0.01*($remainings));
-                                $fees=$fees+payment3;
+                                $payment3=(0.01*($remainings));
+                                $fees=$fees+$payment3;
                             }
+
                             else{
                                 //1% on the next RS 1000,000
                                 $payment3=(0.01*1000000);
-                                $fees=$fees+payment3;
-                                $remainings($price-1750000);
+                                $fees=$fees+$payment3;
+                                $remainings=($price-1750000);
                                 $payment4=(0.005*$remainings);
-                                $fees=$fees+payment4;
+                                $fees=$fees+$payment4;
+                           }
 
-                            }
-
-                                              
                         }
+
+                        $VAT=(0.15*$fees);
+                        $totalFees=$fees+$VAT+$stampDuty+$administrativeFees;
+                    }
+
+                    elseif ($transactionType=='ALOT02') {
+
+                        if($price <= 100000){
+                            //2% on the first 100,000
+                            $fees=(0.02*$price);
+                        }
+
+                        elseif (($price>100000)&&($price <= 3500000)) {
+
+                             //2% on the first 100,000 
+                             $payment1=0.02*100000;
+                             $remainings=$price-100000;
+                             $fees=$fees+$payment1;
+
+                             //1.5% on the next 250,000
+                             $payment2=0.015*($remainings);
+                             $fees=$fees+$payment2;
+                        }
+
+                        elseif (($price>350000)&&($price <= 8500000)) {
+
+                            //2% on the first 100,000 
+                            $payment1=0.02*100000;
+                            $fees=$fees+$payment1;
+
+                            //1.5% on the next 250,000
+                            $payment2=0.015*(250000);
+                            $remainings=($price-350000);
+                            $fees=$fees+$payment2;
+
+                            //1% on the next 500,000
+                            $payment3=0.01*$remainings;
+                            $fees=$fees+$payment3;
+                            
+                        }
+
+                        elseif ($price>850000) {
+
+                             //2% on the first 100,000 
+                             $payment1=0.02*100000;
+                             $fees=$fees+$payment1;
+ 
+                             //1.5% on the next 250,000
+                             $payment2=0.015*(250000);
+                             $fees=$fees+$payment2;
+
+                             //1% on the next 500,000
+                             $payment3=0.01*500000;
+                             $fees=$fees+$payment3;
+
+                             //0.5% on the remainder
+                             $payment4=(0.005*($price-850000));
+                             $fees=$fees+$payment4;
+                        }
+                        
+                        $VAT=(0.15*$fees);
+                        $totalFees=$fees+$VAT+$stampDuty+$administrativeFees;
                     }
                 
                     $data = array(
@@ -650,6 +723,7 @@ class StaffController extends Controller
                         'contractName' => $fileNameToStore, 
                         'staffId'=>Auth::user()->id,
                         'propertyId' =>  $property,
+                        'fees'=>$totalFees,
                         'transactionType'=> $transactionType
                     );
             

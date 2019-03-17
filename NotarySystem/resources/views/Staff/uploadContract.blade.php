@@ -58,7 +58,7 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                     <label>Client Name</label>
                     <select name="inputClientName" id="inputClientName" class="form-control " >
                         <option value="">Select name</option>
@@ -67,7 +67,7 @@
                         @endforeach
                     </select>                
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <label>Property ID</label>
                     <select name="inputProperty" id="inputProperty" class="form-control " >
                         <option value="">Select property</option>
@@ -76,17 +76,28 @@
                         @endforeach
                     </select>                
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <label>Generated Contract</label>
                     <input type="file" accept=".pdf" id="contract"  name="contract" class="btn  btn-block"  >
                 </div>
-                <div class="col-3">
+                
+            </div>
+            <div class="row">
+                <div class="col-4">
                     <label>Transaction Type</label>
                     <select name="inputTransaction" id="inputTransaction" class="form-control " >
                         <option value="">Select type</option>
                         <option selected>SOIP1</option>
                         <option>ALOTO2</option>             
                     </select>                
+                </div>
+                <div class="col-4">
+                    <label>Stamp Duty Fees(RS)</label>
+                    <input type="number" id='stampDuty' name='inputStampDuty'class="form-control">
+                </div>
+                <div class="col-4">
+                    <label>Administrative Fees(RS)</label>
+                    <input type="number" id='adminFees' name='inputAdministrativeFees'class="form-control">
                 </div>
             </div>
             <br>
