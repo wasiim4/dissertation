@@ -94,6 +94,7 @@ class partageController extends Controller
         //     return implode(' ', $words);
         // }
 
+        //function to convert year/price to words in french
         function asLetters($currentYear,$separateur=",") {
             
             $convert = explode($separateur, $currentYear);
@@ -224,7 +225,8 @@ class partageController extends Controller
         
         $alignment=$wordTest->addParagraphStyle('centerTitles', array( 'size' => 12,'align'=>'center', 'name' => 'Times New Roman'));
         $alignment2=$wordTest->addParagraphStyle('Indent', array( 'tabPos'=>720));
-        $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 'underline'=> 'single','name' => 'Times New Roman','bold'=>true));
+        $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 
+        'underline'=> 'single','name' => 'Times New Roman','bold'=>true));
         
         $getInput = Input::get('inputCPartegeantId');
         $selectedOption = "";

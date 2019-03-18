@@ -51,7 +51,7 @@ class StaffController extends Controller
     }
 
     public function add_user(Request $request){
-        
+        //validating inputs
         $this->validate($request,
         [
             'inputFirstName' => 'required|string|max:255',
@@ -72,8 +72,7 @@ class StaffController extends Controller
              ]       
         );
 
-        
-
+        //fetching inputs
         $fname = Input::get('inputFirstName');
         $lname = Input::get('inputLastName');
         $email = Input::get('inputEmail');
@@ -92,10 +91,11 @@ class StaffController extends Controller
       
         $commonLawMarriage=Input::get('lawMarriage');
 
+        //sending generated mail with password
         $generatedPassword=str_random(8);
         self::sendEmail($generatedPassword,$email,$fname,$lname);
-
         
+        //adding data to database
         $data = array(
             'firstname' => $fname, 
             'lastname' => $lname, 
@@ -112,18 +112,17 @@ class StaffController extends Controller
             'districtIssued' => $districtIssued,
             'placeOfBirth' =>$placeOfBirth,
             'profession'=>$profession,
-            'title'=> $title
-
-            
+            'title'=> $title         
         );
 
          DB::table('users')->insert($data);
         
-
         if($commonLawMarriage=="Yes"){
+            // Session::flash('message', 'Client successfully added'); 
             return redirect('staff/registerSpouse');
         }
         else{
+            Session::flash('message', 'Client successfully added!'); 
             return redirect('staff/registernew');
         }
     }
@@ -140,6 +139,7 @@ class StaffController extends Controller
         }
 
         public function add_spouse(Request $request){
+            //validating inputs
             $this->validate($request,
             [
                 'inputClientID' => 'required',
@@ -159,6 +159,7 @@ class StaffController extends Controller
                 ]       
             );
 
+            //retrieving inputs
             $clientId=Input::get('inputClientID');
             $fname=Input::get('inputSpouseFirstName');
             $lname=Input::get('inputSpouseLastName');
@@ -175,6 +176,7 @@ class StaffController extends Controller
             $gender=Input::get('inputSpouseGender');
             $placeOfBirth=Input::get('inputSpousePlaceOfBirth');
         
+            //updating database
             $query= DB::table('users')
                         ->where("id", $clientId)
                         ->update([
@@ -192,8 +194,9 @@ class StaffController extends Controller
                             'MCdistrictIssued' => $mcDistrict,
                             'spouseProfession' =>$profession     
                         ]); 
-        
-                return redirect('staff/registernew');
+
+                        Session::flash('message', 'Spouse successfully added!'); 
+                        return redirect('staff/registernew');
         }
 
         //function to return the view of the property registration form
@@ -204,13 +207,11 @@ class StaffController extends Controller
 
         //fuction to register an immovable property
         public function add_property(Request $request){
-
             //getting input 
             $propertyType=Input::get('inputPropertyType');
             $clientId=Input::get('inputClientID');
             $propertyAdd=Input::get('inputAddress');
-            $sizeMsFigures=Input::get('inputSizeMsF');
-        
+            $sizeMsFigures=Input::get('inputSizeMsF');        
             $sizeInPerch=Input::get('inputSizeInPerch');
             $transcriptionVol=Input::get('inputTranscriptionVolume');
             $pinNum=Input::get('inputPinNum');
@@ -218,8 +219,7 @@ class StaffController extends Controller
             $surveyorFirstName=Input::get('inputLsFn');
             $surveyorLastName=Input::get('inputLsLn');
             $surveyingDate=Input::get('inputSurveyingDate');
-            $priceFigures=Input::get('inputPrice');
-            
+            $priceFigures=Input::get('inputPrice');            
             $firstDeedReg=Input::get('inputFirstDeedReg');
             $firstDeedGeneration=Input::get('inputFirstDeedGeneration');
             $previousNotaryTitle=Input::get('inputPreviousNotaryTitle');
@@ -228,14 +228,17 @@ class StaffController extends Controller
             $districtSituated=Input::get('inputDistrict');
             $checkBuyer=Input::get('checkBuyer');
 
+            //check if the client is a firstime buyer or not
             if($checkBuyer=="No"){
+                //if yes then taxduty is calculated
                 $taxduty=(0.05*$priceFigures);
             }
             else{
+                //if no then no taxduty 
                 $taxduty=0;
             }
         
-
+            //inserting into db
             $data = array(
                 'clientId' =>  $clientId, 
                 'address' => $propertyAdd, 
@@ -355,7 +358,7 @@ class StaffController extends Controller
 
         //function to show the calendar with all meetings
         public function meeting(){
-        // $meetings = Meeting::get();
+            // $meetings = Meeting::get();
             $meetings=DB::table('meetings') ->where('MeetingStatus','Confirmed')->get();
             $meeting_list = [];
             foreach ($meetings as $key => $meeting) {
@@ -367,20 +370,21 @@ class StaffController extends Controller
                 );
             }
             $users=DB::table('users')->get();
-            $calendar_details = Calendar::addEvents($meeting_list); 
-    
-            return view('meetings', compact('calendar_details','users') );
-    }
+            $calendar_details = Calendar::addEvents($meeting_list);     
+            return view('meetings', compact('calendar_details','users'));
+        }
 
         public function addMeeting(Request $request){
-            $status="Pending";
 
+            //retrieving inputs
+            $status="Pending";
             $party=Input::get('party');
             $id=Input::get('partyId');
             $reason=Input::get('meetingReason');
             $start=Input::get('startTime');
             $end=Input::get('endTime');
 
+            //calculating meeting durations
             $date1=date_create($start);
             $date2=date_create($end);
 
@@ -398,7 +402,7 @@ class StaffController extends Controller
             );
 
             // DB::table('meetings')->insert($data);
-            
+            //inserting into database
             $meeting_id = DB::table('meetings')->insertGetId($data);
             $meet=(DB::table('meetings')->where('id',$meeting_id)->get())[0];
 
@@ -590,7 +594,6 @@ class StaffController extends Controller
             $stampDuty=Input::get('inputStampDuty');
             $administrativeFees=Input::get('inputAdministrativeFees');
 
-            // $image=$request->file('document');
             if(isset($upload)) { //to check if user has selected an image
 
                 if($request->hasFile('contract')){
@@ -608,8 +611,6 @@ class StaffController extends Controller
 
                     //fetching the price of the selected property
                     $propertyPrice=DB::table('immovableproperty')->where('propertyId',$property)->get();
-
-                   
 
                     $fees=0;
                     $totalFees=0;
@@ -963,9 +964,10 @@ class StaffController extends Controller
             $receiver_role=Input::get('party');
             $docType=Input::get('inputDocType');
             $image=$request->file('document');
-            if(isset($image)) { //to check if user has selected an image
-                if($request->hasFile('document')){
 
+            //to check if user has selected a file
+            if(isset($image)) { 
+                if($request->hasFile('document')){
                     // Get filename with the extension
                     $filenameWithExt = $request->file('document')->getClientOriginalName();
                     // Get just filename
@@ -990,8 +992,7 @@ class StaffController extends Controller
                     Session::flash('message', 'Successfully uploaded!'); 
                     return Redirect::to('/staff/upload/documents');
                 }
-            }
-        
+            }        
         }
 
         public function confirmMeeting($mid,$pid,Request $request){
@@ -1067,6 +1068,7 @@ class StaffController extends Controller
         }
 
         public function changePassword(Request $request){
+            //validations
             $this->validate($request,
             [
                 'txtpassword' => 'required|string|min:6|confirmed',
@@ -1085,6 +1087,7 @@ class StaffController extends Controller
             $result = DB::table('staff')
                         ->where('email', $email)->get()
                         ->pluck('password');
+
             $password=$result[0];
             if (!(Hash::check($NewPassword, $password))) {
                 //SQL update for updating the db

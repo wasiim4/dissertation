@@ -129,7 +129,8 @@ class wordTest extends Controller
         //setting different paragraph styles
         $alignment=$wordTest->addParagraphStyle('centerTitles', array( 'size' => 12,'align'=>'center', 'name' => 'Times New Roman'));
         $alignment2=$wordTest->addParagraphStyle('Indent', array( 'tabPos'=>720));
-        $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 'underline'=> 'single','name' => 'Times New Roman','bold'=>true));
+        $alignment3=$wordTest->addParagraphStyle('rightAlignUnderline', array( 'size' => 12,'align'=>'right', 'underline'=> 'single'
+        ,'name' => 'Times New Roman','bold'=>true));
 
         //displaying seller/buyer/immovable property details
         foreach ($sellers as $seller ) {
@@ -423,7 +424,8 @@ class wordTest extends Controller
         }
 
         $wordFont=$wordTest->addFontStyle('header', array('bold' => true, 'size' => 20, 'name' => 'Times New Roman'));
-        $desc2=$wordTest->addParagraphStyle('header', array('align' => 'center', 'lineHeight' => 1.0, 'spaceAfter' => 40, 'keepNext' => true, 'keepLines' => true,'bold' => true));
+        $desc2=$wordTest->addParagraphStyle('header', array('align' => 'center', 'lineHeight' => 1.0, 'spaceAfter' => 40, 
+        'keepNext' => true, 'keepLines' => true,'bold' => true));
         // $desc1 = "The Portfolio details is a very useful feature of the web page. You can establish your archived details and the works to the entire web community. It was outlined to bring in extra clients, get you selected based on this details.";
         // $newSection->addText($desc1, $desc2,array('name' => 'Tahoma','align'=>'center','size' => 15, 'color' => 'red','bold' => true),$wordFont);
         
