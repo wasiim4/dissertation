@@ -262,8 +262,8 @@ class StaffController extends Controller
             );
 
             DB::table('immovableproperty')->insert($data);
-            return $taxduty;
-
+            Session::flash('message', 'Property successfully added with a taxduty of RS'.$taxduty); 
+            return Redirect::to('staff/propertyRegistration');
         }
 
         //function to generate contract
@@ -880,11 +880,8 @@ class StaffController extends Controller
             $recipient=Input::get('inputRecipient');
             $subjectInfo=Input::get('inputSubject');
             $body=Input::get('inputBody');
-            
-            
             $upload=$request->file('inputAttachment');
             
-        
             $user=DB::table('users')->where('id',$recipient)->get();
 
             foreach ($user as $users) {
@@ -896,6 +893,7 @@ class StaffController extends Controller
                     
                 ];
 
+                //check if there is an attachment
                 if(isset($upload)){
 
                     $attachment = $request->file('inputAttachment')->getClientOriginalName();
@@ -912,17 +910,20 @@ class StaffController extends Controller
                     // Upload Image
                     $path = $request->file('inputAttachment')->storeAs('public/images', $fileNameToStore);
 
-                    Mail::send('emails.email_party', $data, function($m) use ($users,$mime,$path,$extension,$request,$filename, $attachmentPath){
-                    $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject(Input::get('inputSubject'))
-                    ->attach( $attachmentPath,array('as'=>$filename.$extension,
-                                                    'mime'=>$mime));
+                    Mail::send('emails.email_party', $data, function($m) use ($users,$mime,$path,$extension,
+                                                                              $request,$filename, $attachmentPath){
+                    $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')
+                                                        ->subject(Input::get('inputSubject'))
+                                                        ->attach( $attachmentPath,array('as'=>$filename.$extension,
+                                                                                        'mime'=>$mime));
                 
                     });
                 }
 
                 else{
                     Mail::send('emails.email_party', $data, function($m) use ($users){
-                    $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject(Input::get('inputSubject'));
+                    $m->to($users->email, 'Notary Team')->from('hi@example.com', 'Notary Team')
+                                                        ->subject(Input::get('inputSubject'));
                     });
                 }
 
