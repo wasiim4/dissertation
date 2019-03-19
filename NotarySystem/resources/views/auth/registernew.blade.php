@@ -63,6 +63,9 @@
                     </div>
                 @endif
             </div>
+            @if (Session::has('message'))
+	            <div class="alert alert-success">{{ Session::get('message') }}</div>
+            @endif
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputFirstName">First Name</label>

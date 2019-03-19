@@ -41,56 +41,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="container tableSpacor" style="border: 1mm ridge #212529;">
-        <table id="tbluser" class="table table-hover " style="width:100%;">
-            <thead>
-                <tr>
-                    <th>
-                        ID
-                    </th> 
-                    <th>
-                        NIC
-                    </th>
-                    <th>
-                        First Name
-                    </th> 
-                    <th>
-                        Last Name
-                    </th>
-                    <th>
-                        Gender
-                    </th> 
-                    <th>
-                        Roles
-                    </th>          
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
-                <tr >
-                    <td>    
-                        {{$user->id}} 
-                    </td>
-                    <td>    
-                        {{$user->nic}} 
-                    </td>
-                    <td>    
-                        {{$user->firstname}} 
-                    </td>
-                    <td>
-                        {{$user->lastname}}
-                    </td>
-                    <td>
-                        {{$user->gender}}
-                    </td>
-                    <td>
-                        {{$user->roles}}
-                    </td>   
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div> --}}
+
     <form method="POST" action="{{ route('add_spouse') }}" id="frmAddUser">
         @csrf
         <fieldset class="addUserFieldset">
@@ -106,7 +57,9 @@
                     </div>
                 @endif
             </div>
-
+            @if (Session::has('message'))
+            <div class="alert alert-success">{{ Session::get('message') }}</div>
+            @endif
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputSpouseFirstName">First Name</label>
