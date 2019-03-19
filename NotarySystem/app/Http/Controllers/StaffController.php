@@ -619,46 +619,63 @@ class StaffController extends Controller
                             $price=$propertyPRICE->priceInFigures;
                         }
 
-                        if(($price  <=500000)||(($price > 500000) &&($price < 1000000))){
-
-                            //2% on the first RS 250,000
-                            $payment1=(0.02*250000);
-
-                            //1.5% on the next RS 500,000
-                            $payment2=(0.015*($price-250000));
-                            $fees=$payment1+$payment2;
+                        if($price <= 250000){
+                            //2% on the first 250,000
+                            $fees=(0.02*$price);
                         }
 
-                        elseif (($price >= 1000000 )) {
+                        elseif (($price > 250000)&&($price <= 750000)) {
 
-                            //2% on the first RS 250,000
-                            $payment1=(0.02*250000);
+                             //2% on the first 250,000 
+                             $payment1=0.02*250000;
+                             $remainings=$price-250000;
+                             $fees=$fees+$payment1;
 
-                            //1.5% on the next RS 500,000
-                            $payment2=(0.015*(500000));
-                            $fees=$payment1+$payment2;
-
-                            //1% on the next RS 1000,000
-                            $remainings=$price-750000;
-
-                            if($remainings<1000000){
-                                $payment3=(0.01*($remainings));
-                                $fees=$fees+$payment3;
-                            }
-
-                            else{
-                                //1% on the next RS 1000,000
-                                $payment3=(0.01*1000000);
-                                $fees=$fees+$payment3;
-                                $remainings=($price-1750000);
-                                $payment4=(0.005*$remainings);
-                                $fees=$fees+$payment4;
-                           }
-
+                             //1.5% on the next 500,000
+                             $payment2=0.015*($remainings);
+                             $fees=$fees+$payment2;
                         }
 
-                        $VAT=(0.15*$fees);
-                        $totalFees=$totalFees+$fees+$VAT+$stampDuty+$administrativeFees;
+                        elseif (($price > 750000)&&($price <= 1750000)) {
+
+                            //2% on the first 250,000 
+                            $payment1=0.02*250000;
+                            $fees=$fees+$payment1;
+
+                            //1.5% on the next 500,000
+                            $payment2=0.015*(500000);
+                            $remainings=($price-750000);
+                            $fees=$fees+$payment2;
+
+                            //1% on the next 1,000,000
+                            $payment3=0.01*$remainings;
+                            $fees=$fees+$payment3;
+                            
+                        }
+
+                        elseif ($price > 1750000) {
+
+                             //2% on the first 250,000 
+                             $payment1=0.02*250000;
+                             $fees=$fees+$payment1;
+ 
+                             //1.5% on the next 500,000
+                             $payment2=0.015*(500000);
+                             $fees=$fees+$payment2;
+
+                             //1% on the next 1,000,000
+                             $payment3=0.01*1000000;
+                             $fees=$fees+$payment3;
+
+                             //0.5% on the remainder
+                             $payment4=(0.005*($price-1750000));
+                             $fees=$fees+$payment4;
+                        }
+
+                    }
+
+                    $VAT=(0.15*$fees);
+                    $totalFees=$totalFees+$fees+$VAT+$stampDuty+$administrativeFees;
                     }
 
                     elseif ($transactionType=='ALOT02') {
@@ -672,7 +689,7 @@ class StaffController extends Controller
                             $fees=(0.02*$price);
                         }
 
-                        elseif (($price>100000)&&($price <= 3500000)) {
+                        elseif (($price > 100000)&&($price <= 350000)) {
 
                              //2% on the first 100,000 
                              $payment1=0.02*100000;
@@ -684,7 +701,7 @@ class StaffController extends Controller
                              $fees=$fees+$payment2;
                         }
 
-                        elseif (($price>350000)&&($price <= 8500000)) {
+                        elseif (($price > 350000)&&($price <= 850000)) {
 
                             //2% on the first 100,000 
                             $payment1=0.02*100000;
@@ -701,7 +718,7 @@ class StaffController extends Controller
                             
                         }
 
-                        elseif ($price>850000) {
+                        elseif ($price > 850000) {
 
                              //2% on the first 100,000 
                              $payment1=0.02*100000;
@@ -738,8 +755,7 @@ class StaffController extends Controller
                     return Redirect::to('/staff/upload/contract');
                 }
 
-        }
-    }
+            }
         //view final contract uploaded by notary/notary assistant directly on browser in PDF Format
         public function viewContract($id){
             $transactions=DB::table('transaction')->where('id', $id)->get();
