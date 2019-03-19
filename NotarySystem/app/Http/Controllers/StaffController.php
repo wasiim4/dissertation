@@ -148,12 +148,12 @@ class StaffController extends Controller
                 'inputSpouseTitle' =>'required',
                 'inputSpouseNIC' => 'required|alpha_num|unique:users,spouseNic',
                 'inputSpouseDob' =>'required|date',
-                'inputSpouseBcNum' => 'required|numeric',
+                'inputSpouseBcNum' => 'required|numeric|unique:users,spouseBCNum',
                 'inputSpouseDistrict' =>'required',
                 'inputSpouseMarriageDate' =>'required|date',
-                'inputMcNum' => 'required|numeric',
+                'inputMcNum' => 'required|numeric|unique:users,MCnumber',
                 'inputMcDistrict' =>'required',
-                'inputSpouseProfession' =>'required',
+                'inputSpouseProfession' =>'required|string|max:255',
                 'inputSpouseGender' =>'required',
                 'inputSpousePlaceOfBirth' =>'required',
                 ]       
@@ -207,6 +207,26 @@ class StaffController extends Controller
 
         //fuction to register an immovable property
         public function add_property(Request $request){
+             //validating inputs
+             $this->validate($request,
+             [
+                 'inputClientID' => 'required',
+                 'inputAddress'=> 'required|string|max:255',
+                 'inputPreviousNotaryFN'=> 'required|string|max:255',
+                 'inputPreviousNotaryLN'=> 'required|string|max:255',
+                 'inputSizeMsF' =>'required|numeric',
+                 'inputTranscriptionVolume' => 'required|alpha_num|unique:immovableproperty,transcriptionVol',
+                 'inputPinNum' =>'required|alpha_num|unique:immovableproperty,pinNum',
+                 'inputRegNum' =>'required|alpha_num|unique:immovableproperty,regNumLSReport',
+                 'inputLsFn'=> 'required|string|max:255',
+                 'inputLsLn'=> 'required|string|max:255',
+                 'inputPrice' => 'required|numeric',
+                 'inputSurveyingDate' =>'required|date',
+                 'inputFirstDeedReg' =>'required|date',
+                 'inputFirstDeedGeneration' =>'required|date',
+                 
+                 ]);
+                 
             //getting input 
             $propertyType=Input::get('inputPropertyType');
             $clientId=Input::get('inputClientID');
@@ -561,29 +581,7 @@ class StaffController extends Controller
             ->with('properties',$properties);
         }
 
-        // public function uploadContract(Request $request){
-        //     $upload=$request->file('contract');
-        //     $clientName=Input::get('inputClientName');
-
-        //     if(isset($upload)){
-        //         $name = $_FILES['contract']['name'];
-        //         $mime = $_FILES['contract']['type'];
-        //         $datas = file_get_contents($_FILES['contract']['tmp_name']);
-        //         $path = $request->file('contract')->storeAs('public/images', $name);
-        //         $data = array(
-        //             'clientId' =>  $clientName, 
-        //             'name' => $name, 
-        //             'mime'=>$mime,
-        //             'generatedContract' =>  $datas 
-                    
-        //         );
-        
-        //         DB::table('transaction')->insert($data);
-        //         // flashy()->success($fname.' '.$lname. ' successfully added!.');
-        //         return redirect('staff/registernew');
-        
-        //     }   
-        // }
+       
 
         public function uploadContract(Request $request){
 
@@ -593,6 +591,14 @@ class StaffController extends Controller
             $transactionType=Input::get('inputTransaction');
             $stampDuty=Input::get('inputStampDuty');
             $administrativeFees=Input::get('inputAdministrativeFees');
+
+            $this->validate($request,
+                [
+                    'contract' => 'required|mimes:pdf',                  
+                    'inputStampDuty'=>'required|numeric',
+                    'inputAdministrativeFees'=>'required|numeric'
+                ]);
+
 
             if(isset($upload)) { //to check if user has selected an image
 
@@ -752,7 +758,7 @@ class StaffController extends Controller
                     );
             
                     DB::table('transaction')->insert($data);
-                    Session::flash('message', 'Successfully uploaded!'); 
+                    Session::flash('message', 'Contract successfully uploaded! Fees to paid=RS '.$totalFees); 
                     return Redirect::to('/staff/upload/contract');
                 }
 

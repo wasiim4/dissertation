@@ -152,17 +152,42 @@ return [
             'inputGender' => 'Gender',
             'inputDob' => 'Date of Birth',
             'inputNIC1' => 'National Identity Card Number',
-            'inputNIC2' => ' Husband/Wife National Identity Card Number',
+            'inputSpouseNIC' => ' Husband/Wife National Identity Card Number',
             'inputMarriageStatus' => 'Marriage Status',
-            'inputPFirstName' => 'Husband/Wife First Name',
-            'inputPLastName' => 'Husband/Wife Last Name',
-            'inputPDob' => 'Husband/Wife Date of Birth',
+            'inputSpouseFirstName' => 'Husband/Wife First Name',
+            'inputSpouseLastName' => 'Husband/Wife Last Name',
+            'inputSpouseDob' => 'Husband/Wife Date of Birth',
+            'inputSpouseBcNum' => 'Husband/Wife Birth Certificate Number',
             'inputBcNum' => 'Birth Certificate Number',
             'inputDistrict' =>'District in which the birth certificate was issued',
             'inputPlaceOfBirth' =>'Place of Birth',
             'inputProfession' =>'Profession',
+            'inputSpouseProfession' =>'Spouse profession',
+            'inputSpouseMarriageDate' =>'Common in law marriage',
+            'inputMcNum'=>'Marriage Certificate Number'
             'inputTitle' =>'Title',
+            'contract'=> 'Title Deed',
+            'inputStampDuty'=>'Stamp Duty fees',
+            'inputAdministrativeFees'=>'Administrative Fees',
             
+            //for immovable properties input
+            'inputSizeMsF'='Size in meter squares',
+            'inputSizeInPerch'=>'Size in perch',
+            'inputTranscriptionVolume'=>'Transcription Volume Number',
+            'inputPinNum' =>'Pin Number',
+            'inputRegNum' =>'Registration Number in Land Surveyor report',
+            'inputLsFn'=> 'First name of Land Surveyor',
+            'inputLsLn'=> 'Last name of Land Surveyor',
+            'inputPrice'=>'Price of Immovable Property',
+            'inputPreviousNotaryFN'=> 'First name of previos Notary',
+            'inputPreviousNotaryLN'=> 'Last name of previos Notary',
+            'inputSurveyingDate' =>'Surveying Date',
+            'inputFirstDeedReg' =>'First Deed Registration',
+            'inputFirstDeedGeneration' =>'First Deed Generation'
+
+
+
+                        
     ],
 
 ];

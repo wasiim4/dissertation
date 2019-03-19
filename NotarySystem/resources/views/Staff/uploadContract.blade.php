@@ -57,6 +57,9 @@
                     </ul>
                 </div>
             @endif
+            @if (Session::has('message'))
+	            <div class="alert alert-success">{{ Session::get('message') }}</div>
+            @endif
             <div class="row">
                 <div class="col-4">
                     <label>Client Name</label>
@@ -79,6 +82,7 @@
                 <div class="col-4">
                     <label>Generated Contract</label>
                     <input type="file" accept=".pdf" id="contract"  name="contract" class="btn  btn-block"  >
+                    {{-- <input type="file"  id="contract"  name="contract" class="btn  btn-block"  > --}}
                 </div>
                 
             </div>
