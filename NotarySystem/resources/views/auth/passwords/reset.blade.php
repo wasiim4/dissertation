@@ -1,11 +1,12 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('layouts.loginlayout')
+<link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">{{ __('Reset Password') }}</div> --}}
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
@@ -58,8 +59,8 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            {{-- </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

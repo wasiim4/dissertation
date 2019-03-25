@@ -137,7 +137,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputNIC1">NIC Number</label>
-                    <input type="text" required maxlength="14" class="form-control" name="inputNIC1" value="{{ old('inputNIC1') }}"  >
+                    <input type="text" required  class="form-control" name="inputNIC1" value="{{ old('inputNIC1') }}"  >
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Address</label>

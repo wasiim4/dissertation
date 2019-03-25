@@ -50,6 +50,16 @@
   <div class="card" id="addMeeting">
     <div class="card-header card bg-primary text-white" style=" text-align:center;">Add Meeting</div>
     <div class="card-body">
+        <div class="container">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
       @if (Session::has('message'))
         <div class="alert alert-success">{{ Session::get('message') }}
           <a href="http://127.0.0.1:8000/staff/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>

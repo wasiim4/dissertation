@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register</title>
+<title>Property Registration</title>
      {{-- <link rel="stylesheet" type="text/css" href="login.css"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('/css/register.css')}}"> 
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">

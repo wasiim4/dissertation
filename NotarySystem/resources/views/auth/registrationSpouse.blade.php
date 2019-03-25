@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputSpouseNIC">NIC Number</label>
-                    <input type="text" required maxlength="14" class="form-control" name="inputSpouseNIC" value="{{ old('inputSpouseNIC') }}"  >    
+                    <input type="text" required  class="form-control" name="inputSpouseNIC" value="{{ old('inputSpouseNIC') }}"  >    
                 </div>
                 {{-- <div class="form-group col-md-2">
                     <label for="inputClientID">Buyer/Seller ID</label>

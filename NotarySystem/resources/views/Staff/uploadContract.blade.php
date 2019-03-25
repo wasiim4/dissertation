@@ -91,17 +91,17 @@
                     <label>Transaction Type</label>
                     <select name="inputTransaction" id="inputTransaction" class="form-control " >
                         <option value="">Select type</option>
-                        <option selected>SOIP1</option>
+                        <option >SOIP1</option>
                         <option>ALOT02</option>             
                     </select>                
                 </div>
                 <div class="col-4">
                     <label>Stamp Duty Fees(RS)</label>
-                    <input type="number" id='stampDuty' name='inputStampDuty'class="form-control">
+                    <input type="text" id='stampDuty' name='inputStampDuty'class="form-control">
                 </div>
                 <div class="col-4">
                     <label>Administrative Fees(RS)</label>
-                    <input type="number" id='adminFees' name='inputAdministrativeFees'class="form-control">
+                    <input type="text" id='adminFees' name='inputAdministrativeFees'class="form-control">
                 </div>
             </div>
             <br>

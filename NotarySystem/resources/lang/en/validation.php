@@ -143,6 +143,8 @@ return [
 
     'attributes' => [
 
+            'email'=>'Email Address',
+            'password'=>'Password',
             'inputFirstName' => 'First name',
             'inputLastName' => 'Last name',
             'inputContactNum' => 'Contact number',
@@ -164,14 +166,14 @@ return [
             'inputProfession' =>'Profession',
             'inputSpouseProfession' =>'Spouse profession',
             'inputSpouseMarriageDate' =>'Common in law marriage',
-            'inputMcNum'=>'Marriage Certificate Number'
+            'inputMcNum'=>'Marriage Certificate Number',
             'inputTitle' =>'Title',
             'contract'=> 'Title Deed',
             'inputStampDuty'=>'Stamp Duty fees',
             'inputAdministrativeFees'=>'Administrative Fees',
             
             //for immovable properties input
-            'inputSizeMsF'='Size in meter squares',
+            'inputSizeMsF'=>'Size in meter squares',
             'inputSizeInPerch'=>'Size in perch',
             'inputTranscriptionVolume'=>'Transcription Volume Number',
             'inputPinNum' =>'Pin Number',
@@ -183,11 +185,23 @@ return [
             'inputPreviousNotaryLN'=> 'Last name of previos Notary',
             'inputSurveyingDate' =>'Surveying Date',
             'inputFirstDeedReg' =>'First Deed Registration',
-            'inputFirstDeedGeneration' =>'First Deed Generation'
+            'inputFirstDeedGeneration' =>'First Deed Generation',
 
+            //change password
+            'txtpassword'=>'New Password',
+            'txtOldpassword'=>'Old Password',
 
+            //upload contract
+            'inputClientName'=>'Name of client',
+            'inputProperty'=>'Property ID',
+            'inputTransaction'=>'Type of Transaction',
+            'inputStampDuty'=>'Stamp Duty fees',
+            'inputAdministrativeFees'=>'Administrative Fees',
 
-                        
+            //adding meetings
+            'meetingReason'=>'Meeting Reason',
+            'startTime'=>'Meeting Start Time',
+            'endTime'=>'Meeting End Time'
     ],
 
 ];

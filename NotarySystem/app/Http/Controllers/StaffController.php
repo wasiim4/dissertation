@@ -54,17 +54,17 @@ class StaffController extends Controller
         //validating inputs
         $this->validate($request,
         [
-            'inputFirstName' => 'required|string|max:255',
-            'inputLastName' => 'required|string|max:255',
+            'inputFirstName' => 'required|alpha|max:255',
+            'inputLastName' => 'required|alpha|max:255',
             'inputContactNum' => 'required|regex:/^[5][0-9]{7}+$/u|integer|unique:users,contactnum',
             'inputEmail' => 'required|string|email|max:255|unique:users,email',
             'inputDob' => 'required|date',
             'inputGender' => 'required|alpha|max:255',
-            'inputAddress' => 'required',
+            'inputAddress' => 'required|string|max:255',
             'inputMarriageStatus' => 'required',
             'inputRoles' =>'required',
-            'inputNIC1' => 'required|alpha_num|unique:users,nic',
-            'inputBcNum' => 'required|numeric',
+            'inputNIC1' => 'required|alpha_num|max:14|unique:users,nic',
+            'inputBcNum' => 'required|numeric|unique:users,birthCertificateNumber',
             'inputDistrict' =>'required',
             'inputPlaceOfBirth' =>'required',
             'inputProfession' =>'required',
@@ -117,12 +117,12 @@ class StaffController extends Controller
 
          DB::table('users')->insert($data);
         
-        if($commonLawMarriage=="Yes"){
-            // Session::flash('message', 'Client successfully added'); 
+        if($commonLawMarriage=="Yes" && $marriageStatus=='Mariés'){
+            // Session::flash('message', 'Client successfully added and email successfully sent!'); 
             return redirect('staff/registerSpouse');
         }
         else{
-            Session::flash('message', 'Client successfully added!'); 
+            Session::flash('message', 'Client successfully added and email successfully sent!'); 
             return redirect('staff/registernew');
         }
     }
@@ -146,14 +146,14 @@ class StaffController extends Controller
                 'inputSpouseFirstName'=> 'required|string|max:255',
                 'inputSpouseLastName'=> 'required|string|max:255',
                 'inputSpouseTitle' =>'required',
-                'inputSpouseNIC' => 'required|alpha_num|unique:users,spouseNic',
+                'inputSpouseNIC' => 'required|alpha_num|max:14|unique:users,spouseNic',
                 'inputSpouseDob' =>'required|date',
                 'inputSpouseBcNum' => 'required|numeric|unique:users,spouseBCNum',
                 'inputSpouseDistrict' =>'required',
                 'inputSpouseMarriageDate' =>'required|date',
                 'inputMcNum' => 'required|numeric|unique:users,MCnumber',
                 'inputMcDistrict' =>'required',
-                'inputSpouseProfession' =>'required|string|max:255',
+                'inputSpouseProfession' =>'required|alpha|max:255',
                 'inputSpouseGender' =>'required',
                 'inputSpousePlaceOfBirth' =>'required',
                 ]       
@@ -215,11 +215,12 @@ class StaffController extends Controller
                  'inputPreviousNotaryFN'=> 'required|string|max:255',
                  'inputPreviousNotaryLN'=> 'required|string|max:255',
                  'inputSizeMsF' =>'required|numeric',
-                 'inputTranscriptionVolume' => 'required|alpha_num|unique:immovableproperty,transcriptionVol',
-                 'inputPinNum' =>'required|alpha_num|unique:immovableproperty,pinNum',
-                 'inputRegNum' =>'required|alpha_num|unique:immovableproperty,regNumLSReport',
-                 'inputLsFn'=> 'required|string|max:255',
-                 'inputLsLn'=> 'required|string|max:255',
+                 'inputTranscriptionVolume' => 'required|string|max:255',
+                 'inputPinNum' =>'required|alpha_num',
+                 'inputRegNum' =>'required|string|max:255',
+                 'inputLsFn'=> 'required|alpha|max:255',
+                 'inputLsLn'=> 'required|alpha|max:255',
+                 'inputSizeInPerch' => 'required|numeric',
                  'inputPrice' => 'required|numeric',
                  'inputSurveyingDate' =>'required|date',
                  'inputFirstDeedReg' =>'required|date',
@@ -257,6 +258,8 @@ class StaffController extends Controller
                 //if no then no taxduty 
                 $taxduty=0;
             }
+
+
         
             //inserting into db
             $data = array(
@@ -395,6 +398,15 @@ class StaffController extends Controller
         }
 
         public function addMeeting(Request $request){
+
+            $this->validate($request,
+                [
+                    'meetingReason'=>'required',
+                    'startTime'=>'required|date',
+                    'endTime'=>'required|date|after:startTime'
+                    
+                ]);
+
 
             //retrieving inputs
             $status="Pending";
@@ -594,6 +606,9 @@ class StaffController extends Controller
 
             $this->validate($request,
                 [
+                    'inputClientName'=>'required',
+                    'inputProperty'=>'required',
+                    'inputTransaction'=>'required',
                     'contract' => 'required|mimes:pdf',                  
                     'inputStampDuty'=>'required|numeric',
                     'inputAdministrativeFees'=>'required|numeric'
@@ -758,7 +773,21 @@ class StaffController extends Controller
                     );
             
                     DB::table('transaction')->insert($data);
-                    Session::flash('message', 'Contract successfully uploaded! Fees to paid=RS '.$totalFees); 
+                    $client= DB::table('users')->where('id', $clientName)->get();
+
+                    foreach ($client as $clients) {
+
+                        $data = [
+                            'firstname'          =>$clients->firstname,
+                            'lastname'          =>$clients->lastname,
+                            'Fees'     =>$totalFees               
+                        ];
+                        
+                        Mail::send('emails.notifyUploadContract', $data, function($m) use ($clients){
+                            $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Contract Copy and Payment");
+                        });
+                    }
+                    Session::flash('message', 'Contract successfully uploaded and mail successfully sent! Fees to paid=RS '.$totalFees); 
                     return Redirect::to('/staff/upload/contract');
                 }
 
