@@ -1052,7 +1052,8 @@ class StaffController extends Controller
             DB::table('meetings')
             ->where('id', $mid)
             ->update([
-                'meetingStatus' => "Confirmed"
+                'meetingStatus' => "Confirmed",
+                'seen'=>"true"
             ]);        
 
 
@@ -1080,7 +1081,8 @@ class StaffController extends Controller
             DB::table('meetings')
             ->where('id', $mid)
             ->update([
-                'meetingStatus' => "Unavailable"
+                'meetingStatus' => "Unavailable",
+                'seen'=>'true'
             ]);
             
         $client= DB::table('users')->where('id',$pid)->get();
@@ -1172,13 +1174,15 @@ class StaffController extends Controller
         $numTransactions=DB::table('transaction')->count();
         $numProperties=DB::table('immovableproperty')->count();
         $numMeetings=DB::table('meetings')->count();
-        $numDocuments=DB::table('uploaded_documents')->count();   
+        $numDocuments=DB::table('uploaded_documents')->count();
+        $pendingMeetings=DB::table('meetings')->where('seen','false')->count();
 
         return view('staff.staffDashboard')->with('numClients',$numClients)
                                             ->with('numTransactions',$numTransactions)
                                             ->with('numProperties',$numProperties)
                                             ->with('numMeetings',$numMeetings)
-                                            ->with('numDocuments',$numDocuments);
+                                            ->with('numDocuments',$numDocuments)
+                                            ->with('pendingMeetings',$pendingMeetings);
                                         
     }
 }

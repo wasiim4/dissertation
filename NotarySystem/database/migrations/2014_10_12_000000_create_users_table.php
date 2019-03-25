@@ -184,7 +184,7 @@ class CreateUsersTable extends Migration
             $table->datetime('startTime');
             $table->datetime('endTime');
             $table->string('meetingStatus');
-            // $table->boolean('seen')->default(false);
+            $table->boolean('seen')->default(false);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

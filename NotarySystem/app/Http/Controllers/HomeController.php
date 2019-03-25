@@ -233,7 +233,8 @@ class HomeController extends Controller
              'meetingReason' => $reason, 
              'startTime'=>$start,
              'endTime' =>  $end ,
-             'meetingStatus' =>$status
+             'meetingStatus' =>$status,
+             'seen'=>"false"
              
              
          );

@@ -1,7 +1,6 @@
 @extends('layouts.stafflayout')
 
   <head>
-   
     <title>Staff Dashboard</title>
     <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +28,20 @@
         letter-spacing: 2px;
         display:inline;
       }
+
+      .blink{
+		text-align: center;
+	
+	}
+	.spanBlink{
+		font-size: 25px;
+		animation: blink 1s linear infinite;
+	}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
     </style>
    
    <script>
@@ -226,6 +239,43 @@
             </div>
           </div>
         </div>
+        <div class="row">   
+          <div class="col-4">
+              <div class="container">               
+                  <div class="card">
+                    <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Pending Meetings <i style="color:red;" class="fas fa-circle"></i></div>
+                    <div class="card-body blink" style="text-align:center;color:#17a2b8;font-size:15px;">
+                      @if($pendingMeetings==0)
+                      <span >{{$pendingMeetings}}</span>
+                      @endif
+                      @if($pendingMeetings>0)
+                      <span class="spanBlink">{{$pendingMeetings}}</span>
+                      @endif
+                    </div>                 
+                  </div>
+                </div>
+                {{-- <audio src="{{asset('images/notification.mp3')}}" autoplay></audio> --}}
+          </div>
+          <div class="col-4">
+              <div class="container">               
+                  <div class="card">
+                    <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Confirmed Meetings <i style="color:green;" class="fas fa-circle"></i></div>
+                    <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">
+                      {{$pendingMeetings}}
+                    </div>                 
+                  </div>
+                </div>
+          </div>   
+          <div class="col-4">
+              <div class="container">               
+                  <div class="card">
+                    <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Rejected Meetings <i style="color:red;" class="fas fa-times-circle"></i></div>
+                    <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">{{$pendingMeetings}}</div>                 
+                  </div>
+                </div>
+          </div>                   
+        </div>
+      <br>
       <div class="row">
         <!-- Users Stats -->
         <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
