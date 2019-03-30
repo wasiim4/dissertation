@@ -202,7 +202,16 @@ class CreateUsersTable extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
-        
+        Schema::create('task_progress', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('clientId');
+            $table->boolean('registeredProperty')->default(false);
+            $table->boolean('generateDraft')->default(false);
+            $table->boolean('SignedUpload')->default(false);
+            $table->boolean('payment')->default(false);
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+        });
        
     }
 

@@ -39,7 +39,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('/dashboard');
+        $progressData=DB::table('task_progress')->where('clientId',Auth::user()->id)->get();
+        return view('/dashboard')->with('progressData',$progressData);
     }
 
     // public function returnHome()

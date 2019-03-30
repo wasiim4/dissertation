@@ -787,6 +787,10 @@ class StaffController extends Controller
                             $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Contract Copy and Payment");
                         });
                     }
+
+                    DB::table('task_progress')->where('clientId',$clientName)->update([
+                        'SignedUpload'=>true                       
+                    ]);
                     Session::flash('message', 'Contract successfully uploaded and mail successfully sent! Fees to paid=RS '.$totalFees); 
                     return Redirect::to('/staff/upload/contract');
                 }
@@ -1175,14 +1179,16 @@ class StaffController extends Controller
         $numProperties=DB::table('immovableproperty')->count();
         $numMeetings=DB::table('meetings')->count();
         $numDocuments=DB::table('uploaded_documents')->count();
-        $pendingMeetings=DB::table('meetings')->where('seen','false')->count();
+        $pendingMeetings=DB::table('meetings')->where('meetingStatus','Pending')->count();
+        $confirmedMeetings=DB::table('meetings')->where('meetingStatus','Confirmed')->count();
 
         return view('staff.staffDashboard')->with('numClients',$numClients)
                                             ->with('numTransactions',$numTransactions)
                                             ->with('numProperties',$numProperties)
                                             ->with('numMeetings',$numMeetings)
                                             ->with('numDocuments',$numDocuments)
-                                            ->with('pendingMeetings',$pendingMeetings);
+                                            ->with('pendingMeetings',$pendingMeetings)
+                                            ->with('confirmedMeetings', $confirmedMeetings);
                                         
     }
 }

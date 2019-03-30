@@ -261,7 +261,7 @@
                   <div class="card">
                     <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Confirmed Meetings <i style="color:green;" class="fas fa-circle"></i></div>
                     <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">
-                      {{$pendingMeetings}}
+                      {{$confirmedMeetings}}
                     </div>                 
                   </div>
                 </div>

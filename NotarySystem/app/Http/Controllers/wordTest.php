@@ -33,6 +33,15 @@ class wordTest extends Controller
             'secTranscriptionVol'=>$secDeedTVNum
         ]);
 
+        $progressData = array(
+            'clientId' => $buyerId, 
+            'registeredProperty' => true, 
+            'generateDraft'=>true
+                 
+        );
+
+        DB::table('task_progress')->insert( $progressData);
+
         //fetching data from database based on the id entered for the property,buyer and seller
         $buyers=(DB::table('users')->where('id',$buyerId)->get());
         $sellers=(DB::table('users')->where('id',$sellerId)->get());
