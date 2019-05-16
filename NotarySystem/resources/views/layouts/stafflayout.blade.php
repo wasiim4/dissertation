@@ -42,6 +42,9 @@
             $('#tblnotary').DataTable(
                 {'responsive':'true'}
             );
+            $('#tblproperties').DataTable(
+                {'responsive':'true'}
+            );
             $('#tblclient').DataTable(
                 {'responsive':'true'}
             );
@@ -101,7 +104,7 @@
                             <a href="{{ route('transactionsList') }}"><i class="fas fa-hand-holding-usd"></i> Transactions</a></li>
                         </li>
                         <li>
-                            <a href="{{ route('myProfile') }}"><i class="fas fa-building"></i> Immovable Properties</a></li>
+                            <a href="{{ route('property.list') }}"><i class="fas fa-building"></i> Immovable Properties</a></li>
                         </li>
                     </ul>
                 </li>

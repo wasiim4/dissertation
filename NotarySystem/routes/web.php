@@ -89,6 +89,10 @@ Route::prefix('staff')->group(function(){
     Route::get('/transactions/list', 'StaffController@getAllTransaction')->name('transactionsList');
     Route::get('/show/client_transactions/{id}', 'StaffController@getClientTransactions')->name('client.transaction.show');
     Route::get('/dashboard','StaffController@getDashboard')->name('staff.dashboard');
+    Route::get('/transaction/update/{id}','StaffController@updatePayment')->name('payment');
+    Route::get('/list/properties','StaffController@propertyList')->name('property.list');
+    Route::get('/list/property/{id}','StaffController@getProperty')->name('property');
+
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 

@@ -96,7 +96,7 @@
                                     </span>
                                 </a>
                                   |
-                                <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/delete/{{$transaction->id}}">
+                                <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/update/{{$transaction->id}}">
                                     <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Update payment">
                                             <i class="fas fa-hand-holding-usd"></i>
                                     </span>

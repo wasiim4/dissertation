@@ -1191,5 +1191,16 @@ class StaffController extends Controller
                                             ->with('confirmedMeetings', $confirmedMeetings);
                                         
     }
+
+    public function updatePayment($id){
+        DB::table('transaction')->where('clientId',$id)
+                                ->update(['feeStatus'=>"PAID"]);
+        return redirect('/staff/transactions/list');
+    }
+
+    public function propertyList(){
+        $properties=DB::table('immovableproperty')->get();
+        return view('Staff.propertyList')->with('properties',$properties);
+    }
 }
 ?>

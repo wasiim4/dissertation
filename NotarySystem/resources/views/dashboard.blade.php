@@ -7,53 +7,53 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <style>
-
 #content{
-        width: 100.2% !important;
-      }
+  width: 100.2% !important;
+}
 .clockStyle {
-        background-color:#fff;
-        padding:6px;
-        color:black;
-        font-family:"Arial Black", Gadget, sans-serif;
-        font-size:30px;
-        font-weight:bold;
-        letter-spacing: 2px;
-        display:inline;
+    background-color:#fff;
+    padding:6px;
+    color:black;
+    font-family:"Arial Black", Gadget, sans-serif;
+    font-size:30px;
+    font-weight:bold;
+    letter-spacing: 2px;
+    display:inline;
       }
 
-      .blink{
-		text-align: center;
-	
-	}
+    .blink{
+		  text-align: center;	
+	  }
 	.spanBlink{
 		font-size: 25px;
 		animation: blink 1s linear infinite;
 	}
-@keyframes blink{
-0%{opacity: 0;}
-50%{opacity: .5;}
-100%{opacity: 1;}
-}
-    </style>
+  @keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+  }
+......................................................................................................................................
+.progressDetails{
+    /* background-color: aliceblue; */
+    width: 100%;
+    /* border: 3px solid #17a2b8; */
+    /* border-radius: 12px; */
+    padding: 40px;
+    margin:0px;
+  
+  }
+ </style>
    
-   <script>
-      setTimeout(function(){
-          window.location.reload(1);
-       }, 300000);
-       </script> 
-</style>
-
-
+  <script>
+    setTimeout(function(){
+        window.location.reload(1);
+      }, 300000);
+  </script>
 
 </head>
 @section('content')
-
-{{-- <div>
-    <h1 style="text-align:center;">Welcome to the notary system</h1>    
-</div>
- @include('flashy::message')  --}}
- <div class="row">
+<div class="row">
         <div class="col-5"></div>
         <div class="col-3">
            <div id="clockDisplay" class="clockStyle"></div>
@@ -92,6 +92,44 @@
         <div class="col-2"></div>
       </div>
      <br>
+     <div class="row">
+      <div class="col-12">
+          <div class="container">
+            <h3>Task Progress</h3>
+              <div class="progress" style=" background-color: grey;height: 3%;">
+                @foreach ($progressData as $progressDatas)
+                  @if($progressDatas->registeredProperty=='1')
+                   <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:25%; height:98%;"">25%</div>
+                  @endif
+                  @if($progressDatas->generateDraft=='1')
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:50%; height:98%;">50%</div>
+                  @endif
+                  @if($progressDatas->SignedUpload=='1')
+                    <div class="progress-bar  bg-success progress-bar-striped progress-bar-animated" style="width:75%; height:98%;">75%</div>
+                  @endif
+                  @if($progressDatas->payment=='1')
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:100%; height:98%;">100%</div>
+                  @endif 
+                @endforeach
+              </div>
+          </div>
+        </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-6">
+        <div class="progressDetails">
+          25%- Registration of property completed.<br>
+          50%- Draft of contract successfully generated.<br>
+          75%- Signing procedure/Registered contract copy uploaded.<br>
+          100%- Payment completed.
+       </div>
+      </div>
+      <div class="col-3">
+        
+      </div>
+      <div class="col-3"></div>
+    </div>
      <div class="main-content-container container-fluid px-4">         
             <!-- Small Stats Blocks -->
             <div class="row">
@@ -167,80 +205,6 @@
               </div>
             </div>
             <!-- End Small Stats Blocks -->
-
-            <div class="row">
-                    <div class="col-lg col-md-6 col-sm-6 mb-4">
-                      <div class="stats-small stats-small--1 card card-small">
-                        <div class="card-body p-0 d-flex">
-                          <div class="d-flex flex-column m-auto">
-                            <div class="stats-small__data text-center">
-                            <a href="/staff/registernew"> <span class="stats-small__label text-uppercase"> New Client</span></a>
-                            <h6 class="stats-small__value count my-3"><i class="fas fa-user-plus" style="color:#17a2b8;"></i></h6>
-                            </div>
-                            
-                          </div>
-                          <canvas height="120" class="blog-overview-stats-small-1"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md-6 col-sm-6 mb-4">
-                      <div class="stats-small stats-small--1 card card-small">
-                        <div class="card-body p-0 d-flex">
-                          <div class="d-flex flex-column m-auto">
-                            <div class="stats-small__data text-center">
-                              <a href="/staff/transactions/list"><span class="stats-small__label text-uppercase"> New Transaction</span></a>
-                            <h6 class="stats-small__value count my-3"><i class="fas fa-hand-holding-usd" style="color:#17a2b8;"></i></h6>
-                            </div>
-                            
-                          </div>
-                          <canvas height="120" class="blog-overview-stats-small-2"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md-4 col-sm-6 mb-4">
-                      <div class="stats-small stats-small--1 card card-small">
-                        <div class="card-body p-0 d-flex">
-                          <div class="d-flex flex-column m-auto">
-                            <div class="stats-small__data text-center">
-                              <span class="stats-small__label text-uppercase">New Property</span>
-                            <h6 class="stats-small__value count my-3"><i class="fas fa-building" style="color:#17a2b8;"></i></h6>
-                            </div>
-                            
-                          </div>
-                          <canvas height="120" class="blog-overview-stats-small-3"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md-4 col-sm-6 mb-4">
-                      <div class="stats-small stats-small--1 card card-small">
-                        <div class="card-body p-0 d-flex">
-                          <div class="d-flex flex-column m-auto">
-                            <div class="stats-small__data text-center">
-                              <span class="stats-small__label text-uppercase">New Meeting</span>
-                            <h6 class="stats-small__value count my-3">  <i class="fas fa-calendar-alt" style="color:#17a2b8;"></i></h6>
-                            </div>
-                            
-                          </div>
-                          <canvas height="120" class="blog-overview-stats-small-4"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg col-md-4 col-sm-12 mb-4">
-                      <div class="stats-small stats-small--1 card card-small">
-                        <div class="card-body p-0 d-flex">
-                          <div class="d-flex flex-column m-auto">
-                            <div class="stats-small__data text-center">
-                              <span class="stats-small__label text-uppercase">New Upload</span>
-                            <h6 class="stats-small__value count my-3"> <i class="fas fa-upload" style="color:#17a2b8;"></i></h6>
-                            </div>
-                            
-                          </div>
-                          <canvas height="120" class="blog-overview-stats-small-5"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   <div class="row">   
                         <div class="col-4">
                             <div class="container">               
@@ -278,29 +242,7 @@
                         </div>                   
                       </div>
                     <br>
-                    <div class="row">
-                        <div class="col-12">
-                                <div class="container">
-                                        <h3>Task Progress</h3>
-                                        <div class="progress">
-                                        @foreach ($progressData as $progressDatas)
-                                        {{-- @if($progressDatas->registeredProperty=='1')
-                                          <div class="progress-bar" style="width:25%">25%</div>
-                                        @endif --}}
-                                        @if($progressDatas->generateDraft=='1')
-                                          <div class="progress-bar bg-warning" style="width:50%">50%</div>
-                                        @endif
-                                         @if($progressDatas->SignedUpload=='1')
-                                        <div class="progress-bar  bg-info" style="width:75%">75%</div>
-                                        @endif
-                                        @if($progressDatas->payment=='1')
-                                        <div class="progress-bar bg-success" style="width:100%">100%</div>
-                                        @endif 
-                                        @endforeach
-                                        </div>
-                                      </div>
-                        </div>
-                    </div>
+                   
                     <br>
                     <div class="row">
                       <!-- Users Stats -->

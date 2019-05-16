@@ -79,13 +79,13 @@
                                     {{$transaction->created_at}}
                                 </td>
                                 <td>
+                                    {{$transaction->fees}}
+                                </td>
+                                <td>
                                     {{$transaction->feeStatus}}
                                 </td>
                                 <td>
                                     {{$transaction->transactionType}}
-                                </td>
-                                <td>
-                                    {{$transaction->created_at}}
                                 </td>                 
                                 <td>
                                     <a  style="color:blue;" href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">
@@ -96,14 +96,14 @@
                                             {{-- Download --}}
                                         {{-- </i> --}}
                                         {{-- </button> --}}
-                                    </a> &nbsp;&nbsp; |&nbsp;&nbsp;
+                                    </a> |
                                     <a class="btndelevent" style="color:red;" href="/staff/transaction/delete/{{$transaction->id}}">
                                         <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                                           <i class="fas fa-trash-alt font-color"></i>
                                         </span>
                                       </a>
-                                      &nbsp;&nbsp; |&nbsp;&nbsp;
-                                    <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/delete/{{$transaction->id}}">
+                                     |
+                                    <a class="btndelevent" style="color:green;font-size: x-large;" href="/staff/transaction/update/{{$transaction->id}}">
                                         <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Update payment">
                                                 <i class="fas fa-hand-holding-usd"></i>
                                         </span>
