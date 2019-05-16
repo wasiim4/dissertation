@@ -134,12 +134,12 @@
                     <li>
                         <a href="{{ route('registerSpouse') }}" ><i class="fas fa-user-plus"></i> Add Spouse</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('confirm.children') }}" ><i class="fas fa-user-plus"></i> Num of Children</a>
                     </li>
                     <li>
                         <a href="{{ route('show.children.form') }}" ><i class="fas fa-user-plus"></i>Add Children</a>
-                    </li>
+                    </li> --}}
                         
                     <li>
                         <a href="{{ route('propertyRegistration') }}" ><i class="fas fa-building"></i> Property Registration</a>
@@ -154,12 +154,12 @@
                 </a>
                 <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
                     <li>
-                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> My documents</a>
+                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-file-alt"></i> My documents</a>
                     </li>
                     <li>
-                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-user-plus"></i> Client</a>
+                        <a href="{{ route('download.uploadedDocs') }}" ><i class="fas fa-file-alt"></i> External Parties</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#tblRgd" ><i class="fas fa-user-plus"></i> RGD</a>
                     </li>
                     <li>
@@ -167,7 +167,7 @@
                     </li>
                     <li>
                         <a href="#tblLs" ><i class="fas fa-user-plus"></i>Land Surveyor</a>
-                    </li>            
+                    </li>             --}}
                 </ul>
             </li>
             

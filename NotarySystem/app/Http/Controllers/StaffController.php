@@ -1002,15 +1002,14 @@ class StaffController extends Controller
         public function viewUploadedDocuments(){
             $documentsByNotary=DB::table('uploaded_documents')->where('senderRole','Notary')
           ->get();
-            $documents=DB::table('uploaded_documents')->where('senderRole','Client')->get();
-            $documentsByBank=DB::table('uploaded_documents')->where('senderRole','BANK')->get();
-            $documentsByRGD=DB::table('uploaded_documents')->where('senderRole','RGD')->get();
-            $documentsByLS=DB::table('uploaded_documents')->where('senderRole','Land Surveyor')->get();
-            return view('Staff.uploadedDocuments')->with('documents',$documents)
-                                                    ->with('documentsByBank',$documentsByBank)
-                                                    ->with('documentsByRGD',$documentsByRGD)
-                                                    ->with('documentsByLS',$documentsByLS)
-                                                    ->with('documentsByNotary', $documentsByNotary);
+                                              
+            $documents=DB::table('uploaded_documents')->where('senderRole','Client')
+                                                      ->orwhere('senderRole','BANK')
+                                                      ->orwhere('senderRole','RGD')
+                                                      ->orwhere('senderRole','Land Surveyor')
+                                                      ->get();
+            return view('Staff.uploadedDocuments')->with('documents',$documents) 
+                                                  ->with('documentsByNotary', $documentsByNotary);
         }
 
         public function uploadDoc(Request $request){

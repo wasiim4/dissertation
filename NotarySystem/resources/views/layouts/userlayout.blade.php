@@ -28,6 +28,9 @@
         $('#tbluser').DataTable(
             {'responsive':'true'}
         );
+        $('#tblDoc').DataTable(
+            {'responsive':'true'}
+        );
     } );
     </script>  
     <script>

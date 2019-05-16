@@ -23,11 +23,40 @@
         html {
         scroll-behavior: smooth;
         }
+
+        .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+    }
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
     </style> 
 
 </head>
 @section('content')
 {{-- BY NOTARY/NOTARY ASSISTANT --}}
+<div class="row">
+    <div class="col-12">
+        <div class="header">
+            <h1 style="text-align:center;">Documents uploaded by Notary</h1>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
@@ -69,13 +98,14 @@
                                 {{$documentsByNotaries->lastname}}
                             </td> --}}
                             <td>
-                                {{$documentsByNotaries->receiverRole}}
+                                {{$documentsByNotaries->senderRole}}
                                
                             </td>
                             <td>
                               
                                 {{$documentsByNotaries->docType}}
                             </td>
+                            <td>
                                 {{$documentsByNotaries->docName}}
                             </td>
                             <td>
@@ -106,6 +136,13 @@
 </div >
 <br>
 {{-- BY CLIENT --}}
+<div class="row">
+    <div class="col-12">
+        <div class="header">
+            <h1 style="text-align:center;">Documents uploaded by External Parties</h1>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
@@ -142,10 +179,10 @@
                                 {{$document->id}} 
                             </td>
                             <td>
-                                {{$document->partyId}}
+                                {{$document->senderId}}
                             </td>
                             <td>
-                                {{$document->partyRole}}
+                                {{$document->senderRole}}
                             </td>
                             <td>
                                 {{$document->docType}}
@@ -173,207 +210,5 @@
     </div>
 </div >
 <br>
-{{-- BY BANK --}}
-<div class="row">
-    <div class="col-12">
-        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-            <table id="tblbank" class="table table-hover " style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>
-                            Doc ID
-                        </th> 
-                        <th>
-                            Party Id
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                        <th>
-                            Doc Type
-                        </th> 
-                        <th>
-                            Doc Name
-                        </th> 
-                        <th>
-                            Uploaded At
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($documentsByBank as $documentsByBanks)
-                        <tr >
-                            <td>    
-                                {{$documentsByBanks->id}} 
-                            </td>
-                            <td>
-                                {{$documentsByBanks->partyId}}
-                            </td>
-                            <td>
-                                {{$documentsByBanks->partyRole}}
-                            </td>
-                            <td>
-                                {{$documentsByBanks->docType}}
-                            </td>
-                            <td>
-                                {{$documentsByBanks->docName}}
-                            </td>
-                            <td>
-                                {{$documentsByBanks->created_at}}
-                            </td>
-                            <td>
-                                <a href="/storage/images/{{$documentsByBanks->docName}}" download="{{$documentsByBanks->docName}}">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-download">
-                                            Download
-                                        </i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div >
-<br>
-{{-- BY RGD --}}
-<div class="row">
-    <div class="col-12">
-        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-            <table id="tblRgd" class="table table-hover " style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>
-                            Doc ID
-                        </th> 
-                        <th>
-                            Party Id
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                        <th>
-                            Doc Type
-                        </th> 
-                        <th>
-                            Doc Name
-                        </th> 
-                        <th>
-                            Uploaded At
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach( $documentsByRGD as  $documentsByRGDS)
-                        <tr >
-                            <td>    
-                                {{$documentsByRGDS->id}} 
-                            </td>
-                            <td>
-                                {{$documentsByRGDS->partyId}}
-                            </td>
-                            <td>
-                                {{$documentsByRGDS->partyRole}}
-                            </td>
-                            <td>
-                                {{$documentsByRGDS->docType}}
-                            </td>
-                            <td>
-                                {{$documentsByRGDS->docName}}
-                            </td>
-                            <td>
-                                {{$documentsByRGDS->created_at}}
-                            </td>
-                            <td>
-                                <a href="/storage/images/{{$documentsByRGDS->docName}}" download="{{$documentsByRGDS->docName}}">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-download">
-                                            Download
-                                        </i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div >
-<br>
-{{-- BY LAND SURVEYOR --}}
-<div class="row ">
-    <div class="col-12">
-        <div class="container tableSpacor table-responsive " style="border: 2mm ridge #212529;" style="width:100%;">
-            <table id="tblLs" class="table table-hover " style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>
-                            Doc ID
-                        </th> 
-                        <th>
-                            Party Id
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                        <th>
-                            Doc Type
-                        </th> 
-                        <th>
-                            Doc Name
-                        </th> 
-                        <th>
-                            Uploaded At
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($documentsByLS as $documentsByLSs)
-                        <tr >
-                            <td>    
-                                {{$documentsByLSs->id}} 
-                            </td>
-                            <td>
-                                {{$documentsByLSs->partyId}}
-                            </td>
-                            <td>
-                                {{$documentsByLSs->partyRole}}
-                            </td>
-                            <td>
-                                {{$documentsByLSs->docType}}
-                            </td>
-                            <td>
-                                {{$documentsByLSs->docName}}
-                            </td>
-                            <td>
-                                {{$documentsByLSs->created_at}}
-                            </td>
-                            <td>
-                                <a href="/storage/images/{{$documentsByLSs->docName}}" download="{{$documentsByLSs->docName}}">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-download">
-                                            Download
-                                        </i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div >
+
 @endsection

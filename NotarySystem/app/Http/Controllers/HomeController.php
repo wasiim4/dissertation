@@ -135,8 +135,10 @@ class HomeController extends Controller
     }
 
     public function uploadDoc(Request $request){
-        $party_id = Auth::user()->id;
-        $party_role = "Client";
+        $sender_id = Auth::user()->id;
+        $sender_role = "Client";
+        $receiver_id = 1;
+        $receiver_role = "Notary";
         $docType=Input::get('inputDocType');
         $image=$request->file('document');
         if(isset($image)) { //to check if user has selected an image
@@ -154,8 +156,10 @@ class HomeController extends Controller
                 $path = $request->file('document')->storeAs('public/images', $fileNameToStore);
             
                 $data = array(
-                    'partyId' => $party_id, 
-                    'partyRole' =>  $party_role, 
+                    'senderId' => $sender_id, 
+                    'senderRole' =>  $sender_role, 
+                    'receiverId' => $receiver_id, 
+                    'receiverRole' =>  $receiver_role, 
                     'docType' => $docType, 
                     'docName' => $fileNameToStore 
                 );

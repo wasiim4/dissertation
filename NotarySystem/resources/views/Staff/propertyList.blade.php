@@ -57,10 +57,19 @@
                            Address
                         </th> 
                         <th>
-                            Size(Meter Sq)
+                            Size(Meter Squares)
                         </th>
                         <th>
                             District
+                        </th>
+                        <th>
+                            Transcription Vol
+                        </th>
+                        <th>
+                            Price(RS)
+                        </th>
+                        <th>
+                            Registration Num
                         </th>
                         <th>
                             Actions
@@ -91,18 +100,25 @@
                                 {{$property->districtSituated}}
                             </td>
                             <td>
+                                {{$property->transcriptionVol}}
+                            </td>
+                            <td>
+                                {{$property->priceInFigures}}
+                            </td>
+                            <td>
+                                {{$property->regNumLSReport}}
+                            </td>
+                            <td>
                                 {{-- Show Event Button --}}
                                     <a style="color:black;" href="/staff/show/client/{{$property->propertyId}}">
-                                        <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="More details">
+                                        <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="More details/Edit">
                                             <i class="fas fa-eye"></i>
                                         </span>
                                     </a> 
                                 {{-- /Show Button --}}
                             |
-                               
-                                {{-- /Edit User Button --}}
-                                |
-                                {{-- Delete User Button --}}
+                            
+                                {{-- Delete  Button --}}
                                 
                                     <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$property->propertyId}}">
                                         <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
@@ -111,14 +127,8 @@
                                     </a>
                                 
                                 {{-- /Delete User Button --}}
-                            |
-                                {{-- Show transactions Button --}}
-                                    <a style="color:black;" href="/staff/show/client_transactions/{{$property->propertyId}}">
-                                        <span data-toggle="tooltip" data-placement="top" tabindex="1" style="border-bottom:none" title="Transactions">
-                                            <i class="fas fa-handshake"></i>
-                                        </span>
-                                    </a> 
-                                {{-- /Show Transaction Button --}}
+                            
+                
                             </td>
                         </tr>
                     @endforeach
