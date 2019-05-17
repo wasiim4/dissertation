@@ -898,24 +898,24 @@ class StaffController extends Controller
         }
 
         // add number of children in database
-        public function addNumberChildren(){
-            $parentId=Input::get('inputParentId');
-            $numberOfChildren=Input::get('numOfChildren');
+        // public function addNumberChildren(){
+        //     $parentId=Input::get('inputParentId');
+        //     $numberOfChildren=Input::get('numOfChildren');
 
-            $query= DB::table('users')
-            ->where("id", $parentId)
-            ->update([
-                    'noOfChildren'=>$numberOfChildren
-                ]); 
+        //     $query= DB::table('users')
+        //     ->where("id", $parentId)
+        //     ->update([
+        //             'noOfChildren'=>$numberOfChildren
+        //         ]); 
 
-                return "successfull";
+        //         return "successfull";
             
-        }
+        // }
         //get number of children
-        public function showChildrenConfirmation(){
-            $users=DB::table('users')->get();
-            return view('Staff.numOfChildren')->with('users',$users);
-        }
+        // public function showChildrenConfirmation(){
+        //     $users=DB::table('users')->get();
+        //     return view('Staff.numOfChildren')->with('users',$users);
+        // }
 
         //get the partage title deed generation form
         public function partageGeneration(){
@@ -1056,10 +1056,8 @@ class StaffController extends Controller
             ->where('id', $mid)
             ->update([
                 'meetingStatus' => "Confirmed",
-                'seen'=>"true"
+                'seen'=>1
             ]);        
-
-
             $client= DB::table('users')->where('id',$pid)->get();
 
             foreach ($client as $clients) {
@@ -1074,18 +1072,19 @@ class StaffController extends Controller
                     $m->to($clients->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
                 });
             }
+        
             
             return redirect('/staff/meeting/add/del/up');            
             // }        
         }
 
-        public function rejectMeetingRequest($mid,$pid,Request $request){
+        public function rejectMeetingRequest($mid,$pid,$reqFrom,Request $request){
 
             DB::table('meetings')
             ->where('id', $mid)
             ->update([
                 'meetingStatus' => "Unavailable",
-                'seen'=>'true'
+                'seen'=>1
             ]);
             
         $client= DB::table('users')->where('id',$pid)->get();
@@ -1107,6 +1106,181 @@ class StaffController extends Controller
             return redirect('/staff/meeting/add/del/up');            
             // }        
         }
+
+        public function confirmMeetingLs($mid,$pid,Request $request){
+        
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Confirmed",
+                'seen'=>1
+            ]);        
+            $landSurveyor= DB::table('land_surveyors')->where('id',$pid)->get();
+
+            foreach ($landSurveyor as $landSurveyors) {
+
+                $data = [
+                    'name'          => $landSurveyors->name,
+                    'requestFrom'=> "Land Surveyor",
+                    'meetingStatus'     =>"Available"               
+                ];
+                
+                Mail::send('emails.meetingReqToNotary', $data, function($m) use ($landSurveyors){
+                    $m->to($landSurveyors->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
+                });
+            }
+        
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+
+        public function rejectMeetingRequestLs($mid,$pid,Request $request){
+
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Unavailable",
+                'seen'=>1
+            ]);
+            
+        $landSurveyor= DB::table('land_Surveyors')->where('id',$pid)->get();
+
+        foreach ($landSurveyor as $landSurveyors) {
+
+            $data = [
+                'name'          => $landSurveyors->name,
+                'requestFrom'=> "Land Surveyor",
+                'meetingStatus'     =>"Unavailable"
+                
+                
+            ];
+            Mail::send('emails.meetingReqToNotary', $data, function($m) use ($landSurveyors){
+                $m->to($landSurveyors->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Unavailable for requested meeting");
+                });
+        }
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+        
+        //confirm/reject meeting fom bank request
+        public function confirmMeetingBank($mid,$pid,Request $request){
+        
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Confirmed",
+                'seen'=>1
+            ]);        
+            $bank= DB::table('banks')->where('id',$pid)->get();
+
+            foreach ($bank as $banks) {
+
+                $data = [
+                    'name'          => $banks->name,
+                    'requestFrom'=> "Bank",
+                    'meetingStatus'     =>"Available"               
+                ];
+                
+                Mail::send('emails.meetingReqToNotary', $data, function($m) use ($banks){
+                    $m->to($banks->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
+                });
+            }
+        
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+
+        public function rejectMeetingRequestBank($mid,$pid,Request $request){
+
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Unavailable",
+                'seen'=>1
+            ]);
+            
+            $bank= DB::table('banks')->where('id',$pid)->get();
+
+            foreach ($bank as $banks) {
+
+                $data = [
+                    'name'          => $banks->name,
+                    'requestFrom'=> "Bank",
+                'meetingStatus'     =>"Unavailable"
+                
+                
+            ];
+            Mail::send('emails.meetingReqToNotary', $data, function($m) use ($banks){
+                $m->to($banks->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Unavailable for requested meeting");
+                });
+        }
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+
+        //confirm/reject meetings from registrar general department
+
+        public function confirmMeetingRGD($mid,$pid,Request $request){
+        
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Confirmed",
+                'seen'=>1
+            ]);        
+            $rgd= DB::table('rgds')->where('id',$pid)->get();
+
+            foreach ($rgd as $rgds) {
+
+                $data = [
+                    'name'          => $banks->name,
+                    'requestFrom'=> "RGD",
+                    'meetingStatus'     =>"Available"               
+                ];
+                
+                Mail::send('emails.meetingReqToNotary', $data, function($m) use ($rgds){
+                    $m->to($rgds->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Available for requested meeting");
+                });
+            }
+        
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+
+        public function rejectMeetingRequestRGD($mid,$pid,Request $request){
+
+            DB::table('meetings')
+            ->where('id', $mid)
+            ->update([
+                'meetingStatus' => "Unavailable",
+                'seen'=>1
+            ]);
+            
+            $rgd= DB::table('rgds')->where('id',$pid)->get();
+
+            foreach ($rgd as $rgds) {
+
+                $data = [
+                    'name'          => $rgds->name,
+                    'requestFrom'=> "RGD",
+                'meetingStatus'     =>"Unavailable"
+                
+                
+            ];
+            Mail::send('emails.meetingReqToNotary', $data, function($m) use ($rgds){
+                $m->to($rgds->email, 'Notary Team')->from('hi@example.com', 'Notary Team')->subject("Unavailable for requested meeting");
+                });
+        }
+            
+            return redirect('/staff/meeting/add/del/up');            
+            // }        
+        }
+
 
         //delete a client
         public function deleteMeeting($id){

@@ -97,69 +97,333 @@
 
 @section('content')
 {{-- <button class="button" style="vertical-align:middle"><span>Back </span> --}}
-<a class="back-btn hvr-icon-pulse" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>
+<a class="back-btn hvr-icon-pulse" href="/dashboard"><i class="fa fa-home hvr-icon"></i> Back</a>
 <br><br>
 <div class="header">
-    <h1 style="text-align:center;">{{$users->firstname}} <?php echo(strtoupper($users->lastname));?>-Profile</h1>
+    <h1 style="text-align:center;">{{Auth::user()->firstname}} <?php echo(strtoupper(Auth::user()->lastname));?>-Profile</h1>
 </div>
 
-<form action="" method="POST"  enctype="multipart/form-data">
+<form action="{{route('client.profileUpdate')}}" method="POST"  enctype="multipart/form-data">
     @csrf
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <h2 style="text-align:right">Profile Picture</h2>   
             <img src="{{asset('/storage/images/'.$users->img_path)}}" style="width:250px; height:250px;" class="rounded float-right" alt="...">  
             <br><br><br><br><br>
-            {{-- <input type="file" id="fpropic" name="fpropic" accept="image/*" style="padding-left: 24%; margin-top:5%;" ><br><br> --}}
+            <input type="file" id="fpropic" name="fpropic" accept="image/*" style="padding-left: 24%; margin-top:5%;" ><br><br>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             {{-- <h2>Details</h2> --}}
-            <label for="staffid">Client ID</label>
-            <input type="text" id="satffId" name="txtid" value="{{$users->id}}" disabled class="form-control"disabled><br>
+            <label for="clientid">client ID</label>
+            <input type="text" id="clientid" name="txtid" value="{{$users->id}}" class="form-control"disabled><br>
 
-            <label for="staffrole">Role</label><br>
-            <input type="text" id="satffRole" name="txtrole" value="{{$users->roles}}"disabled class="form-control"disabled><br>
+            <label for="clientrole">Role</label><br>
+            <input type="text" id="clientRole" name="txtrole" value="{{$users->roles}}" class="form-control"disabled><br>
 
-            <label for="staffTitle">Title</label>
-            <select  name="txtTitle" class="form-control" disabled >
+            
+
+            <label for="fname">First Name</label>
+            <input type="text" id="clientFname" name="txtfname" value="{{$users->firstname}}"class="form-control">
+        
+            <label for="lname">Last Name</label>
+            <input type="text" id="clientlname" name="txtlname" value="{{$users->lastname}}"class="form-control">
+        
+            <label for="clientTitle">Gender</label>
+            <select  name="txtgender" class="form-control">
+                <option selected>{{$users->gender}}</option>
+                <option>Female</option>
+                <option>Male</option>
+            </select>
+        
+        </div>
+
+        <div class="col-4">
+            <label for="country">Email-Address</label>
+            <input type="email" id="clientEmail" name="txtemail"class="form-control" value="{{$users->email}}">
+
+            <label for="contactNum">Contact Number</label>
+            <input type="tel" id="clientContactNum" name="txtcnum" class="form-control"value="{{$users->contactnum}}">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="clientDob" name="txtdob"class="form-control" value="{{$users->dob}}" >
+
+            <label for="nic">National Identity Card Number</label>
+            <input type="text" maxlength="14" id="clientNic" class="form-control"name="txtnic" value="{{$users->nic}}" >
+            
+            <label for="clientProfession">Profession</label>
+            <input type="text"  id="clientProfession" class="form-control"name="txtprofession" value="{{$users->profession}}" >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <label for="clientTitle">Title</label>
+            <select  name="txtTitle" class="form-control">
                 <option selected>{{$users->title}}</option>
                 <option>Monsieur</option>
                 <option>Madame</option>
                 <option>Mademoiselle</option>
             </select>
 
-            <label for="fname">First Name</label>
-            <input type="text" id="staffFname" name="txtfname" disabled value="{{$users->firstname}}"class="form-control">
-        
-            <label for="lname">Last Name</label>
-            <input type="text" id="stafflname" name="txtlname" disabled value="{{$users->lastname}}"class="form-control">
+            <label for="clientBCNum">Birth Certificate Number</label>
+            <input type="text"  id="clientBCNum" class="form-control"name="txtBcNum" value="{{$users->birthCertificateNumber}}" >
         </div>
 
-        <div class="col-3">
-            <label for="country">Email-Address</label>
-            <input type="email" id="staffEmail" name="txtemail" disabled class="form-control" value="{{$users->email}}">
-
-            <label for="contactNum">Contact Number</label>
-            <input type="tel" id="staffContactNum" name="txtcnum" disabled class="form-control"value="{{$users->contactnum}}">
-
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="satffDob" name="txtdob"  disabled class="form-control" value="{{$users->dob}}" >
-
-            <label for="nic">National Identity Card Number</label>
-            <input type="text" maxlength="14" id="satffNic" disabled class="form-control"name="txtnic" value="{{$users->nic}}" >
-            
-            <label for="staffTitle">Title</label>
-            <select  name="txtgender" class="form-control" disabled >
-            <option selected>{{$users->gender}}</option>
-            <option>Female</option>
-            <option>Male</option>
+        <div class="col-4">
+            <label for="clientAddress">Address</label>
+            <input type="text"  id="clientAddress" class="form-control"name="txtaddress" value="{{$users->address}}" >
+        
+            <label for="inputDistrict">District Issued</label>
+            <select  name="inputDistrict" class="form-control">
+                <option selected>Port Louis</option>
+                <option>Moka</option>
+                <option>Flacq</option>
+                <option>Grand Port</option>
+                <option>Pamplemousses</option>
+                <option>Plaine Wilhems</option>
+                <option>Rivière du Rempart</option>
+                <option>Rivière Noire</option>
+                <option>Savanne</option>
             </select>
         </div>
-        <div class="col-3">
-            {{-- <input type="submit" value="Save Changes" class="btn btn-info btn-block"  > --}}
+
+        <div class="col-4">
+            <label for="clientMarriageStatus">Status</label>
+            <select  name="inputStatus" class="form-control">
+                <option selected>{{$users->marriageStatus}}</option>
+                <option>Célibataire</option>
+                <option>Mariés</option>
+                <option >Divorcés</option>
+                <option>Veuve</option>
+                <option>Veuf</option>
+            </select>
+
+            <label for="inputPlaceOfBirth">Place of Birth</label>
+            <select  name="inputPlaceOfBirth" class="form-control">
+                <option selected>Dr Jeetoo Hospital</option>
+                <option>Flacq Hospital</option>
+                <option>J. Nehru Hospital </option>
+                <option>Long Mountain Hospital </option>
+                <option>Mahebourg Hospital</option>
+                <option>Sir Seewoosagur Ramgoolam National Hospital</option>
+                <option>Souillac Hospital</option>
+                <option>City Clinic</option>
+                <option>ABC Medi Clinic</option>
+                <option>Chisty Shifa Clinic </option>
+                <option>Clinique Darné </option>
+                <option>Clinique Muller</option>
+                <option>Clinique de Lorette</option>
+                <option>Clinique du Centre</option>
+                <option>Clinique du Nord</option>
+                <option>Clinique Ferriere</option>
+                <option>Clinique Medisave </option>
+                <option>La Clinique Mauricienne </option>
+                <option>Medicare Clinic</option>
+                <option>Clinique du Bon Pasteur</option>
+                <option>St Esprit Clinic</option>
+                <option>St Jean Clinic</option>
+                <option>Apollo Bramwell Hospital</option>
+                <option>Wellkin Hospital</option>
+            </select>
         </div>
     </div>
-</form>
+    <br>
+    {{-- IF CLIENT IS MARRIED/DIVORCED/WIDOWER/WIDOW --}}
+    @if($users->marriageStatus=="Mariés" || $users->marriageStatus=="Divorcés"|| $users->marriageStatus=="Veuf"|| $users->marriageStatus=="Veuve")
+    <div class="header">
+        <h1 style="text-align:center;">Spouse Details</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-4">
+           
+            <label for="clientSpouseFN"> First Name</label>
+            <input type="text" id="clientSpouseFN" name="txtspousefn" value="{{$users->spouseFirstname}}" class="form-control"><br>
 
+            <label for="clientSpouseLN"> Last Name</label>
+            <input type="text" id="clientSpouseLN" name="txtspouseln" value="{{$users->spouseLastname}}" class="form-control"><br>
+
+            <label for="spouseTitle">  Title</label>
+            <select  name="txtspouseTitle" class="form-control">
+                <option selected>{{$users->spouseTitle}}</option>
+                <option>Monsieur</option>
+                <option>Madame</option>
+            </select>
+
+            <label for="clientTitle">Gender</label>
+            <select  name="txtSpousegender" class="form-control">
+                <option selected>{{$users->spouseGender}}</option>
+                <option>Female</option>
+                <option>Male</option>
+            </select>            
+        
+            <label for="inputDistrict"> District Issued(Marriage Certificate)</label>
+            <select  name="inputMDistrict" class="form-control">
+                <option selected>{{$users->MCdistrictIssued}}</option>
+                <option>Port Louis</option>
+                <option>Moka</option>
+                <option>Flacq</option>
+                <option>Grand Port</option>
+                <option>Pamplemousses</option>
+                <option>Plaine Wilhems</option>
+                <option>Rivière du Rempart</option>
+                <option>Rivière Noire</option>
+                <option>Savanne</option>
+            </select>
+
+            @if($users->marriageStatus=="Divorcés")            
+            <label for="inputDistrict"> District Issued(Divorce Certificate)</label>
+            <select  name="inputDivDistrict" class="form-control">
+                <option selected>{{$users->MCdistrictIssued}}</option>
+                <option>Port Louis</option>
+                <option>Moka</option>
+                <option>Flacq</option>
+                <option>Grand Port</option>
+                <option>Pamplemousses</option>
+                <option>Plaine Wilhems</option>
+                <option>Rivière du Rempart</option>
+                <option>Rivière Noire</option>
+                <option>Savanne</option>
+            </select>
+            @endif
+
+            
+
+            @if($users->marriageStatus=="Veuf"||$users->marriageStatus=="Veuve")            
+            <label for="inputDistrict"> District Issued(Death Certificate)</label>
+            <select  name="inputDeathDistrict" class="form-control">
+                <option selected>{{$users->MCdistrictIssued}}</option>
+                <option>Port Louis</option>
+                <option>Moka</option>
+                <option>Flacq</option>
+                <option>Grand Port</option>
+                <option>Pamplemousses</option>
+                <option>Plaine Wilhems</option>
+                <option>Rivière du Rempart</option>
+                <option>Rivière Noire</option>
+                <option>Savanne</option>
+            </select>
+            @endif
+        </div>
+    
+        <div class="col-4">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="clientDob" name="txtSpousedob"class="form-control" value="{{$users->spouseDob}}" >
+
+            <label for="nic">National Identity Card Number</label>
+            <input type="text" maxlength="14" id="clientNic" class="form-control"name="txtSpousenic" value="{{$users->spouseNic}}" >
+            
+            <label for="clientProfession">Profession</label>
+            <input type="text"  id="clientProfession" class="form-control"name="txtSpouseProfession" value="{{$users->spouseProfession}}" >
+        
+            <label for="clientBCNum">Marriage Certificate Number</label>
+            <input type="text"  id="clientMCNum" class="form-control"name="txtMcNum" value="{{$users->MCNumber}}" >
+    
+            {{-- <label for="dob">Account Creation</label>
+            <input type="text" id="cerateDate" name="txtCrreateDate"class="form-control" value="{{$users->created_at}}" disabled > --}}
+        
+            @if($users->marriageStatus=="Divorcés")            
+                <label for="clientDivCNum">Divorce Certificate Number</label>
+                <input type="text"  id="clientDivCNum" class="form-control"name="txtDivCNum" value="{{$users->birthCertificateNumber}}" >            
+            
+                <label for="dob">Account Creation</label>
+                <input type="text" id="createDate" name="txtCreateDate"class="form-control" value="{{$users->created_at}}" disabled >
+            
+                @elseif($users->marriageStatus=="Mariés")
+            
+            {{-- <label for="dob">Account Creation</label> --}}
+            {{-- <input type="text" id="cerateDate" name="txtCrreateDate"class="form-control" value="{{$users->created_at}}" disabled > --}}
+            
+            @endif   
+            
+            @if($users->marriageStatus=="Veuf" || $users->marriageStatus=="Veuve")            
+                <label for="clientDivCNum">Death Certificate Number</label>
+                <input type="text"  id="clientDivCNum" class="form-control"name="txtDeathCNum" value="{{$users->birthCertificateNumber}}" >            
+            
+                <label for="dob">Account Creation</label>
+                <input type="text" id="cerateDate" name="txtCrreateDate"class="form-control" value="{{$users->created_at}}" disabled >
+            
+                @elseif($users->marriageStatus=="Mariés")
+            
+            <label for="dob">Account Creation</label>
+            <input type="text" id="cerateDate" name="txtCrreateDate"class="form-control" value="{{$users->created_at}}" disabled >
+            
+            @endif      
+        </div>
+
+        <div class="col-4">
+            <label for="clientBCNum">Birth Certificate Number</label>
+            <input type="text"  id="clientBCNum" class="form-control"name="txtSpouseBcNum" value="{{$users->spouseBCNum}}" >
+
+            <label for="inputDistrict">District Issued</label>
+            <select  name="inputSpouseDistrict" class="form-control">
+                <option selected>{{$users->spouseBCdistrictIssued}}</option>
+                <option>Port Louis</option>
+                <option>Moka</option>
+                <option>Flacq</option>
+                <option>Grand Port</option>
+                <option>Pamplemousses</option>
+                <option>Plaine Wilhems</option>
+                <option>Rivière du Rempart</option>
+                <option>Rivière Noire</option>
+                <option>Savanne</option>
+            </select>
+
+            <label for="inputPlaceOfBirth">Place of Birth</label>
+            <select  name="inputSpousePlaceOfBirth" class="form-control">
+                <option selected>{{$users->spousePlaceOfBirth}}</option>
+                <option >Dr Jeetoo Hospital</option>
+                <option>Flacq Hospital</option>
+                <option>J. Nehru Hospital </option>
+                <option>Long Mountain Hospital </option>
+                <option>Mahebourg Hospital</option>
+                <option>Sir Seewoosagur Ramgoolam National Hospital</option>
+                <option>Souillac Hospital</option>
+                <option>City Clinic</option>
+                <option>ABC Medi Clinic</option>
+                <option>Chisty Shifa Clinic </option>
+                <option>Clinique Darné </option>
+                <option>Clinique Muller</option>
+                <option>Clinique de Lorette</option>
+                <option>Clinique du Centre</option>
+                <option>Clinique du Nord</option>
+                <option>Clinique Ferriere</option>
+                <option>Clinique Medisave </option>
+                <option>La Clinique Mauricienne </option>
+                <option>Medicare Clinic</option>
+                <option>Clinique du Bon Pasteur</option>
+                <option>St Esprit Clinic</option>
+                <option>St Jean Clinic</option>
+                <option>Apollo Bramwell Hospital</option>
+                <option>Wellkin Hospital</option>
+            </select>
+
+            <label for="dob">Marriage Date</label>
+            <input type="date" id="clientMarriageDate" name="txtMarriageDate"class="form-control" value="{{$users->marriageDate}}" >
+        
+            {{-- <br><br>
+            <input type="submit" value="Save Changes" class="btn btn-info btn-block"> --}}
+            @if($users->marriageStatus=="Divorcés")            
+                <label for="clientDivCNum">Divorce Date</label>
+                <input type="date"  id="clientDivDate" class="form-control"name="txtDivDate" value="{{$users->birthCertificateNumber}}" >            
+            @endif 
+
+            @if($users->marriageStatus=="Veuf" || $users->marriageStatus=="Veuve" )            
+            <label for="clientDivCNum">Death Date</label>
+            <input type="date"  id="clientSpouseDeathDate" class="form-control"name="txtSpouseDeathDate" value="{{$users->birthCertificateNumber}}" >            
+        @endif 
+        </div>
+    </div>
+     @endif
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="submit" value="Save Changes" class="btn btn-info btn-block">
+        </div>
+        <div class="col-4"></div>
+    </div>
+</form>
 @endsection

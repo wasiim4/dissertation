@@ -396,14 +396,14 @@
                       <td>
                         {{-- Accept meeting  Button --}}
                         @if($meetingsBanks->meetingStatus=="Confirmed")
-                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirmBank/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
                             </span>
                           </a>
                           @else
-                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirmBank/meeting/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
@@ -411,7 +411,7 @@
                           </a>
                           @endif
                           |
-                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/rejectBank/{{$meetingsBanks->id}}{{$meetingsBanks->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
                                 <i class="fas fa-times"></i>
@@ -504,14 +504,14 @@
                       <td>
                         {{-- Accept meeting  Button --}}
                         @if($meetingsByRGDs->meetingStatus=="Confirmed")
-                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirmRGD/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
                             </span>
                           </a>
                           @else
-                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirmRGD/meeting/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
@@ -519,7 +519,7 @@
                           </a>
                           @endif
                           |
-                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
+                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/rejectRGD/{{$meetingsByRGDs->id}}{{$meetingsByRGDs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
                                 <i class="fas fa-times"></i>
@@ -612,14 +612,14 @@
                       <td>
                         {{-- Accept meeting  Button --}}
                         @if($meetingsByLSs->meetingStatus=="Confirmed")
-                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
+                          <a class="btndelevent isDisabled"  style="color:green;" href="http://127.0.0.1:8000/staff/confirmLs/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
                             </span>
                           </a>
                           @else
-                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirm/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
+                          <a class="btndelevent "  style="color:green;" href="http://127.0.0.1:8000/staff/confirmLs/meeting/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Accept Meeting">
                                 <i class="fas fa-check"></i>
@@ -627,7 +627,7 @@
                           </a>
                           @endif
                           |
-                          <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/reject/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
+                        <a class="btndelevent"  style="color:red;" href="http://127.0.0.1:8000/staff/confirm/meeting/rejectLs/{{$meetingsByLSs->id}}{{$meetingsByLSs->partyId}}" >
                             
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Not Available for meeting">
                                 <i class="fas fa-times"></i>

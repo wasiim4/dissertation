@@ -47,7 +47,10 @@
                 <thead>
                     <tr>
                         <th>
-                            Transaction ID
+                             ID
+                        </th> 
+                        <th>
+                            Property ID
                         </th> 
                         <th>
                             Contract
@@ -55,7 +58,9 @@
                         <th>
                             Uploaded At
                         </th>
-                        
+                        <th>
+                            Type
+                        </th>
                         <th>
                             Fees(RS)
                         </th>
@@ -69,15 +74,21 @@
                 </thead>
                 <tbody>
                     @foreach($transactions as $transaction)
-                        <tr >
+                        <tr>
                             <td>    
                                 {{$transaction->id}} 
+                            </td>
+                            <td>    
+                                {{$transaction->propertyId}} 
                             </td>
                             <td>
                                 {{$transaction->contractName}}
                             </td>
                             <td>
                                 {{$transaction->created_at}}
+                            </td>
+                            <td>
+                                {{$transaction->transactionType}}
                             </td>
                             <td>
                                 {{$transaction->fees}}

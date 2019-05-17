@@ -80,6 +80,12 @@ Route::prefix('staff')->group(function(){
     Route::get('view/download/uploaded/documents','StaffController@viewUploadedDocuments')->name('download.uploadedDocs');
     Route::get('/confirm/meeting/{mid}{pid}', 'StaffController@confirmMeeting'); 
     Route::get('/confirm/meeting/reject/{mid}{pid}', 'StaffController@rejectMeetingRequest'); 
+    Route::get('/confirmLs/meeting/{mid}{pid}', 'StaffController@confirmMeetingLs'); 
+    Route::get('/confirm/meeting/rejectLs/{mid}{pid}', 'StaffController@rejectMeetingRequestLs');
+    Route::get('/confirmBank/meeting/{mid}{pid}', 'StaffController@confirmMeetingBank'); 
+    Route::get('/confirm/meeting/rejectBank/{mid}{pid}', 'StaffController@rejectMeetingRequestBank');
+    Route::get('/confirmRGD/meeting/{mid}{pid}', 'StaffController@confirmMeetingRGD'); 
+    Route::get('/confirm/meeting/rejectRGD/{mid}{pid}', 'StaffController@rejectMeetingRequestRGD');
     Route::get('/meeting/delete/{id}', 'StaffController@deleteMeeting')->name('staff.client.delete');
     Route::get('/reset/password', 'StaffController@showChangePassword')->name('show.change.pass');
     Route::post('/reset/password','StaffController@changePassword')->name('staff.change.pass');
@@ -108,7 +114,7 @@ Route::prefix('rgd')->group(function(){
     Route::get('/upload/documents', 'RgdController@showUploadDoc')->name('Rgd.show.uploadDoc');
     Route::post('/upload/documents', 'RgdController@uploadDoc')->name('Rgd.show.UploadDocs');
     Route::get('/uploaded/documents', 'RgdController@viewMyUploadedDoc')->name('Rgd.show.UploadedDocs');
-    Route::get('/confirm/meeting/{pid}{mid}', 'RgdController@confirmMeeting');
+    Route::get('/confirm/meeting/{pid}{mid}{reqFrom}', 'RgdController@confirmMeeting');
     Route::get('/profile/view', 'RgdController@myProfile')->name('rgd.myProfile');
     Route::post('/profile/view', 'RgdController@profileupdate')->name('rgd.profileUpdate');
     Route::get('/meetings', 'RgdController@meeting')->name('rgd.meetings');

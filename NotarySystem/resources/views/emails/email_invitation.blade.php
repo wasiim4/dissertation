@@ -78,6 +78,9 @@
             </div>
             {{-- <img class="userInvImgEmail" src="{{ $message->embed(('images/'.$image_path)) }}">       --}}
         </div>
+        <br>
+        Kind Regards,
+        Notary Team
         <small class="userInvGenEmail">[This is email is generated automatically, please do not reply to this email.]</small>
     </div>
 </body>

@@ -32,8 +32,12 @@
         <div class="userInvEmail">
             <div class="mainUserInvEmail">
                
+                @if($requestFrom=="Land Surveyor" ||$requestFrom=="Bank" ||$requestFrom=="RGD"  )
+                <strong>Hello  {!!$name!!}, </strong> <br><br>
+                @else
                 <strong>Hello {!!$firstname!!} {!!$lastname!!}, </strong> <br><br>
-              
+                @endif
+                
                 @if($meetingStatus=="Unavailable")
                     Please note that the i will not be available for the meeting on for the day you requested for. 
                     However i shall communincate a date to you as soon as possible.
