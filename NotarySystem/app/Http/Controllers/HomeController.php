@@ -59,6 +59,7 @@ class HomeController extends Controller
         if ($request->has('status')) {
             $status = $request->input('status');
         }
+        
 
         $party = $pid;
         $meeting_id = $mid;
@@ -67,9 +68,11 @@ class HomeController extends Controller
         ->where('partyId', $party)
         ->where('id', $meeting_id)
         ->update([
-            'meetingStatus' => $status
-        ]);        
-        
+            'meetingStatus' => $status,
+            'seen'=>1
+        ]);     
+        // echo $mid;   
+        // echo $status;
         return redirect('/login');            
         // }        
     }

@@ -27,7 +27,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/logout', 'HomeController@userlogout');
 Route::get('/view/user/transaction','HomeController@getTransactions')->name('view.transaction');
 Route::post('propertyRegistration/fetch', 'HomeController@fetch')->name('dynamicdependent.fetch');
-Route::get('/confirm/meeting/{pid}{mid}', 'HomeController@confirmMeeting');
+Route::get('/confirm/meeting/{pid}/{mid}', 'HomeController@confirmMeeting');
 Route::get('/compose/email', 'HomeController@showMailCompose')->name('show.mailCompose');
 Route::get('/upload/documents', 'HomeController@showUploadDoc')->name('show.uploadDoc');
 Route::post('/upload/documents', 'HomeController@uploadDoc')->name('show.UploadDocs');
@@ -108,7 +108,7 @@ Route::prefix('rgd')->group(function(){
     Route::get('/login','Auth\RgdLoginController@showLoginForm')->name('rgd.login');
     Route::post('/login','Auth\RgdLoginController@login')->name('rgd.login.submit');
     Route::get('/logout', 'Auth\RgdLoginController@rgdlogout')->name('rgd.logout');
-    Route::get('/confirm/meeting/{pid}{mid}', 'RgdController@confirmMeeting');
+    Route::get('/confirm/meeting/{pid}/{mid}', 'RgdController@confirmMeeting');
     Route::get('/compose/email', 'RgdController@showMailCompose')->name('Rgd.show.mailCompose');
     Route::post('/compose/email', 'RgdController@sendMailToParty')->name('Rgd.send.party.mail');
     Route::get('/upload/documents', 'RgdController@showUploadDoc')->name('Rgd.show.uploadDoc');
@@ -130,7 +130,7 @@ Route::prefix('bank')->group(function(){
     Route::get('/login','Auth\bankLoginController@showLoginForm')->name('bank.login');
     Route::post('/login','Auth\bankLoginController@login')->name('bank.login.submit');
     Route::get('/logout', 'Auth\bankLoginController@banklogout')->name('bank.logout');
-    Route::get('/confirm/meeting/{pid}{mid}', 'bankController@confirmMeeting');
+    Route::get('/confirm/meeting/{pid}/{mid}', 'bankController@confirmMeeting');
     Route::get('/compose/email', 'bankController@showMailCompose')->name('bank.show.mailCompose');
     Route::post('/compose/email', 'bankController@sendMailToParty')->name('bank.send.party.mail');
     Route::get('/upload/documents', 'bankController@showUploadDoc')->name('bank.show.uploadDoc');
@@ -150,7 +150,7 @@ Route::prefix('landSurveyor')->group(function(){
     Route::get('/login','Auth\landSurveyorLoginController@showLoginForm')->name('landSurveyor.login');
     Route::post('/login','Auth\landSurveyorLoginController@login')->name('landSurveyor.login.submit');
     Route::get('/logout', 'Auth\landSurveyorLoginController@landSurveyorlogout')->name('landSurveyor.logout');
-    Route::get('/confirm/meeting/{pid}{mid}', 'landSurveyorController@confirmMeeting');
+    Route::get('/confirm/meeting/{pid}/{mid}', 'landSurveyorController@confirmMeeting');
     Route::get('/compose/email', 'landSurveyorController@showMailCompose')->name('ls.show.mailCompose');
     Route::post('/compose/email', 'landSurveyorController@sendMailToParty')->name('ls.send.party.mail');
     Route::get('/upload/documents', 'landSurveyorController@showUploadDoc')->name('ls.show.uploadDoc');

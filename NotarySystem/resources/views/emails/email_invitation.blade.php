@@ -60,19 +60,19 @@
             
                 Click on either link below whether you are coming  or not.<br><br>
                 @if($party=="Client")
-                    <a href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <a href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=not_going">Not coming</a>
                     <br><br>
                 @endif
                 @if($party=="RGD")
-                    <a href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <a href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/rgd/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=not_going">Not coming</a>
                     <br><br>
                 @endif
                 @if($party=="Bank")
-                    <a href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <a href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/bank/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=not_going">Not coming</a>
                     <br><br>
                 @endif
                 @if($party=="Land Surveyor")
-                    <a href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}{!!$mid!!}/?status=not_going">Not coming</a>
+                    <a href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=confirmed" class="btn btn-success">Coming</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  class="btn btn-danger" href="http://127.0.0.1:8000/landSurveyor/confirm/meeting/{!!$pid!!}/{!!$mid!!}/?status=not_going">Not coming</a>
                     <br><br>
                 @endif
             </div>

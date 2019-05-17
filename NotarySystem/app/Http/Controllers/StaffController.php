@@ -1352,6 +1352,7 @@ class StaffController extends Controller
         $numProperties=DB::table('immovableproperty')->count();
         $numMeetings=DB::table('meetings')->count();
         $numDocuments=DB::table('uploaded_documents')->count();
+        $rejectedMeetings=DB::table('meetings')->where('meetingStatus','Unavailable')->count();
         $pendingMeetings=DB::table('meetings')->where('meetingStatus','Pending')->count();
         $confirmedMeetings=DB::table('meetings')->where('meetingStatus','Confirmed')->count();
 
@@ -1360,6 +1361,7 @@ class StaffController extends Controller
                                             ->with('numProperties',$numProperties)
                                             ->with('numMeetings',$numMeetings)
                                             ->with('numDocuments',$numDocuments)
+                                            ->with('rejectedMeetings',$rejectedMeetings)
                                             ->with('pendingMeetings',$pendingMeetings)
                                             ->with('confirmedMeetings', $confirmedMeetings);
                                         

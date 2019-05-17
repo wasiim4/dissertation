@@ -270,7 +270,7 @@
               <div class="container">               
                   <div class="card">
                     <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Rejected Meetings <i style="color:red;" class="fas fa-times-circle"></i></div>
-                    <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">{{$pendingMeetings}}</div>                 
+                    <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">{{$rejectedMeetings}}</div>                 
                   </div>
                 </div>
           </div>                   

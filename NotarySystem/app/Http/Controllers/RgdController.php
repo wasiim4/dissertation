@@ -266,7 +266,8 @@ class RgdController extends Controller
         ->where('partyId', $party)
         ->where('id', $meeting_id)
         ->update([
-            'meetingStatus' => $status
+            'meetingStatus' => $status,
+            'seen'=>1
         ]);        
         
         return redirect('/rgd/login');            
