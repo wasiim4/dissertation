@@ -808,10 +808,24 @@ class StaffController extends Controller
             return view('Staff.viewClientProfile')->with('users', $user);
         }
 
+        //view immovable property details
+        public function propertyDetails($id){
+            $property = DB::table('immovableproperty')->where('propertyId',$id)->get();
+            return view('Staff.viewPropertyDetails')->with('property', $property);
+        }
+
         //delete a client
         public function deleteClient($id){
             DB::table('users')
                 ->where('id', $id)
+                ->delete();
+            return "successfully deleted";
+        }
+
+        //delete immovable property
+        public function deleteProperty($id){
+            DB::table('immovableProperty')
+                ->where('propertyId', $id)
                 ->delete();
             return "successfully deleted";
         }

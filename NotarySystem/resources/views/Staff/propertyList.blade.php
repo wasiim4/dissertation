@@ -110,7 +110,7 @@
                             </td>
                             <td>
                                 {{-- Show Event Button --}}
-                                    <a style="color:black;" href="/staff/show/client/{{$property->propertyId}}">
+                                    <a style="color:black;" href="/staff/show/property/{{$property->propertyId}}">
                                         <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="More details/Edit">
                                             <i class="fas fa-eye"></i>
                                         </span>
@@ -120,7 +120,7 @@
                             
                                 {{-- Delete  Button --}}
                                 
-                                    <a class="btndelevent" style="color:black;" href="/staff/client/delete/{{$property->propertyId}}">
+                                    <a class="btndelevent" style="color:black;" href="/staff/property/delete/{{$property->propertyId}}">
                                         <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                                             <i class="fas fa-trash-alt font-color"></i>
                                         </span>
