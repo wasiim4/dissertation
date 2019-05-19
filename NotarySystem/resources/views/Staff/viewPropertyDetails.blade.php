@@ -103,6 +103,20 @@
 <div class="header">
     <h1 style="text-align:center;">Immovable Property Details</h1>
 </div>
+<br>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@if (Session::has('message'))
+<div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
+
 @foreach($property as $properties)
 <form action="{{route('propertyUpdate')}}" method="POST"  enctype="multipart/form-data">
     @csrf
@@ -110,13 +124,13 @@
     <div class="row">
         <div class="col-4">
             <label for="staffid">Property ID</label> 
-            <input type="number" id="propId" name="propid" value="{{$properties->propertyId}}" class="form-control"disabled>
+            <input type="number" id="propId" name="propid" value="{{$properties->propertyId}}" class="form-control">
             
             <label for="staffrole">Client Id</label><br>
-            <input type="number" id="clientId" name="clientId" value="{{$properties->clientId}}" class="form-control"disabled>
+            <input type="number" id="clientId" name="clientId" value="{{$properties->clientId}}" class="form-control">
 
             <label for="staffrole">Property Address</label><br>
-            <textarea rows="1" cols="50" type="text" required  class="form-control" name="address" value="{{$properties->address}}"  ></textarea>
+            <input type="text" id="address" name="address" value="{{$properties->address}}" class="form-control">
            
             <label for="staffrole">Price(RS)</label><br>
             <input type="number" id="price" name="price" value="{{$properties->priceInFigures}}" class="form-control">
@@ -136,10 +150,10 @@
             <label for="staffrole">Size(Perch)</label>
             <input type="number" id="sizePerch" name="sizePerch" value="{{$properties->sizeInPerchFigures}}" class="form-control">
 
-            <label for="staffrole">Tax Duty</label><br>
-            <input type="number" id="taxDuy" name="taxDuty" value="{{$properties->taxDuty}}" class="form-control">
+            <label for="taxDuty">Tax Duty</label><br>
+            <input type="number" id="taxDuty" name="taxDuty" value="{{$properties->taxDuty}}" class="form-control">
 
-            <label for="surveyorDate">Reg Number(Land Surveyor Report)</label>
+            <label for="surveyorDate">Surveyor Date(Land Surveyor Report)</label>
             <input type="date" id="surveyorDate" name="surveyorDate" value="{{$properties->surveyorDate}}"class="form-control">
         
         </div>
@@ -173,8 +187,7 @@
             <label for="surveyorLN">Last Name(Land Surveyor)</label>
             <input type="text" id="surveyorLN" name="surveyorLN" value="{{$properties->surveyorLN}}"class="form-control">
 
-            <label for="created_at">Creation Date</label>
-            <input type="date" id="created_at" name="created_at" value="{{$properties->created_at}}"class="form-control">
+            
         </div>
 
         <div class="col-4">

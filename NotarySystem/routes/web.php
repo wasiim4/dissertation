@@ -65,7 +65,7 @@ Route::prefix('staff')->group(function(){
     Route::get('/view/contract/{id}','StaffController@viewContract')->name('view.contract');
     Route::get('/show/client/{id}', 'StaffController@clientDetails')->name('client.profile.show');
     Route::get('/show/property/{id}', 'StaffController@propertyDetails')->name('property.show');
-    Route::post('/property/update', 'StaffController@propertyUpdate')->name('propertyUpdate');
+    Route::post('/show/property/update', 'StaffController@propertyUpdate')->name('propertyUpdate');
     Route::get('/client/delete/{id}', 'StaffController@deleteClient')->name('staff.client.delete');
     Route::get('/property/delete/{id}', 'StaffController@deleteProperty')->name('property.delete');
     Route::get('/client/transaction/{id}', 'StaffController@getListTransactions')->name('transaction.list');

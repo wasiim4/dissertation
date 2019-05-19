@@ -830,6 +830,81 @@ class StaffController extends Controller
             return "successfully deleted";
         }
 
+        //update/edit property details
+        public function propertyUpdate(Request $request){
+            $propertyId=Input::get('propid');
+            $clientId=Input::get('clientId');
+            $address=Input::get('address');
+            $price = Input::get('price');
+            $type = Input::get('propType');
+            $sizeMS=Input::get('sizeMS');
+            $sizePerch = Input::get('sizePerch');
+            $taxDuty = Input::get('taxDuty');
+            $surveyorDate = Input::get('surveyorDate');
+            $tv=Input::get('tv');
+            $tv2=Input::get('tv2');
+            $pin=Input::get('pinNum');
+            $regNum=Input::get('regLsNum');
+            // $titleLs=Input::get('surveyorTitle');
+            $fnLs=Input::get('surveyorFN');
+            $lnLs=Input::get('surveyorLN');
+            $creationDate=Input::get('created_at');
+            $firstDeedReg=Input::get('firstDeedReg');
+            $secDeedReg=Input::get('secDeedReg');
+            $firstDeedGen=Input::get('firstDeedGen');
+            $prevNotaryFN=Input::get('prevNotaryFN');
+            $prevNotaryLN=Input::get('prevNotaryLN');
+            $prevNotaryTitle=Input::get('prevNotaryTitle');
+            $distrctSituated=Input::get('distrctSituated');
+
+            $this->validate($request,
+                [
+                    'clientId' => 'required',
+                    'address'=> 'required|string|max:255',
+                    'prevNotaryFN'=> 'required|string|max:255',
+                    'prevNotaryLN'=> 'required|string|max:255',
+                    'sizeMS' =>'required|numeric',
+                    'tv' => 'required|string|max:255',
+                    'pinNum' =>'required|alpha_num',
+                    'regLsNum' =>'required|string|max:255',
+                    'surveyorFN'=> 'required|alpha|max:255',
+                    'surveyorLN'=> 'required|alpha|max:255',
+                    'price' => 'required|numeric',
+                    'surveyorDate' =>'required|date',
+                    'firstDeedReg' =>'required|date',
+                    'firstDeedGen' =>'required|date',
+                ]);
+
+                DB::table('immovableproperty')
+                ->where('propertyId', $propertyId)
+                ->update([
+                    'clientId' =>  $clientId, 
+                    'address' => $address, 
+                    'priceInFigures' =>  $price,            
+                    'propertyType' => $type, 
+                    'sizeInMSFigures' =>   $sizeMS,
+                    'sizeInPerchFigures' => $sizePerch,
+                    'taxDuty' => $taxDuty,
+                    'transcriptionVol' => $tv,
+                    'pinNum' =>  $pin,
+                    'regNumLSReport' =>$regNum,
+                    'surveyorFN' => $fnLs,
+                    'surveyorLN' =>$lnLs,
+                    'surveyorDate'=>$surveyorDate,
+                    'firstDeedRegistration'=>$firstDeedReg,
+                    'firstDeedGeneration'=>$firstDeedGen,
+                    'previousNotaryFN'=>$prevNotaryFN,
+                    'previousNotaryLN'=>$prevNotaryLN,
+                    'previousNotaryTitle'=>$prevNotaryTitle,
+                    'districtSituated'=>$distrctSituated
+                ]);
+        
+                Session::flash('message', 'Successfully Updated'); 
+                return Redirect::to('/staff/show/property/'.$propertyId);
+               
+
+            }
+
         //get list of transactions by client ID in 'transaction' table
         public function getListTransactions($id){
             $transactions=DB::table('transaction')
