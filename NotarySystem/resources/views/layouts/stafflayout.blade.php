@@ -118,7 +118,7 @@
                         <a href="{{route('upload.contract')}}" ><i class="fas fa-upload"></i> Upload Contract</a>
                     </li>
                     <li>
-                        <a href="{{ route('staff.show.uploadDoc') }}" ><i class="fas fa-upload"></i></i> Upload Documents</a>
+                        <a href="{{ route('staff.show.uploadDoc') }}" ><i class="fas fa-upload"></i> Upload Documents</a>
                     </li>
                 </ul>
             </li>

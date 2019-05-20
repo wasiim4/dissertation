@@ -76,10 +76,10 @@
                                 {{$transaction->created_at}}
                             </td>
                             <td>
-                                {{$transaction->created_at}}
+                                {{$transaction->fees}}
                             </td>
                             <td>
-                                {{$transaction->created_at}}
+                                {{$transaction->feeStatus}}
                             </td>                 
                             <td>
                                 <a href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">

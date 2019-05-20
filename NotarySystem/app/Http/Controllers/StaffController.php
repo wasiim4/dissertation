@@ -827,7 +827,9 @@ class StaffController extends Controller
             DB::table('immovableProperty')
                 ->where('propertyId', $id)
                 ->delete();
-            return "successfully deleted";
+
+                Session::flash('message', 'Successfully Deleted'); 
+                return Redirect::to('/staff/list/properties');
         }
 
         //delete transaction

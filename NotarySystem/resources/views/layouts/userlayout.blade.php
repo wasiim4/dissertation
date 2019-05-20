@@ -44,7 +44,7 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3> Notary System</h3>
+            <h3 style="color:aliceblue;"> Notary System</h3>
             <strong>NS</strong>
         </div>
 
@@ -54,10 +54,10 @@
                 <a href="{{ route('client.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
             </li>
             <li>
-                <a href="{{ route('view.transaction') }}" ><i class="fas fa-user-plus"></i> View Transactions</a>
+                <a href="{{ route('view.transaction') }}" >  <i class="fas fa-hand-holding-usd"></i> View Transactions</a>
             </li>
             <li>
-                <a href="{{ route('show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
+                <a href="{{ route('show.uploadDoc') }}" ><i class="fas fa-upload"></i> Upload Documents</a>
             </li>
                 
             <li class="active">
@@ -67,10 +67,10 @@
                 </a>
                 <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
                     <li>
-                        <a href="{{route('show.UploadedDocs')}}" ><i class="fas fa-user-plus"></i>My documents</a>
+                        <a href="{{route('show.UploadedDocs')}}" ><i class="fas fa-upload"></i> My documents</a>
                     </li>
                     <li>
-                        <a href="" ><i class="fas fa-user-plus"></i> Notary/Notary Assistant</a>
+                        <a href="" ><i class="fas fa-upload"></i> Notary/Notary Assistant</a>
                     </li>                                    
                 </ul>
             </li>
@@ -88,7 +88,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-envelope"></i>
                     Mails
@@ -104,11 +104,11 @@
                         <a href="https://mail.google.com/mail/u/2/#sent" target='_blank'><i class="fas fa-share-square"></i> Sent Items</a>
                     </li>                            
                 </ul>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('logout') }}">
                     <i class="fa fa-power-off"></i>
-                    <b>Log out<b>
+                    <b> Log out<b>
                 </a>
             </li>
         </ul>

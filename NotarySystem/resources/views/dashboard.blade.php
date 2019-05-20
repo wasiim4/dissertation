@@ -96,7 +96,7 @@
       <div class="col-12">
           <div class="container">
             <h3>Task Progress</h3>
-              <div class="progress" style=" background-color: grey;height: 3%;">
+              <div class="progress" style=" background-color: grey;height: 10%;">
                 @foreach ($progressData as $progressDatas)
                   @if($progressDatas->registeredProperty=='1')
                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:25%; height:98%;"">25%</div>
@@ -117,19 +117,22 @@
     </div>
   
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
+        
+      </div>
+      <div class="col-4">
         <div class="progressDetails">
+          <br>
           25%- Registration of property completed.<br>
           50%- Draft of contract successfully generated.<br>
           75%- Signing procedure/Registered contract copy uploaded.<br>
           100%- Payment completed.
+          <br>
        </div>
       </div>
-      <div class="col-3">
-        
-      </div>
-      <div class="col-3"></div>
+      <div class="col-4"></div><br>
     </div>
+    <br>
      <div class="main-content-container container-fluid px-4">         
             <!-- Small Stats Blocks -->
             <div class="row">
