@@ -38,7 +38,10 @@
         </div>
     </div>
 </div>
-
+<br>
+@if (Session::has('message'))
+<div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
 <div class="spacor1"></div>
 <div class="row">
     <div class="col-12">

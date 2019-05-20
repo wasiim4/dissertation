@@ -2,6 +2,7 @@
 @extends('layouts.loginlayout')
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 @section('content')
+
 {{-- <div class="container"> --}}
     {{-- <div class="row justify-content-center">
         <div class="col-md-8">

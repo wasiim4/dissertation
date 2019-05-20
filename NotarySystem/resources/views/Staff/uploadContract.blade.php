@@ -26,11 +26,36 @@
         padding: 1px;
         font-size: 5px !important;
         padding-bottom: 0% !important;
-    }
+        }
 
-    #content {
-    width: 115.7% !important;
-    }
+        #content {
+        width: 115.7% !important;
+        }
+
+        .designBtn span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            }
+
+            .designBtn span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+            }
+
+            .designBtn:hover span {
+            padding-right: 25px;
+            }
+
+            .designBtn:hover span:after {
+            opacity: 1;
+            right: 0;
+            }
     </style>
 </head>      
 
@@ -115,15 +140,11 @@
         </div>
     </fieldset>
 </form>
-
-<ol>
-@foreach($transactions as $transaction)
-    <li><a href="chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank' download="{{$transaction->contractName}}">{{$transaction->contractName}}</a></li>
-    {{-- <li><a download="{{$transaction->name}}"style="color:black;" target='_blank' download="{{$transaction->name}}">{{$transaction->name}}</a></li> --}}
-
-    {{-- <li><a href="http://127.0.0.1:8000/staff/view/contract/{{$transaction->id}}" style="color:black;" target='_blank'>{{$transaction->name}}</a></li> --}}
-    {{-- <li><a href="/staff/view/contract".{{}} style="color:black;" target='_blank' class="download">{{$transaction->name}}</a></li> --}}
-@endforeach
-</ol>
-
+<div class="row">
+    <div class="col-5"></div>
+    <div class="col-3">
+        <a href="/staff/transactions/list" class="btn btn-success btn-info designBtn"><span>Uploaded Contracts</span></a>
+    </div>
+    <div class="c0l-4"></div>
+</div>
 @endsection

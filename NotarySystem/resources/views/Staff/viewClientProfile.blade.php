@@ -100,26 +100,41 @@
 <a class="back-btn hvr-icon-pulse" href="/dashboard"><i class="fa fa-home hvr-icon"></i> Back</a>
 <br><br>
 <div class="header">
-    <h1 style="text-align:center;">{{Auth::user()->firstname}} <?php echo(strtoupper(Auth::user()->lastname));?>-Profile</h1>
+    <h1 style="text-align:center;">{{$users->firstname}} <?php echo(strtoupper($users->lastname));?>-Profile</h1>
 </div>
 
-<form action="{{route('client.profileUpdate')}}" method="POST"  enctype="multipart/form-data">
+<br>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+@if (Session::has('message'))
+<div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
+
+<form action="{{route('clientUpdate')}}" method="POST"  enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-4">
             <h2 style="text-align:right">Profile Picture</h2>   
             <img src="{{asset('/storage/images/'.$users->img_path)}}" style="width:250px; height:250px;" class="rounded float-right" alt="...">  
             <br><br><br><br><br>
-            <input type="file" id="fpropic" name="fpropic" accept="image/*" style="padding-left: 24%; margin-top:5%;" ><br><br>
+            {{-- <input type="file" id="fpropic" name="fpropic" accept="image/*" style="padding-left: 24%; margin-top:5%;" ><br><br> --}}
         </div>
 
         <div class="col-4">
             {{-- <h2>Details</h2> --}}
-            <label for="clientid">client ID</label>
-            <input type="text" id="clientid" name="txtid" value="{{$users->id}}" class="form-control"disabled><br>
+            <label for="clientid">Client ID</label>
+            <input type="text" id="clientid" name="clientid" value="{{$users->id}}" class="form-control"><br>
 
             <label for="clientrole">Role</label><br>
-            <input type="text" id="clientRole" name="txtrole" value="{{$users->roles}}" class="form-control"disabled><br>
+            <input type="text" id="clientRole" name="txtrole" value="{{$users->roles}}" class="form-control"><br>
 
             
 

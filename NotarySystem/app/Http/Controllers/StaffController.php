@@ -830,6 +830,17 @@ class StaffController extends Controller
             return "successfully deleted";
         }
 
+        //delete transaction
+        public function deleteTransaction($id){
+            DB::table('transaction')
+                ->where('id', $id)
+                ->delete();
+                
+                Session::flash('message', 'Successfully Deleted'); 
+                return Redirect::to('/staff/transactions/list');
+           
+        }
+
         //update/edit property details
         public function propertyUpdate(Request $request){
             $propertyId=Input::get('propid');
@@ -912,99 +923,6 @@ class StaffController extends Controller
                             ->get();
             return view('Staff.viewClientTransactions')->with('transaction',$transactions);
         }
-
-        //add client's children form
-        public function showChildrenForm(){
-            $users=DB::table('users')->get();
-            return view('Staff.addChildren')->with('users',$users);
-        }
-
-        //add children into db
-        public function addChildren(Request $request){
-            $users=DB::table('users')->get();
-            // $this->validate($request,
-            // [
-            //     'inputChildrenFirstName' => 'required|alpha|max:255',
-            //     'inputChildrenLastName' => 'required|alpha|max:255',
-            //     'inputChildrenContactNum' => 'required|regex:/^[5][0-9]{7}+$/u|integer|unique:users,contactnum',
-            //     'inputChildrenEmail' => 'required|string|email|max:255|unique:users,email',
-            //     'inputChildrenDob' => 'required|date',
-            //     'inputChildrenGender' => 'required|alpha|max:255',
-            //     'inputChildrenAddress' => 'required',
-            //     'inputChildrenMarriageStatus' => 'required',
-            //     'inputChildrenRoles' =>'required',
-            //     'inputChildrenNIC1' => 'required|alpha_num|unique:users,nic',
-            //     'inputChildrenBcNum' => 'required|numeric',
-            //     'inputChildrenDistrict' =>'required',
-            //     'inputChildrenPlaceOfBirth' =>'required',
-            //     'inputChildrenProfession' =>'required',
-            //     'inputChildrenTitle' =>'required',
-            //      ]       
-            // );
-
-            
-            $parentId=Input::get('inputParentId');
-            $fname = Input::get('inputChildrenFirstName');
-            $lname = Input::get('inputChildrenLastName');
-            $email = Input::get('inputChildrenEmail');
-            $dob = Input::get('inputChildrenDob');
-            $contactnum = Input::get('inputChildrenContactNum');
-            $gender = Input::get('inputChildrenGender');
-            $address= Input::get('inputChildrenAddress');
-            $marriageStatus=Input::get('inputChildrenMarriageStatus');
-            $roles=Input::get('inputChildrenRoles');
-            $nic=Input::get('inputChildrenNIC1');
-            $title=Input::get('inputChildrenTitle');
-            $profession=Input::get('inputChildrenProfession');
-            $bcNum=Input::get('inputChildrenBcNum');
-            $districtIssued=Input::get('inputChildrenDistrict');
-            $placeOfBirth=Input::get('inputChildrenPlaceOfBirth');
-
-            $generatedPassword=str_random(8);
-            $data = array(
-                'firstname' => $fname, 
-                'lastname' => $lname, 
-                'email' => $email, 
-                'password' => Hash::make($generatedPassword),
-                'dob' => $dob, 
-                'contactnum' => $contactnum,
-                'gender' => $gender,
-                'address' =>$address,
-                'nic' => $nic,
-                'roles' => $roles,
-                'marriageStatus' => $marriageStatus,
-                'birthCertificateNumber' =>$bcNum,
-                'districtIssued' => $districtIssued,
-                'placeOfBirth' =>$placeOfBirth,
-                'profession'=>$profession,
-                'title'=> $title,
-                'parentId'=>$parentId
-
-                
-            );
-
-            DB::table('users')->insert($data);
-        }
-
-        // add number of children in database
-        // public function addNumberChildren(){
-        //     $parentId=Input::get('inputParentId');
-        //     $numberOfChildren=Input::get('numOfChildren');
-
-        //     $query= DB::table('users')
-        //     ->where("id", $parentId)
-        //     ->update([
-        //             'noOfChildren'=>$numberOfChildren
-        //         ]); 
-
-        //         return "successfull";
-            
-        // }
-        //get number of children
-        // public function showChildrenConfirmation(){
-        //     $users=DB::table('users')->get();
-        //     return view('Staff.numOfChildren')->with('users',$users);
-        // }
 
         //get the partage title deed generation form
         public function partageGeneration(){
@@ -1465,6 +1383,107 @@ class StaffController extends Controller
     public function propertyList(){
         $properties=DB::table('immovableproperty')->get();
         return view('Staff.propertyList')->with('properties',$properties);
+    }
+
+    public function clientUpdate(Request $request){
+        $client_id = Input::get('clientid');
+        $role=Input::get('txtrole');
+        $title=Input::get('txtTitle');
+        $fname = Input::get('txtfname');
+        $lname = Input::get('txtlname');
+        $email=Input::get('txtemail');
+        $cnum = Input::get('txtcnum');
+        $dob = Input::get('txtdob');
+        $nic = Input::get('txtnic');
+        $gender=Input::get('txtgender');
+        $status=Input::get('inputStatus');
+        $address=Input::get('txtaddress');
+        $BcNum=Input::get('txtBcNum');
+        $profession=Input::get('txtprofession');
+        $BcDistrict=Input::get('inputDistrict');
+        $PlaceOfBirth=Input::get('inputPlaceOfBirth');
+        $spouseFname=Input::get('txtspousefn');
+        $spouseLname=Input::get('txtspouseln');
+        $spouseTitle=Input::get('txtspouseTitle');
+        $spouseNic=Input::get('txtSpousenic');
+        $spouseDob=Input::get('txtSpousedob');
+        $spouseBcNum=Input::get('txtSpouseBcNum');
+        $spouseBcDistrict=Input::get('inputSpouseDistrict');
+        $marriageDate=Input::get('txtMarriageDate');
+        $mcNum=Input::get('txtMcNum');
+        $mcDistrict=Input::get('inputMDistrict');
+        $spouseProfession=Input::get('txtSpouseProfession');
+        $spouseGender=Input::get('txtSpousegender');
+        $spousePlaceOfBirth=Input::get('inputSpousePlaceOfBirth');
+        $divorceDate=Input::get('txtDivDate');
+        $divCertificateNum=Input::get('txtDivCNum');
+        $DivDistrict=Input::get('inputDivDistrict');
+        $DeathDate=Input::get('inputSpouseMarriageDate');
+        $DeathCertificateNum=Input::get('txtDeathCNum');
+        $DeathDistrict=Input::get('inputDeathDistrict');
+
+        $this->validate($request,
+            [
+                'txtfname' => 'required|alpha|max:255',
+                'txtlname' => 'required|alpha|max:255',
+                'txtcnum' => 'required|regex:/^[5][0-9]{7}+$/u|integer',
+                'txtemail' => 'required|string|email|max:255',
+                'txtdob' => 'required|date',
+                'txtgender' => 'required|alpha|max:255',
+                'txtaddress' => 'required|string|max:255',
+                'inputStatus' => 'required',
+                'txtrole' =>'required',
+                'txtnic' => 'required|alpha_num|max:14',
+                'txtBcNum' => 'required|numeric|',
+                'inputDistrict' =>'required',
+                'inputPlaceOfBirth' =>'required',
+                'txtprofession' =>'required',
+                'txtTitle' =>'required',
+            ]);
+
+        DB::table('users')
+           ->where('id', $client_id)
+           ->update([
+                   'title'=>$title,
+                   'roles'=>$role,
+                   'firstname' => $fname,
+                   'lastname' => $lname,
+                   'email' => $email,
+                   'dob' =>$dob,
+                   'nic'=>$nic,
+                   'contactnum' => $cnum,
+                   'gender' => $gender,
+                   'birthCertificateNumber'=>$BcNum,
+                   'districtIssued'=>$BcDistrict,
+                   'placeOfBirth'=>$PlaceOfBirth,
+                   'address'=>$address,
+                   'marriageStatus'=> $status,
+                   'profession'=>$profession,
+                   'spouseTitle'=> $spouseTitle,
+                   'spouseFirstname'=>$spouseFname,
+                   'spouseLastname'=> $spouseLname,
+                   'spouseDob'=>$spouseDob,
+                   'spouseBCNum'=> $spouseBcNum,
+                   'spouseBCdistrictIssued'=> $spouseBcDistrict,
+                   'spousePlaceOfBirth'=>$spousePlaceOfBirth,
+                   'spouseGender'=> $spouseGender,
+                   'spouseNic'=>$spouseNic,
+                   'marriageDate'=> $marriageDate,
+                   'MCNumber'=>$mcNum,
+                   'MCdistrictIssued'=>$mcDistrict,
+                   'spouseProfession'=> $spouseProfession,
+                   'spouseDCNum'=> $DeathCertificateNum,
+                   'DeathDate'=>$DeathDate,
+                   'DCdistrictIssued'=>$DeathDistrict,
+                   'DivCNum'=>$divCertificateNum,
+                   'DivDate'=>$divorceDate,
+                   'DivCdistrictIssued'=>$DivDistrict
+
+        ]);
+       
+        Session::flash('message', 'Profile successfully updated');
+        return Redirect::to('/staff/show/client/'.$client_id);
+       
     }
 }
 ?>
