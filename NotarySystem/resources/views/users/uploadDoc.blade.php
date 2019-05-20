@@ -22,13 +22,17 @@
         }
 
         .header {
-    width: 97.2%;
-    margin-left:1.5%;
-    background-color: #17a2b8;
-    color: #ffffff;
-    padding: 4px;
-    font-size: 5px !important;
-    }
+            width: 97.2%;
+            margin-left:1.5%;
+            background-color: #17a2b8;
+            color: #ffffff;
+            padding: 4px;
+            font-size: 5px !important;
+        }
+
+        #content{
+         width:117% !important;
+        }
     </style>
 </head>      
 

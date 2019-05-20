@@ -22,8 +22,11 @@
     font-size: 5px !important;
     }
 
+    #content{
+         width:106.9% !important;
+        }
     </style> 
-    
+     
 </head>
         
 @section('content')
@@ -43,13 +46,16 @@
                 <thead>
                     <tr>
                         <th>
-                        Transaction ID
+                            Transaction ID
                         </th> 
                         <th>
-                        Contract
+                            Property Id
+                         </th> 
+                        <th>
+                            Contract
                         </th>
                         <th>
-                        Uploaded Time
+                            Uploaded Time
                         </th>
                         
                         <th>
@@ -57,6 +63,9 @@
                         </th>
                         <th>
                             Fees Status
+                        </th>
+                        <th>
+                            Staff Id
                         </th>
                         <th>
                            Actions
@@ -69,6 +78,9 @@
                             <td>    
                                 {{$transaction->id}} 
                             </td>
+                            <td>    
+                                {{$transaction->propertyId}} 
+                            </td>
                             <td>
                                 {{$transaction->contractName}}
                             </td>
@@ -80,6 +92,9 @@
                             </td>
                             <td>
                                 {{$transaction->feeStatus}}
+                            </td>  
+                            <td>
+                                {{$transaction->staffId}}
                             </td>                 
                             <td>
                                 <a href="/storage/images/{{$transaction->contractName}}" download="{{$transaction->contractName}}">
