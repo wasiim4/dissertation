@@ -30,6 +30,12 @@
         $('#tbluser').DataTable(
             {'responsive':'true'}
         );
+        $('#tblMyDoc').DataTable(
+            {'responsive':'true'}
+        );
+        $('#tblExtParties').DataTable(
+            {'responsive':'true'}
+        );
     } );
     </script>
     <script>
@@ -61,7 +67,7 @@
                             <a href="{{ route('ls.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
                         </li>
                 <li>
-                    <a href="{{ route('ls.show.uploadDoc') }}" ><i class="fas fa-user-plus"></i> Upload Documents</a>
+                    <a href="{{ route('ls.show.uploadDoc') }}" ><i class="fas fa-upload"></i> Upload Documents</a>
                 </li>
                 
                 <li class="active">
@@ -71,20 +77,12 @@
                     </a>
                     <ul class="collapse list-unstyled" id="uploadedDocsSubmenu">
                         <li>
-                            <a href="{{ route('ls.show.UploadedDocs') }}" ><i class="fas fa-user-plus"></i>My documents</a>
+                            <a href="{{ route('ls.show.UploadedDocs') }}" ><i class="fas fa-upload"></i> My documents</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> Notary/Notary Assistant</a>
+                            <a href="" ><i class="fas fa-upload"></i> External Parties</a>
                         </li>
-                        <li>
-                            <a href="" ><i class="fas fa-user-plus"></i> Client</a>
-                        </li>
-                        <li>
-                            <a href="" ><i class="fas fa-user-plus"></i>RGD</a>
-                        </li>
-                            
-                        
-                                
+         
                     </ul>
                 </li>
                 <li class="active">
@@ -99,25 +97,6 @@
                         <li>
                             <a href="{{ route('ls.show.meetingsForms') }}" ><i class="fas fa-calendar-times"></i> Agenda</a>
                         </li>
-                    </ul>
-                </li>
-                
-                
-                <li>
-                    <a href="#mailSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-envelope"></i>
-                        Mails
-                    </a>
-                    <ul class="collapse list-unstyled" id="mailSubmenu">
-                        <li>
-                            <a href="{{ route('ls.show.mailCompose') }}" ><i class="fas fa-edit"></i> Compose Mail</a>
-                        </li>
-                        <li>
-                            <a href="https://mail.google.com/mail/u/2/#inbox" target='_blank'><i class="fas fa-inbox"></i> Inbox</a>
-                        </li>
-                        <li>
-                                <a href="https://mail.google.com/mail/u/2/#sent" target='_blank'><i class="fas fa-share-square"></i> Sent Items</a>
-                        </li>                            
                     </ul>
                 </li>
               
