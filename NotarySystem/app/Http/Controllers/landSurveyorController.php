@@ -274,7 +274,7 @@ class landSurveyorController extends Controller
         ->where('id', $meeting_id)
         ->update([
             'meetingStatus' => $status,
-            'seen'=1
+            'seen'=>1
         ]);        
         
         return redirect('/landSurveyor/login');            

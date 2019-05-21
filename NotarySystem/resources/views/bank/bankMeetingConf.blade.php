@@ -24,6 +24,10 @@
     html {
      scroll-behavior: smooth;
     }
+
+    #content {
+    width: 106.5% !important;
+    }
   </style> 
   <script>
     $(document).ready(function(){

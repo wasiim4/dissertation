@@ -146,7 +146,7 @@
 
 <div class="container">
   <div class="card">
-    <div class="card-header card bg-primary text-white" style=" text-align:center;" >Edit Meeting & Cancel Meeting</div>
+    <div class="card-header card bg-primary text-white" style=" text-align:center;" >My Meeting Request</div>
     <div class="card-body">
       @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
