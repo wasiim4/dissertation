@@ -455,8 +455,21 @@ class landSurveyorController extends Controller
      
          }
 
+           //view clients profile
          public function clientDetails($id){
             $user = user::find($id);
             return view('landSurveyor.detailsClient')->with('users', $user);
          }
+
+         //view list of properties and their details
+         public function propertyDetails($id){
+            $property = DB::table('immovableproperty')->where('propertyId',$id)->get();
+            return view('landSurveyor.propDetails')->with('property', $property);
+        }
+
+        public function propertyList(){
+            $properties=DB::table('immovableproperty')->get();
+            return view('landSurveyor.properties')->with('properties',$properties);
+        }
+        
 }

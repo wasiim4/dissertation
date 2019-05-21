@@ -35,6 +35,9 @@
         $('#tblExtParties').DataTable(
             {'responsive':'true'}
         );
+        $('#tblproperties').DataTable(
+                {'responsive':'true'}
+            );
     } );
     </script>
     <script>
@@ -66,7 +69,7 @@
                 <a href="{{ route('rgd.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
             </li>
             <li>
-                <a href="{{ route('Rgd.show.uploadDoc') }}" ><i class="fas fa-upload"></i> Upload Documents</a>
+                <a href="{{ route('rgd.property.list') }}" ><i class="fas fa-building"></i> Properties</a>
             </li>
             
             <li class="active">

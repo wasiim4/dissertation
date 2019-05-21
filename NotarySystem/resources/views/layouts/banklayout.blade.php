@@ -36,6 +36,9 @@
         $('#tblExtParties').DataTable(
             {'responsive':'true'}
         );
+        $('#tblproperties').DataTable(
+                {'responsive':'true'}
+            );
     } );
     </script>
     <script>
@@ -63,9 +66,12 @@
             </div>
             
             <ul class="list-unstyled components">               
-                    <li>
-                            <a href="{{ route('bank.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                        </li>
+                <li>
+                     <a href="{{ route('bank.myProfile') }}"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                </li>
+                <li>
+                        <a href="{{ route('bank.property.list') }}" ><i class="fas fa-building"></i> Properties</a>
+                    </li>
                 <li>
                     <a href="{{ route('bank.show.uploadDoc') }}" ><i class="fas fa-upload"></i> Upload Documents</a>
                 </li>
