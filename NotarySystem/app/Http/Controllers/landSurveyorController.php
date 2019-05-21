@@ -455,4 +455,8 @@ class landSurveyorController extends Controller
      
          }
 
+         public function clientDetails($id){
+            $user = user::find($id);
+            return view('landSurveyor.detailsClient')->with('users', $user);
+         }
 }

@@ -452,4 +452,9 @@ class RgdController extends Controller
                                           ->with('landSurveyors',$landSurveyors);
      
          }
+
+         public function clientDetails($id){
+            $user = user::find($id);
+            return view('RGD.clientDetails')->with('users', $user);
+         }
 }

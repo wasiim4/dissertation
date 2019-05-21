@@ -453,4 +453,8 @@ class bankController extends Controller
      
          }
 
+         public function clientDetails($id){
+            $user = user::find($id);
+            return view('bank.clientProfile')->with('users', $user);
+         }
 }

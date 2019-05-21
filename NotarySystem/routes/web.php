@@ -42,7 +42,7 @@ Route::get('/contacts', 'ContactsController@get');
 Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
 Route::post('/conversation/send', 'ContactsController@send');
 
-//staff only
+///////////////////////////////////////////////////staff only///////////////////////////////////////////////////
 Route::prefix('staff')->group(function(){
     Route::get('/','StaffController@index')->name('staffdashboard');
     Route::get('/login','Auth\StaffLoginController@showLoginForm')->name('staff.login');
@@ -110,6 +110,7 @@ Route::prefix('staff')->group(function(){
 //registrar general department(rgd)only
 Route::prefix('rgd')->group(function(){
     Route::get('/','RgdController@index')->name('rgddashboard');
+    Route::get('/show/client/{id}', 'RgdController@clientDetails')->name('client.profile.show');
     Route::get('/login','Auth\RgdLoginController@showLoginForm')->name('rgd.login');
     Route::post('/login','Auth\RgdLoginController@login')->name('rgd.login.submit');
     Route::get('/logout', 'Auth\RgdLoginController@rgdlogout')->name('rgd.logout');
@@ -135,6 +136,7 @@ Route::prefix('bank')->group(function(){
     Route::get('/login','Auth\bankLoginController@showLoginForm')->name('bank.login');
     Route::post('/login','Auth\bankLoginController@login')->name('bank.login.submit');
     Route::get('/logout', 'Auth\bankLoginController@banklogout')->name('bank.logout');
+    Route::get('/show/client/{id}', 'bankController@clientDetails')->name('client.profile.show');
     Route::get('/confirm/meeting/{pid}/{mid}', 'bankController@confirmMeeting');
     Route::get('/compose/email', 'bankController@showMailCompose')->name('bank.show.mailCompose');
     Route::post('/compose/email', 'bankController@sendMailToParty')->name('bank.send.party.mail');
@@ -155,6 +157,7 @@ Route::prefix('landSurveyor')->group(function(){
     Route::get('/login','Auth\landSurveyorLoginController@showLoginForm')->name('landSurveyor.login');
     Route::post('/login','Auth\landSurveyorLoginController@login')->name('landSurveyor.login.submit');
     Route::get('/logout', 'Auth\landSurveyorLoginController@landSurveyorlogout')->name('landSurveyor.logout');
+    Route::get('/show/client/{id}', 'landSurveyorController@clientDetails')->name('client.profile.show');
     Route::get('/confirm/meeting/{pid}/{mid}', 'landSurveyorController@confirmMeeting');
     Route::get('/compose/email', 'landSurveyorController@showMailCompose')->name('ls.show.mailCompose');
     Route::post('/compose/email', 'landSurveyorController@sendMailToParty')->name('ls.send.party.mail');

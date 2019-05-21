@@ -94,11 +94,11 @@
                         </td>
                         <td>
                         {{-- Show Event Button --}}
-                        {{-- <a href="/usersfound/show/{{$user->id}}"> --}}
+                        <a href="/rgd/show/client/{{$user->id}}">
                             <span data-toggle="tooltip" data-placement="top" style="border-bottom:none" title="More details">
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye" style="color:black;"></i>
                             </span>
-                        {{-- </a>  --}} 
+                        </a>  
                         </td>
                     </tr>
                 @endforeach
