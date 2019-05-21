@@ -21,16 +21,16 @@
         }
 
         .header {
-        background-color: #17a2b8;
-        color: #ffffff;
-        padding: 1px;
-        font-size: 5px !important;
-        padding-bottom: 0% !important;
-    }
+            background-color: #17a2b8;
+            color: #ffffff;
+            padding: 1px;
+            font-size: 5px !important;
+            padding-bottom: 0% !important;
+        }
 
-    #content {
-    width: 117.5% !important;
-    }
+        #content {
+            width: 117.5% !important;
+        }
     </style>
 </head>      
 

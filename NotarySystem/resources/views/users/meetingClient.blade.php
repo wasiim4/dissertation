@@ -57,16 +57,6 @@ fieldset{
   
   <div class="col-2"></div>
   <div class="col-3"></div>
-  {{-- <div class="col-3">
-    <div class="container" style="width:93% !important;">
-      <button class="btn btn-primary btn-lg" id="updateMeeting">Update Meeting</button>
-    </div>
-  </div> --}}
-  {{-- <div class="col-3">
-    <div class="container" style="width:93% !important;">
-      <button class="btn btn-danger btn-lg" id="delMeeting">Delete Meeting</button>
-    </div>
-  </div> --}}
   <div class="col-1">
     <div class="container">
       <a class="btn btn-info btn-lg" href="/staff"><i class="fa fa-home hvr-icon"></i> Back</a>   

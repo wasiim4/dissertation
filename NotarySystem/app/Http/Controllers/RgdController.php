@@ -249,8 +249,10 @@ class RgdController extends Controller
     
     public function viewMyUploadedDoc()
     {
-        $uploads=DB::table('uploaded_documents')->where('partyRole',Auth::user()->roles)->get();
-        return view('RGD.uploadedDocRgd')->with('uploads',$uploads);
+        $uploads=DB::table('uploaded_documents')->where('senderRole',Auth::user()->roles)->get();
+        $uploadExtParty=DB::table('uploaded_documents')->where('receiverRole',Auth::user()->roles)->get();
+        return view('RGD.uploadedDocRgd')->with('uploads',$uploads)
+                                         ->with('uploadExtParty', $uploadExtParty);
     }
 
     public function confirmMeeting($pid,$mid,Request $request){

@@ -49,34 +49,26 @@ fieldset{
 @section('content')
 
 <div class="row" style="width:93% !important;">
-    <div class="col-3">
-      <div class="container" >
-          <a href="/rgd/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
-      </div>
-    </div>
-  
-  
-  <div class="col-3">
-    <div class="container" style="width:93% !important;">
-      <button class="btn btn-primary btn-lg" id="updateMeeting">Update Meeting</button>
+  <div class="col-6">
+    <div class="container" >
+        <a href="/rgd/meeting/add/del/up" class="btn btn-success btn-lg" id="addMeeting"  >Add Meeting</a><br>      
     </div>
   </div>
-  <div class="col-3">
-    <div class="container" style="width:93% !important;">
-      <button class="btn btn-danger btn-lg" id="delMeeting">Delete Meeting</button>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="container">
-      <a class="btn btn-info btn-lg" href="/rgd"><i class="fa fa-home hvr-icon"></i> Back</a>   
-    </div>
+
+<div class="col-2"></div>
+<div class="col-3"></div>
+<div class="col-1">
+  <div class="container">
+    <a class="btn btn-info btn-lg" href="/rgd"><i class="fa fa-home hvr-icon"></i> Back</a>   
   </div>
 </div>
+</div>
+
 <br><br>
 <div class="row" >
   <div class="col-12"></div>
 </div>
-<div class="panel panel-primary" style="width: 93%;">
+<div class="panel panel-primary" style="width: 93%;margin-left:1.4%;">
   <div class="panel-heading"style="background-color:#17a2b8; border-color:#17a2b8; text-align:center; font-size: 34px;">Meeting Details</div>
   <div class="panel-body" >
     {!! $calendar_details->calendar() !!}
