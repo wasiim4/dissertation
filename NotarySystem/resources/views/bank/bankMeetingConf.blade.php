@@ -149,15 +149,14 @@
                     </td>
                     <td>
                       {{-- Show Event Button --}}
-                        <a style="color:#007bff;" href="/bank/show/client/{{$meeting->id}}">
-                          <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
-                            <i class="fas fa-pencil-alt font-color"></i>
-                          </span>
-                        </a> 
+                      <a style="color:#007bff;" href="/bank/meeting/cancel/{{$meeting->id}}">
+                        <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Cancel Meeting">
+                          <i class="fas fa-times"></i>
+                      </span>
                       {{-- /Show Button --}}
                         |
                       {{-- Delete User Button --}}
-                        <a class="btndelevent" style="color:red;" href="/bank/client/delete/{{$meeting->id}}">
+                        <a class="btndelevent" style="color:red;" href="/bank/meeting/delete/{{$meeting->id}}">
                           <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                             <i class="fas fa-trash-alt font-color"></i>
                           </span>
@@ -240,15 +239,15 @@
                       </td>
                       <td>
                         {{-- Show Event Button --}}
-                          <a style="color:#007bff;" href="/show/client/{{$meetingByNotarys->id}}">
-                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
-                              <i class="fas fa-pencil-alt font-color"></i>
-                            </span>
-                          </a> 
+                        <a style="color:#007bff;" href="/bank/meeting/cancel/{{$meetingByNotarys->id}}">
+                          <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Cancel Meeting">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        </a>
                         {{-- /Show Button --}}
                           |
                         {{-- Delete User Button --}}
-                          <a class="btndelevent" style="color:red;" href="/client/delete/{{$meetingByNotarys->id}}">
+                          <a class="btndelevent" style="color:red;" href="/bank/meeting/delete/{{$meetingByNotarys->id}}">
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                               <i class="fas fa-trash-alt font-color"></i>
                             </span>

@@ -242,7 +242,7 @@ class HomeController extends Controller
              'startTime'=>$start,
              'endTime' =>  $end ,
              'meetingStatus' =>$status,
-             'seen'=>"false"
+             'seen'=>0
              
              
          );
@@ -429,5 +429,32 @@ class HomeController extends Controller
     public function getTransactions(Request $request){
         $transactions=DB::table('transaction')->where('clientId',(Auth::user()->id))->get();
         return view('users.myTransactions')->with('transactions',$transactions);
+    }
+
+    //cancel meeting
+    public function cancelMeeting($id){
+        DB::table('meetings')
+            ->where('id', $id)
+            ->update([
+                'meetingStatus' => "Cancelled",
+                'seen'=>1
+            ]);        
+
+       
+        Session::flash('message', 'Meeting Cancelled'); 
+        return Redirect::to('/meeting/add/del/up');
+
+    }
+
+    //delete meeting
+    public function deleteMeeting($id){
+        DB::table('meetings')
+            ->where('id', $id)
+            ->delete();
+
+          
+            Session::flash('message', 'Meeting Successfully deleted'); 
+            return Redirect::to('/meeting/add/del/up');
+    
     }
 }

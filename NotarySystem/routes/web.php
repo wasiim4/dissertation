@@ -38,9 +38,8 @@ Route::post('/meeting/add/del/up', 'HomeController@addMeeting')->name('client.me
 Route::get('/profile/view', 'HomeController@myProfile')->name('client.myProfile');
 Route::post('/profile/view', 'HomeController@profileupdate')->name('client.profileUpdate');
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('/contacts', 'ContactsController@get');
-Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
-Route::post('/conversation/send', 'ContactsController@send');
+Route::get('/meeting/cancel/{mid}', 'HomeController@cancelMeeting')->name('cancel.meeting');
+Route::get('/meeting/delete/{mid}', 'HomeController@deleteMeeting')->name('delete.meeting');
 
 ///////////////////////////////////////////////////staff only///////////////////////////////////////////////////
 Route::prefix('staff')->group(function(){
@@ -100,11 +99,12 @@ Route::prefix('staff')->group(function(){
     Route::get('/transaction/update/{id}','StaffController@updatePayment')->name('payment');
     Route::get('/list/properties','StaffController@propertyList')->name('property.list');
     Route::get('/list/property/{id}','StaffController@getProperty')->name('property');
+    Route::get('/meeting/cancel/{mid}', 'StaffController@cancelMeeting')->name('staff.cancel.meeting');
 
     // Route::post('/preview/contract/pdf', 'previewPDFController@previewContractSOIP')->name('view.pdf');
 });
 
-//registrar general department(rgd)only
+///////////////////////////////////registrar general department(rgd)only////////////////////////////////////////
 Route::prefix('rgd')->group(function(){
     Route::get('/','RgdController@index')->name('rgddashboard');
     Route::get('/show/client/{id}', 'RgdController@clientDetails')->name('client.profile.show');
@@ -126,10 +126,12 @@ Route::prefix('rgd')->group(function(){
     Route::get('/show/property/{id}', 'RgdController@propertyDetails')->name('property.show');
     Route::get('/list/properties','RgdController@propertyList')->name('rgd.property.list');
     // Route::get('view/download/uploaded/documents','RgdController@viewUploadedDocuments')->name('Rgd.download.uploadedDocs');
+    Route::get('/meeting/cancel/{mid}', 'RgdController@cancelMeeting')->name('rgd.cancel.meeting');
+    Route::get('/meeting/delete/{mid}', 'RgdController@deleteMeeting')->name('rgd.delete.meeting');
 
 });
 
-//bank only
+////////////////////////////////////////////////////////bank only/////////////////////////////////////////////
 Route::prefix('bank')->group(function(){
     Route::get('/','bankController@index')->name('bankdashboard');
     Route::get('/login','Auth\bankLoginController@showLoginForm')->name('bank.login');
@@ -150,9 +152,12 @@ Route::prefix('bank')->group(function(){
     Route::post('/meeting/add/del/up', 'bankController@addMeeting')->name('bank.meetings.add');
     Route::get('/show/property/{id}', 'bankController@propertyDetails')->name('property.show');
     Route::get('/list/properties','bankController@propertyList')->name('bank.property.list');
+    Route::get('/meeting/cancel/{mid}', 'bankController@cancelMeeting')->name('bank.cancel.meeting');
+    Route::get('/meeting/delete/{mid}', 'bankController@deleteMeeting')->name('bank.delete.meeting');
+
 });
 
-//land surveyor only
+///////////////////////////////////////////////////land surveyor only//////////////////////////////////////////
 Route::prefix('landSurveyor')->group(function(){
     Route::get('/','landSurveyorController@index')->name('landSurveyordashboard');
     Route::get('/login','Auth\landSurveyorLoginController@showLoginForm')->name('landSurveyor.login');
@@ -173,4 +178,7 @@ Route::prefix('landSurveyor')->group(function(){
     Route::post('/meeting/add/del/up', 'landSurveyorController@addMeeting')->name('ls.meetings.add');
     Route::get('/show/property/{id}', 'landSurveyorController@propertyDetails')->name('property.show');
     Route::get('/list/properties','landSurveyorController@propertyList')->name('ls.property.list');
+    Route::get('/meeting/cancel/{mid}', 'landSurveyorController@cancelMeeting')->name('ls.cancel.meeting');
+    Route::get('/meeting/delete/{mid}', 'landSurveyorController@deleteMeeting')->name('ls.delete.meeting');
+
 });

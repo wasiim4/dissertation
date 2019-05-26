@@ -1361,7 +1361,10 @@ class StaffController extends Controller
         $numProperties=DB::table('immovableproperty')->count();
         $numMeetings=DB::table('meetings')->count();
         $numDocuments=DB::table('uploaded_documents')->count();
-        $rejectedMeetings=DB::table('meetings')->where('meetingStatus','Unavailable')->count();
+        $rejectedMeetings=DB::table('meetings')->where('meetingStatus','Unavailable')
+                                               ->orwhere('meetingStatus','Cancelled')
+                                               ->orwhere('meetingStatus','not_going')
+                                               ->count();
         $pendingMeetings=DB::table('meetings')->where('meetingStatus','Pending')->count();
         $confirmedMeetings=DB::table('meetings')->where('meetingStatus','Confirmed')->count();
 
@@ -1487,5 +1490,21 @@ class StaffController extends Controller
         return Redirect::to('/staff/show/client/'.$client_id);
        
     }
+
+    //cancel meeting
+    public function cancelMeeting($id){
+        DB::table('meetings')
+            ->where('id', $id)
+            ->update([
+                'meetingStatus' => "Cancelled",
+                'seen'=>1
+            ]);        
+
+       
+        Session::flash('message', 'Meeting Cancelled'); 
+        return Redirect::to('/staff/meeting/add/del/up');
+
+    }
+
 }
 ?>

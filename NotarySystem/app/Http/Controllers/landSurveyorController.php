@@ -472,4 +472,30 @@ class landSurveyorController extends Controller
             return view('landSurveyor.properties')->with('properties',$properties);
         }
         
+        //delete meeting
+        public function deleteMeeting($id){
+            DB::table('meetings')
+                ->where('id', $id)
+                ->delete();
+
+               
+                Session::flash('message', 'Meeting Successfully deleted'); 
+                return Redirect::to('/landSurveyor/meeting/add/del/up');
+        
+        }
+
+        //cancel meeting
+        public function cancelMeeting($id){
+        DB::table('meetings')
+            ->where('id', $id)
+            ->update([
+                'meetingStatus' => "Cancelled",
+                'seen'=>1
+            ]);        
+
+    
+        Session::flash('message', 'Meeting Cancelled'); 
+        return Redirect::to('/landSurveyor/meeting/add/del/up');
+
+    }
 }

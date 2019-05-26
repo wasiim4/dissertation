@@ -202,13 +202,13 @@
                       {{$meeting->partyRole}}
                     </td>
                     <td>
-                      {{-- Show Event Button --}}
-                        <a style="color:#007bff;" href="/staff/show/client/{{$meeting->id}}">
-                          <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
-                            <i class="fas fa-pencil-alt font-color"></i>
-                          </span>
-                        </a> 
-                      {{-- /Show Button --}}
+                      {{-- Cancel Event Button --}}
+                      <a style="color:#007bff;" href="/staff/meeting/cancel/{{$meeting->id}}">
+                        <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Cancel Meeting">
+                          <i class="fas fa-times"></i>
+                      </span>
+                      </a> 
+                      {{-- /Cancel Button --}}
                         |
                       {{-- Delete User Button --}}
                         <a class="btndelevent" style="color:red;" href="/staff/meeting/delete/{{$meeting->id}}">

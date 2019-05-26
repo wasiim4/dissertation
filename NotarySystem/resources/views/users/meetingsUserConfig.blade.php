@@ -42,7 +42,7 @@
       <div class="card-body">
           @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}
-              <a href="http://127.0.0.1:8000/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a>
+              {{-- <a href="http://127.0.0.1:8000/meetings" style="color:#155724; text-decoration:underline;" target="_blank">View in Calendar</a> --}}
             </div>
           @endif
 
@@ -147,16 +147,17 @@
                       {{$meeting->partyRole}}
                     </td>
                     <td>
-                      {{-- Show Event Button --}}
-                        <a style="color:#007bff;" href="/show/client/{{$meeting->id}}">
-                          <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
-                            <i class="fas fa-pencil-alt font-color"></i>
-                          </span>
-                        </a> 
-                      {{-- /Show Button --}}
+                      {{-- Cancel Meeting Button --}}
+                      <a class="btndelevent"  style="color:#007bff;" href="http://127.0.0.1:8000/meeting/cancel/{{$meeting->id}}" >
+                            
+                        <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Cancel Meeting">
+                            <i class="fas fa-times"></i>
+                        </span>
+                      </a>
+                      {{-- /Cacel Button --}}
                         |
                       {{-- Delete User Button --}}
-                        <a class="btndelevent" style="color:red;" href="/client/delete/{{$meeting->id}}">
+                        <a class="btndelevent" style="color:red;" href="/meeting/delete/{{$meeting->id}}">
                           <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                             <i class="fas fa-trash-alt font-color"></i>
                           </span>
@@ -239,15 +240,15 @@
                       </td>
                       <td>
                         {{-- Show Event Button --}}
-                          <a style="color:#007bff;" href="/show/client/{{$meetingByNotarys->id}}">
-                            <span data-toggle="tooltip"  data-placement="top" style="border-bottom:none" title="Edit">
-                              <i class="fas fa-pencil-alt font-color"></i>
-                            </span>
+                          <a style="color:#007bff;" href="http://127.0.0.1:8000/meeting/cancel/{{$meetingByNotarys->id}}">
+                            <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Cancel Meeting">
+                              <i class="fas fa-times"></i>
+                          </span>
                           </a> 
                         {{-- /Show Button --}}
                           |
                         {{-- Delete User Button --}}
-                          <a class="btndelevent" style="color:red;" href="/client/delete/{{$meetingByNotarys->id}}">
+                          <a class="btndelevent" style="color:red;" href="/meeting/delete/{{$meetingByNotarys->id}}">
                             <span style="border-bottom:none" data-toggle="tooltip" data-placement="top"tabindex="1" title="Delete">
                               <i class="fas fa-trash-alt font-color"></i>
                             </span>
