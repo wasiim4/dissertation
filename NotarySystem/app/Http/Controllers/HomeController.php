@@ -40,7 +40,47 @@ class HomeController extends Controller
     public function index()
     {
         $progressData=DB::table('task_progress')->where('clientId',Auth::user()->id)->get();
-        return view('/dashboard')->with('progressData',$progressData);
+       
+        $numTransactions=DB::table('transaction')->where('clientId',Auth::user()->id)->count();
+
+        $numProperties=DB::table('immovableproperty')->where('clientId',Auth::user()->id)->count();
+
+        $numMeetings=DB::table('meetings')->where('reqFrom','Client')
+                                          ->where('requestorId',Auth::user()->id)
+                                          ->orwhere('partyRole','Client')
+                                          ->where('partyId',Auth::user()->id)
+                                          ->count();
+
+        $numDocuments=DB::table('uploaded_documents')->where('senderRole','Client')
+                                                     ->where('senderId',Auth::user()->id)
+                                                     ->orwhere('receiverRole','Client')
+                                                     ->where('receiverId',Auth::user()->id)
+                                                     ->count();
+
+        $rejectedMeetings=DB::table('meetings')->where('reqFrom','Client')
+                                                ->where('requestorId',Auth::user()->id)
+                                                ->where('meetingStatus','Unavailable')
+                                               ->orwhere('meetingStatus','Cancelled')
+                                               ->orwhere('meetingStatus','not_going')                                           
+                                               ->count();
+
+        $pendingMeetings=DB::table('meetings')->where('reqFrom','Client')
+                                              ->where('requestorId',Auth::user()->id)
+                                              ->where('meetingStatus','Pending')
+                                              ->count();
+
+        $confirmedMeetings=DB::table('meetings')->where('reqFrom','Client')
+                                                ->where('requestorId',Auth::user()->id)
+                                                ->where('meetingStatus','Confirmed')->count();
+
+         return view('/dashboard')->with('progressData',$progressData)
+                                  ->with('numTransactions',$numTransactions)
+                                  ->with('numProperties',$numProperties)
+                                  ->with('numMeetings',$numMeetings)
+                                  ->with('numDocuments',$numDocuments)
+                                  ->with('rejectedMeetings',$rejectedMeetings)
+                                  ->with('pendingMeetings',$pendingMeetings)
+                                  ->with('confirmedMeetings', $confirmedMeetings);                                       
     }
 
     // public function returnHome()

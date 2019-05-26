@@ -141,8 +141,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                      <a href="/staff"> <span class="stats-small__label text-uppercase">Clients</span></a>
-                      <h6 class="stats-small__value count my-3">5</h6>
+                      <a href="/profile/view"> <span class="stats-small__label text-uppercase">My Profile</span></a>
+                      {{-- <h6 class="stats-small__value count my-3">5</h6> --}}
                       </div>
                       
                     </div>
@@ -155,8 +155,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <a href="/staff/transactions/list"><span class="stats-small__label text-uppercase">Transactions</span></a>
-                      <h6 class="stats-small__value count my-3">2</h6>
+                        <a href="/view/user/transaction"><span class="stats-small__label text-uppercase">Transactions</span></a>
+                      <h6 class="stats-small__value count my-3">{{$numTransactions}}</h6>
                       </div>
                       
                     </div>
@@ -169,8 +169,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Immovable Properties</span>
-                      <h6 class="stats-small__value count my-3">8</h6>
+                        <a href="/view/user/transaction"><span class="stats-small__label text-uppercase">Immovable Properties</span></a>
+                      <h6 class="stats-small__value count my-3">{{$numProperties}}</h6>
                       </div>
                       
                     </div>
@@ -183,8 +183,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Meetings</span>
-                      <h6 class="stats-small__value count my-3">8</h6>
+                        <a href="/meetings"><span class="stats-small__label text-uppercase">Meetings</span></a>
+                      <h6 class="stats-small__value count my-3">{{$numMeetings}}</h6>
                       </div>
                       
                     </div>
@@ -197,8 +197,8 @@
                   <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                       <div class="stats-small__data text-center">
-                        <span class="stats-small__label text-uppercase">Documents</span>
-                      <h6 class="stats-small__value count my-3">7</h6>
+                        <a href="/uploaded/documents"><span class="stats-small__label text-uppercase">Documents</span></a>
+                      <h6 class="stats-small__value count my-3">{{$numDocuments}}</h6>
                       </div>
                       
                     </div>
@@ -214,12 +214,12 @@
                                 <div class="card">
                                   <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Pending Meetings <i style="color:red;" class="fas fa-circle"></i></div>
                                   <div class="card-body blink" style="text-align:center;color:#17a2b8;font-size:15px;">
-                                    {{-- @if($pendingMeetings==0) --}}
-                                    <span >3</span>
-                                    {{-- @endif --}}
-                                    {{-- @if($pendingMeetings>0)
+                                    @if($pendingMeetings==0)
+                                  <span >{{$pendingMeetings}}</span>
+                                    @endif 
+                                     @if($pendingMeetings>0)
                                     <span class="spanBlink">{{$pendingMeetings}}</span>
-                                    @endif --}}
+                                    @endif
                                   </div>                 
                                 </div>
                               </div>
@@ -230,7 +230,7 @@
                                 <div class="card">
                                   <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Confirmed Meetings <i style="color:green;" class="fas fa-circle"></i></div>
                                   <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">
-                                    5
+                                    <span >{{$confirmedMeetings}}</span>
                                   </div>                 
                                 </div>
                               </div>
@@ -239,7 +239,7 @@
                             <div class="container">               
                                 <div class="card">
                                   <div class="card-header stats-small__label text-uppercase" style="text-align:center;color:#818ea3;font-size:15px;">Rejected Meetings <i style="color:red;" class="fas fa-times-circle"></i></div>
-                                  <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;">6</div>                 
+                                  <div class="card-body" style="text-align:center;color:#17a2b8;font-size:15px;"> <span >{{$rejectedMeetings}}</span></div>                 
                                 </div>
                               </div>
                         </div>                   
