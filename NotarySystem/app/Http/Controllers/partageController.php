@@ -383,6 +383,9 @@ class partageController extends Controller
         try 
         {
             $objectWriter->save(storage_path($buyer->firstname.$buyer->lastname.'.docx'));
+            DB::table('task_progress')->where('clientId', $buyer->id)
+            ->update(['generateDraft' => 1
+            ]);
             return response()->download(storage_path($buyer->firstname.$buyer->lastname.'.docx'));
         } catch (Exception $e) {
             }        

@@ -17,7 +17,7 @@
    
 
 <body>
-    <h1  style="color:white; padding-top:2%;"> <img src="{{ asset('images/mru1.png') }}" height="10%" width="5%" alt="Mauritius">Welcome to Mauritius e-Notary</h1>
+    <h1  style="color:white; padding-top:2%; margin-right:8% !important;" > <img src="{{ asset('images/mru1.png') }}" height="10%" width="5%" alt="Mauritius">Welcome to Mauritius e-Notary</h1>
     <div class="loginbox">
         @yield('content')
         <marquee style="color:#a9a9a9; font-size:14px;">*** For security reasons, please Log Out and Exit your web browser when you are done accessing services that require authentication!***</marquee>

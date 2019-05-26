@@ -447,6 +447,9 @@ class wordTest extends Controller
 
         //if 'Download Contract' button is clicked, contract is downloaded in word document with correct formatting
         if(isset($_POST['btnSubmit'])){   
+            DB::table('task_progress')->where('clientId', $buyerId)
+            ->update(['generateDraft' => 1
+            ]);
             return response()->download(storage_path($buyer->firstname.$buyer->lastname.'.docx'));
         }
         //if 'Preview Contract' button is clicked,contract is previewed on browser into pfd format since

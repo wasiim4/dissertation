@@ -285,6 +285,9 @@ class StaffController extends Controller
             );
 
             DB::table('immovableproperty')->insert($data);
+            DB::table('task_progress')->where('clientId', $clientId)
+                                      ->update(['registeredProperty' => 1
+                                      ]);
             Session::flash('message', 'Property successfully added with a taxduty of RS'.$taxduty); 
             return Redirect::to('staff/propertyRegistration');
         }
@@ -789,7 +792,7 @@ class StaffController extends Controller
                     }
 
                     DB::table('task_progress')->where('clientId',$clientName)->update([
-                        'SignedUpload'=>true                       
+                        'SignedUpload'=>1                      
                     ]);
                     Session::flash('message', 'Contract successfully uploaded and mail successfully sent! Fees to paid=RS '.$totalFees); 
                     return Redirect::to('/staff/upload/contract');
@@ -1382,6 +1385,11 @@ class StaffController extends Controller
     public function updatePayment($id){
         DB::table('transaction')->where('clientId',$id)
                                 ->update(['feeStatus'=>"PAID"]);
+
+        DB::table('task_progress')->where('clientId', $id)
+        ->update(['payment' => 1
+        ]);
+        
         return redirect('/staff/transactions/list');
     }
 
