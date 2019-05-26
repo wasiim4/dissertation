@@ -128,7 +128,7 @@
             <div class="card-body p-0 d-flex">
               <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                  <span class="stats-small__label text-uppercase">Immovable Properties</span>
+                  <a href="/staff/list/properties"><span class="stats-small__label text-uppercase">Immovable Properties</span></a>
                 <h6 class="stats-small__value count my-3">{{$numProperties}}</h6>
                 </div>
                 
@@ -142,7 +142,7 @@
             <div class="card-body p-0 d-flex">
               <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                  <span class="stats-small__label text-uppercase">Meetings</span>
+                  <a href="/staff/meetings"><span class="stats-small__label text-uppercase">Meetings</span></a>
                 <h6 class="stats-small__value count my-3">{{$numMeetings}}</h6>
                 </div>
                 
@@ -156,7 +156,7 @@
             <div class="card-body p-0 d-flex">
               <div class="d-flex flex-column m-auto">
                 <div class="stats-small__data text-center">
-                  <span class="stats-small__label text-uppercase">Documents</span>
+                  <a href="/staff/view/download/uploaded/documents"><span class="stats-small__label text-uppercase">Documents</span></a>
                 <h6 class="stats-small__value count my-3">{{$numDocuments}}</h6>
                 </div>
                 
@@ -187,7 +187,7 @@
               <div class="card-body p-0 d-flex">
                 <div class="d-flex flex-column m-auto">
                   <div class="stats-small__data text-center">
-                    <a href="/staff/transactions/list"><span class="stats-small__label text-uppercase"> New Transaction</span></a>
+                    <a href="/staff/upload/contract"><span class="stats-small__label text-uppercase"> New Transaction</span></a>
                   <h6 class="stats-small__value count my-3"><i class="fas fa-hand-holding-usd" style="color:#17a2b8;"></i></h6>
                   </div>
                   
@@ -201,7 +201,7 @@
               <div class="card-body p-0 d-flex">
                 <div class="d-flex flex-column m-auto">
                   <div class="stats-small__data text-center">
-                    <span class="stats-small__label text-uppercase">New Property</span>
+                    <a href="/staff/propertyRegistration"><span class="stats-small__label text-uppercase">New Property</span></a>
                   <h6 class="stats-small__value count my-3"><i class="fas fa-building" style="color:#17a2b8;"></i></h6>
                   </div>
                   
@@ -215,7 +215,7 @@
               <div class="card-body p-0 d-flex">
                 <div class="d-flex flex-column m-auto">
                   <div class="stats-small__data text-center">
-                    <span class="stats-small__label text-uppercase">New Meeting</span>
+                    <a href="/staff/meeting/add/del/up"><span class="stats-small__label text-uppercase">New Meeting</span></a>
                   <h6 class="stats-small__value count my-3">  <i class="fas fa-calendar-alt" style="color:#17a2b8;"></i></h6>
                   </div>
                   
@@ -229,7 +229,7 @@
               <div class="card-body p-0 d-flex">
                 <div class="d-flex flex-column m-auto">
                   <div class="stats-small__data text-center">
-                    <span class="stats-small__label text-uppercase">New Upload</span>
+                    <a href="/staff/upload/documents"><span class="stats-small__label text-uppercase">New Upload</span></a>
                   <h6 class="stats-small__value count my-3"> <i class="fas fa-upload" style="color:#17a2b8;"></i></h6>
                   </div>
                   
